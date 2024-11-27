@@ -34,7 +34,7 @@ helmfiles:
     values:
       - name: {{ .ownershipProcessor }}
       - namespace: {{ $.Values.namespace }}
-      - imageTag: {{ requiredEnv "CIRCLE_SHA1" }}
+      - imageTag: {{ requiredEnv "IMAGE_TAG" }}
       - postgresDb: {{ .postgresDb }}
       - postgresDbHost: {{ .dbPodName }}
       - postgresPassword: {{ .postgresPassword }}
@@ -58,7 +58,7 @@ helmfiles:
     values:
       - name: {{ .laosProcessor }}
       - namespace: {{ $.Values.namespace }}
-      - imageTag: {{ requiredEnv "CIRCLE_SHA1" }}
+      - imageTag: {{ requiredEnv "IMAGE_TAG" }}
       - postgresDb: {{ .postgresDb }}
       - postgresDbHost: {{ .dbPodName }}
       - postgresPassword: {{ .postgresPassword }}
@@ -79,7 +79,7 @@ helmfiles:
     values:
       - name: {{ .apiProcessor }}
       - namespace: {{ $.Values.namespace }}
-      - imageTag: {{ requiredEnv "CIRCLE_SHA1" }}
+      - imageTag: {{ requiredEnv "IMAGE_TAG" }}
       - postgresDb: {{ .postgresDb }}
       - postgresDbHost: {{ .dbPodName }}
       - postgresPort: {{ .servicePort }}
