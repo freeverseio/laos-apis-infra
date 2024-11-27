@@ -23,7 +23,7 @@ commands:
       - run:
           name: Checkout API
           command: |
-            git clone git@github.com:freeverseio/laos-api.git
+            git clone git@github.com:freeverseio/laos-apis.git
             cd laos-api
             git checkout
 
@@ -100,7 +100,7 @@ jobs:
           name: Deploy to << parameters.environment >> environment
           command: |
             echo "Deploying to << parameters.environment >> environment"
-            git clone --no-checkout git@github.com:freeverseio/laos-api.git
+            git clone --no-checkout git@github.com:freeverseio/laos-apis.git
             cd laos-api
             if [ "<< parameters.imageTag >>" = "latest" ]; then
               IMAGE_TAG=$(git rev-parse HEAD)
@@ -131,7 +131,7 @@ jobs:
           command: |
             echo "Helmfile tests passing"
             export IMAGE_TAG=<< parameters.imageTag >>
-            git clone --no-checkout git@github.com:freeverseio/laos-api.git
+            git clone --no-checkout git@github.com:freeverseio/laos-apis.git
             cd laos-api
             if [ "<< parameters.imageTag >>" = "latest" ]; then
               IMAGE_TAG=$(git rev-parse HEAD)
