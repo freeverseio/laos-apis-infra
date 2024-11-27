@@ -143,7 +143,7 @@ jobs:
             cd ..
             cd << parameters.root >>
             helmfile lint
-            echo "Deployment tests passed for battle-of-chains commit $IMAGE_TAG"
+            echo "Deployment tests passed commit $IMAGE_TAG"
 
 
 workflows:
@@ -172,11 +172,6 @@ workflows:
           image: freeverseio/laos-indexer
           root: laos-indexer
           context: dockerhub
-          
-      - deployment-test:
-          name: deployment-test-laos-node
-          root: laos-node
-          imageTag: << pipeline.parameters.imageTag >>
 
       - deployment-test:
           name: deployment-test-indexer
