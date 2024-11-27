@@ -14,7 +14,7 @@ commands:
     steps:
       - run:
           name: Install helmfile
-          command: ./_circleci-scripts/install-helmfile.sh
+          command: ./circleci-scripts/install-helmfile.sh
 
 
 jobs:
@@ -169,7 +169,7 @@ workflows:
             - deployment-test
             - approve-deploy-client-api
           environment: development
-          root: _deployment
+          root: deployment
           imageTag: << pipeline.parameters.imageTag >>
           filters:
             branches:
@@ -182,7 +182,7 @@ workflows:
             - deployment-test-indexer
             - approve-deploy-indexer
           environment: development
-          root: _deployment/indexer
+          root: deployment/indexer
           imageTag: << pipeline.parameters.imageTag >>
           filters:
             branches:
@@ -195,7 +195,7 @@ workflows:
             - deployment-test
             - approve-deploy-client-api-staging
           environment: staging
-          root: _deployment
+          root: deployment
           imageTag: << pipeline.parameters.imageTag >>
           filters:
             branches:
@@ -208,7 +208,7 @@ workflows:
             - deployment-test-indexer
             - approve-deploy-indexer-staging
           environment: staging
-          root: _deployment/indexer
+          root: deployment/indexer
           imageTag: << pipeline.parameters.imageTag >>
           filters:
             branches:
