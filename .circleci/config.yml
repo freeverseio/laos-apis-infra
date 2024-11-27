@@ -109,7 +109,6 @@ jobs:
             git fetch origin $IMAGE_TAG
             git checkout $IMAGE_TAG
             echo "Using IMAGE_TAG=$IMAGE_TAG"
-            cd ..
             cd << parameters.root >>
             helmfile sync --environment << parameters.environment >>
 
