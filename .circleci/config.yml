@@ -24,7 +24,7 @@ commands:
           name: Checkout API
           command: |
             git clone git@github.com:freeverseio/laos-apis.git
-            cd laos-api
+            cd laos-apis
             git checkout
 
   dockerize-and-push:
@@ -101,7 +101,7 @@ jobs:
           command: |
             echo "Deploying to << parameters.environment >> environment"
             git clone --no-checkout git@github.com:freeverseio/laos-apis.git
-            cd laos-api
+            cd laos-apis
             if [ "<< parameters.imageTag >>" = "latest" ]; then
               IMAGE_TAG=$(git rev-parse HEAD)
             fi
@@ -132,7 +132,7 @@ jobs:
             echo "Helmfile tests passing"
             export IMAGE_TAG=<< parameters.imageTag >>
             git clone --no-checkout git@github.com:freeverseio/laos-apis.git
-            cd laos-api
+            cd laos-apis
             if [ "<< parameters.imageTag >>" = "latest" ]; then
               IMAGE_TAG=$(git rev-parse HEAD)
             fi
