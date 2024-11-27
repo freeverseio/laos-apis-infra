@@ -146,8 +146,6 @@ jobs:
             echo "Deployment tests passed for battle-of-chains commit $IMAGE_TAG"
 
 
-
-
 workflows:
   ci-workflow:
     jobs:
@@ -189,7 +187,7 @@ workflows:
           type: approval
           name: approve-deploy-client-api
           requires:
-            - deployment-test
+            - deployment-test-laos-node
             - build-client-api
             - build-api-gateway
             - build-playground
@@ -202,7 +200,7 @@ workflows:
           type: approval
           name: approve-deploy-client-api-staging
           requires:
-            - deployment-test
+            - deployment-test-laos-node
             - build-client-api
             - build-api-gateway
             - build-playground
@@ -236,7 +234,7 @@ workflows:
       - deploy_to_cluster:
           name: deploy-to-dev-api
           requires:
-            - deployment-test
+            - deployment-test-laos-node
             - approve-deploy-client-api
           environment: development
           root: deployment
@@ -262,7 +260,7 @@ workflows:
       - deploy_to_cluster:
           name: deploy-to-staging-api
           requires:
-            - deployment-test
+            - deployment-test-laos-node
             - approve-deploy-client-api-staging
           environment: staging
           root: deployment
