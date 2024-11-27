@@ -141,6 +141,7 @@ jobs:
             git checkout $IMAGE_TAG
             echo "Using IMAGE_TAG=$IMAGE_TAG"
             cd ..
+            cd deployment
             cd << parameters.root >>
             helmfile lint
             echo "Deployment tests passed commit $IMAGE_TAG"
@@ -172,6 +173,11 @@ workflows:
           image: freeverseio/laos-indexer
           root: laos-indexer
           context: dockerhub
+          
+      - deployment-test:
+          name: deployment-test-laos-node
+          root: laos-node
+          imageTag: << pipeline.parameters.imageTag >>
 
       - deployment-test:
           name: deployment-test-indexer
