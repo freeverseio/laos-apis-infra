@@ -1,0 +1,48 @@
+namespace: protostar
+rpcLaos: wss://rpc.laos.laosfoundation.io
+laosGlobalConsensus: "2"
+laosParachain: "3370"
+laosPalletInstance: "51"
+indexerInstances:
+  - dbPodName: indexer-db-polygon
+    postgresDb: squid
+    postgresPassword: postgres
+    postgresUser: postgres
+    pvcName: pvc-squid-1
+    servicePort: 5432
+    containerPort: 5432
+    mountPath: /var/lib/postgresql/pvdata
+    mountName: indexer-pvc
+    ownershipProcessor: indexer-polygon-processor
+    gatewayEndpoint: https://v2.archive.subsquid.io/network/polygon-mainnet
+    startingBlockOwnership: "61394132"
+    startingBlockLaos: "1"
+    rpcEndpointSecretKey: "indexerPolygonRpcEndpoint"
+    laosProcessor: indexer-laos-processor-polygon
+    apiProcessor: indexer-laos-polygon-api
+    host: polygon-indexer.laosnetwork.io
+    gqlPort: 4000
+    rpcRateLimit: 40
+    maxBatchCallSizeOwnership: 300
+    rpcRateLimitOwnership: 10
+  - dbPodName: indexer-db-ethereum
+    postgresDb: squid-ethereum
+    postgresPassword: postgres
+    postgresUser: postgres
+    pvcName: pvc-squid-ethereum-1
+    servicePort: 5433
+    containerPort: 5433
+    mountPath: /var/lib/postgresql/pvdata2
+    mountName: indexer-pvc-ethereum
+    ownershipProcessor: indexer-ethereum-processor
+    gatewayEndpoint: https://v2.archive.subsquid.io/network/ethereum-mainnet
+    startingBlockOwnership: "20673497"
+    startingBlockLaos: "1"
+    rpcEndpointSecretKey: "indexerEthereumRpcEndpoint"
+    laosProcessor: indexer-laos-processor-ethereum
+    apiProcessor: indexer-laos-ethereum-api
+    host: ethereum-indexer.laosnetwork.io
+    gqlPort: 4000
+    rpcRateLimit: 40
+    maxBatchCallSizeOwnership: 100
+    rpcRateLimitOwnership: 10
