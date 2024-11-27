@@ -8,6 +8,7 @@ parameters:
   imageTag:
     type: string
     default: latest
+
 commands:
   install-helmfile:
     description: Install helmfile
@@ -16,8 +17,54 @@ commands:
           name: Install helmfile
           command: ./circleci-scripts/install-helmfile.sh
 
+  checkout-app:
+    description: Checkout app
+    steps:
+      - run:
+          name: Checkout API
+          command: |
+            git clone git@github.com:freeverseio/laos-api.git
+            cd laos-api
+            git checkout
+
+  dockerize-and-push:
+    parameters:
+      image:
+        type: string
+      root:
+        type: string
+    steps:
+      - attach_workspace:
+          at: ./
+      - run:
+          name: Docker login
+          command: echo $DOCKER_PASSWD | docker login -u $DOCKER_ID --password-stdin
+      - run:
+          name: Build and push Docker image
+          command: |
+            cd << parameters.root >>
+            echo "Docker images for $CIRCLE_SHA1 will be pushed"
+            docker build -t << parameters.image >>:$CIRCLE_SHA1 .
+            docker push << parameters.image >>:$CIRCLE_SHA1
 
 jobs:
+  build-app:
+    parameters:
+      image:
+        type: string
+      root:
+        type: string
+    docker:
+      - image: cimg/node:lts
+    steps:
+      - checkout
+      - setup_remote_docker:
+          docker_layer_caching: true
+      - checkout-app
+      - dockerize-and-push:
+          image: << parameters.image >>
+          root: << parameters.root >>
+
   deploy_to_cluster:
     parameters:
       environment:
@@ -104,7 +151,30 @@ jobs:
 workflows:
   ci-workflow:
     jobs:
+      - build-app:
+          name: build-client-api
+          image: freeverseio/laos-client-api
+          root: laos-client-api
+          context: dockerhub
 
+      - build-app:
+          name: build-api-gateway
+          image: freeverseio/laos-api-gateway
+          root: laos-api-gateway
+          context: dockerhub
+
+      - build-app:
+          name: build-playground
+          image: freeverseio/laos-graphql-playground
+          root: graphql-playground
+          context: dockerhub
+      
+      - build-app:
+          name: build-indexer
+          image: freeverseio/laos-indexer
+          root: laos-indexer
+          context: dockerhub
+          
       - deployment-test:
           name: deployment-test-laos-node
           root: laos-node
