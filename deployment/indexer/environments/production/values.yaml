@@ -46,3 +46,22 @@ indexerInstances:
     rpcRateLimit: 40
     maxBatchCallSizeOwnership: 100
     rpcRateLimitOwnership: 10
+  - dbPodName: indexer-db-hedera
+    postgresDb: squid
+    postgresPassword: postgres
+    postgresUser: postgres
+    pvcName: pvc-squid-hedera-1
+    servicePort: 5432
+    containerPort: 5432
+    mountPath: /var/lib/postgresql/pvdata3
+    mountName: indexer-pvc-hedera
+    ownershipProcessor: indexer-hedera-processor
+    gatewayEndpoint: https://mainnet.hashio.io/api
+    startingBlockOwnership: "72113678"
+    startingBlockLaos: "1"
+    rpcEndpointSecretKey: "indexerHederaRpcEndpoint"
+    laosProcessor: indexer-laos-processor-hedera
+    apiProcessor: indexer-laos-hedera-api
+    host: hedera-indexer.laosnetwork.io
+    gqlPort: 4000
+    rpcRateLimit: 40
