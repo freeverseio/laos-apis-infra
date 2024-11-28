@@ -42,6 +42,7 @@ commands:
       - run:
           name: Build and push Docker image
           command: |
+            cd laos-apis
             cd << parameters.root >>
             echo "Docker images for $CIRCLE_SHA1 will be pushed"
             docker build -t << parameters.image >>:$CIRCLE_SHA1 .
@@ -110,6 +111,7 @@ jobs:
             git checkout $IMAGE_TAG
             echo "Using IMAGE_TAG=$IMAGE_TAG"
             cd ..
+            cd deployment
             cd << parameters.root >>
             helmfile sync --environment << parameters.environment >>
 
@@ -141,11 +143,10 @@ jobs:
             git checkout $IMAGE_TAG
             echo "Using IMAGE_TAG=$IMAGE_TAG"
             cd ..
+            cd deployment
             cd << parameters.root >>
             helmfile lint
-            echo "Deployment tests passed for battle-of-chains commit $IMAGE_TAG"
-
-
+            echo "Deployment tests passed commit $IMAGE_TAG"
 
 
 workflows:
@@ -189,7 +190,7 @@ workflows:
           type: approval
           name: approve-deploy-client-api
           requires:
-            - deployment-test
+            - deployment-test-laos-node
             - build-client-api
             - build-api-gateway
             - build-playground
@@ -202,7 +203,7 @@ workflows:
           type: approval
           name: approve-deploy-client-api-staging
           requires:
-            - deployment-test
+            - deployment-test-laos-node
             - build-client-api
             - build-api-gateway
             - build-playground
@@ -236,7 +237,7 @@ workflows:
       - deploy_to_cluster:
           name: deploy-to-dev-api
           requires:
-            - deployment-test
+            - deployment-test-laos-node
             - approve-deploy-client-api
           environment: development
           root: deployment
@@ -262,7 +263,7 @@ workflows:
       - deploy_to_cluster:
           name: deploy-to-staging-api
           requires:
-            - deployment-test
+            - deployment-test-laos-node
             - approve-deploy-client-api-staging
           environment: staging
           root: deployment
