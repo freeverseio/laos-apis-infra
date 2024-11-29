@@ -265,7 +265,6 @@ workflows:
           root: deployment
           imageTag: << pipeline.parameters.imageTag >>
 
-
       - deploy_to_cluster:
           name: deploy-to-dev-indexer
           requires:
@@ -285,7 +284,6 @@ workflows:
           root: deployment
           imageTag: << pipeline.parameters.imageTag >>
 
-
       - deploy_to_cluster:
           name: deploy-to-staging-indexer
           requires:
@@ -295,7 +293,6 @@ workflows:
           root: deployment/indexer
           imageTag: << pipeline.parameters.imageTag >>
 
-      
       - deploy_to_cluster:
           name: deploy-to-staging-extentions
           requires:
