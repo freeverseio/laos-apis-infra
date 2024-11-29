@@ -255,6 +255,10 @@ workflows:
           environment: development
           root: deployment
           imageTag: << pipeline.parameters.imageTag >>
+          filters:
+            branches:
+              only:
+                - main
 
       - deploy_to_cluster:
           name: deploy-to-dev-indexer
@@ -264,6 +268,10 @@ workflows:
           environment: development
           root: deployment/indexer
           imageTag: << pipeline.parameters.imageTag >>
+          filters:
+            branches:
+              only:
+                - main
 
 
       - deploy_to_cluster:
@@ -274,6 +282,10 @@ workflows:
           environment: staging
           root: deployment
           imageTag: << pipeline.parameters.imageTag >>
+          filters:
+            branches:
+              only:
+                - main
 
       - deploy_to_cluster:
           name: deploy-to-staging-indexer
@@ -283,3 +295,7 @@ workflows:
           environment: staging
           root: deployment/indexer
           imageTag: << pipeline.parameters.imageTag >>
+          filters:
+            branches:
+              only:
+                - main
