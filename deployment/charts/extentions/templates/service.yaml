@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: laos-extentions
+  labels:
+    app.kubernetes.io/app: laos-extentions
+spec:
+  type: ClusterIP
+  selector:
+    app.kubernetes.io/app: laos-extentions
+  ports:
+    - port: 3000
+      targetPort: 3000
+      protocol: TCP
+      name: extentions
+  

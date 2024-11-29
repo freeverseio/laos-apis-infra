@@ -1,0 +1,8 @@
+releases:
+  - name: laos-extentions-release
+    namespace: '{{ .Values.namespace }}'
+    createNamespace: false
+    chart: .
+    values:
+      - imageTag: {{ .Values.imageTag }}
+      - host: {{ .Values.host }}

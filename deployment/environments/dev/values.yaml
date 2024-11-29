@@ -1,6 +1,7 @@
 namespace: protostar
 host: api.laos.gorengine.com
 playgroundHost: playground.laos.gorengine.com
+extentionsHost: extentions.api.laos.gorengine.com
 graphqlEndpoint: https://api.laos.gorengine.com/graphql
 postgresHost: dev-db-do-user-4813238-0.j.db.ondigitalocean.com
 postgresDb: protostardb
