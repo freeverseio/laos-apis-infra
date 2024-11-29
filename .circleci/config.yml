@@ -261,7 +261,7 @@ workflows:
           name: deploy-to-dev-api
           requires:
             - deployment-test-laos-node
-            - approve-deploy-client-api
+            - approve-deploy-apis
           environment: development
           root: deployment
           imageTag: << pipeline.parameters.imageTag >>
@@ -280,7 +280,7 @@ workflows:
           name: deploy-to-staging-api
           requires:
             - deployment-test-laos-node
-            - approve-deploy-client-api-staging
+            - approve-deploy-apis-staging
           environment: staging
           root: deployment
           imageTag: << pipeline.parameters.imageTag >>
@@ -292,13 +292,4 @@ workflows:
             - approve-deploy-indexer-staging
           environment: staging
           root: deployment/indexer
-          imageTag: << pipeline.parameters.imageTag >>
-
-      - deploy_to_cluster:
-          name: deploy-to-staging-extentions
-          requires:
-            - deployment-test-extentions
-            - approve-deploy-extentions
-          environment: staging
-          root: deployment
           imageTag: << pipeline.parameters.imageTag >>
