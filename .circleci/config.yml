@@ -193,8 +193,8 @@ workflows:
           imageTag: << pipeline.parameters.imageTag >>
 
       - deployment-test:
-          name: deployment-test-extensions
-          root: laos-extensions
+          name: deployment-apis
+          root: ./
           imageTag: << pipeline.parameters.imageTag >>
 
       - approval:
