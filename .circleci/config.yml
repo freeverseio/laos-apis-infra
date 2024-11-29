@@ -175,6 +175,12 @@ workflows:
           image: freeverseio/laos-indexer
           root: laos-indexer
           context: dockerhub
+
+      - build-app:
+          name: build-extentions
+          image: freeverseio/laos-extentions
+          root: extentions
+          context: dockerhubs
           
       - deployment-test:
           name: deployment-test-laos-node
@@ -184,6 +190,11 @@ workflows:
       - deployment-test:
           name: deployment-test-indexer
           root: indexer
+          imageTag: << pipeline.parameters.imageTag >>
+
+      - deployment-test:
+          name: deployment-test-extentions
+          root: extentions
           imageTag: << pipeline.parameters.imageTag >>
 
       - approval:
@@ -234,6 +245,17 @@ workflows:
               only:
                 - main
 
+      - approval:
+          type: approval
+          name: approve-deploy-extentions
+          requires:
+            - deployment-test-extentions
+            - build-extentions
+          filters:
+            branches:
+              only:
+                - main
+
       - deploy_to_cluster:
           name: deploy-to-dev-api
           requires:
@@ -242,10 +264,7 @@ workflows:
           environment: development
           root: deployment
           imageTag: << pipeline.parameters.imageTag >>
-          filters:
-            branches:
-              only:
-                - main
+
 
       - deploy_to_cluster:
           name: deploy-to-dev-indexer
@@ -255,10 +274,7 @@ workflows:
           environment: development
           root: deployment/indexer
           imageTag: << pipeline.parameters.imageTag >>
-          filters:
-            branches:
-              only:
-                - main
+
 
       - deploy_to_cluster:
           name: deploy-to-staging-api
@@ -268,10 +284,7 @@ workflows:
           environment: staging
           root: deployment
           imageTag: << pipeline.parameters.imageTag >>
-          filters:
-            branches:
-              only:
-                - main
+
 
       - deploy_to_cluster:
           name: deploy-to-staging-indexer
@@ -281,7 +294,13 @@ workflows:
           environment: staging
           root: deployment/indexer
           imageTag: << pipeline.parameters.imageTag >>
-          filters:
-            branches:
-              only:
-                - main
+
+      
+      - deploy_to_cluster:
+          name: deploy-to-staging-extentions
+          requires:
+            - deployment-test-extentions
+            - approve-deploy-extentions
+          environment: staging
+          root: deployment
+          imageTag: << pipeline.parameters.imageTag >>
