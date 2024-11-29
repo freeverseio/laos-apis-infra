@@ -180,7 +180,7 @@ workflows:
           name: build-extensions
           image: freeverseio/laos-extensions
           root: laos-extensions
-          context: dockerhubs
+          context: dockerhub
           
       - deployment-test:
           name: deployment-test-laos-node
