@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: extentions-ingress
+  name: extensions-ingress
   annotations:
     kubernetes.io/ingress.class: 'nginx'
     nginx.ingress.kubernetes.io/auth-tls-verify-client: 'on'
@@ -18,7 +18,7 @@ spec:
   tls:
     - hosts:
         - {{ .Values.host }}
-      secretName: extentions-tls
+      secretName: extensions-tls
   rules:
     - host: {{ .Values.host }}
       http:
@@ -27,6 +27,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: laos-extentions
+                name: laos-extensions
                 port:
                   number: 3000

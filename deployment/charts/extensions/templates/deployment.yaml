@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: laos-extentions
+  name: laos-extensions
   labels:
-    app.kubernetes.io/app: laos-extentions
+    app.kubernetes.io/app: laos-extensions
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app.kubernetes.io/app: laos-extentions
+      app.kubernetes.io/app: laos-extensions
   template:
     metadata:
       labels:
-        app.kubernetes.io/app: laos-extentions
+        app.kubernetes.io/app: laos-extensions
     spec:
       containers:
-        - name: laos-extentions
-          image: freeverseio/laos-extentions:{{ .Values.imageTag }}
+        - name: laos-extensions
+          image: freeverseio/laos-extensions:{{ .Values.imageTag }}
           imagePullPolicy: Always
           resources:
             requests:

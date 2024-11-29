@@ -37,7 +37,7 @@ helmfiles:
       - imageTag: {{ requiredEnv "IMAGE_TAG" }}
       - graphqlEndpoint: {{ .Values.graphqlEndpoint }}
       - host: {{ .Values.playgroundHost }}
-  - path: 'charts/extentions/helmfile.yaml'
+  - path: 'charts/extensions/helmfile.yaml'
     values:
       - namespace: {{ .Values.namespace }}
       - imageTag: {{ requiredEnv "IMAGE_TAG" }}

@@ -177,9 +177,9 @@ workflows:
           context: dockerhub
 
       - build-app:
-          name: build-extentions
-          image: freeverseio/laos-extentions
-          root: extentions
+          name: build-extensions
+          image: freeverseio/laos-extensions
+          root: laos-extentions
           context: dockerhubs
           
       - deployment-test:
@@ -194,17 +194,18 @@ workflows:
 
       - deployment-test:
           name: deployment-test-extentions
-          root: extentions
+          root: laos-extentions
           imageTag: << pipeline.parameters.imageTag >>
 
       - approval:
           type: approval
-          name: approve-deploy-client-api
+          name: approve-deploy-apis
           requires:
             - deployment-test-laos-node
             - build-client-api
             - build-api-gateway
             - build-playground
+            - build-extentions
           filters:
             branches:
               only:
@@ -212,7 +213,7 @@ workflows:
 
       - approval:
           type: approval
-          name: approve-deploy-client-api-staging
+          name: approve-deploy-apis-staging
           requires:
             - deployment-test-laos-node
             - build-client-api

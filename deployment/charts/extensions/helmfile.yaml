@@ -1,5 +1,5 @@
 releases:
-  - name: laos-extentions-release
+  - name: laos-extensions-release
     namespace: '{{ .Values.namespace }}'
     createNamespace: false
     chart: .
