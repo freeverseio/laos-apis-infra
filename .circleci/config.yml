@@ -101,6 +101,7 @@ jobs:
           name: Deploy to << parameters.environment >> environment
           command: |
             echo "Deploying to << parameters.environment >> environment"
+            export IMAGE_TAG=<< parameters.imageTag >>
             git clone --no-checkout git@github.com:freeverseio/laos-apis.git
             cd laos-apis
             if [ "<< parameters.imageTag >>" = "latest" ]; then
