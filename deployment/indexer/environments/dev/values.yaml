@@ -22,8 +22,8 @@ indexerInstances:
     apiProcessor: indexer-laos-polygon-api
     host: indexer.gorengine.com
     gqlPort: 4000
-    rpcRateLimitOwnership: 10
-    maxBatchCallSizeOwnership: 300
+    # rpcRateLimitOwnership: 10
+    # maxBatchCallSizeOwnership: 300
     pinataGatewayApiTokenSecretKey: "pinataGatewayApiToken" 
   - dbPodName: indexer-db-ethereum
     postgresDb: squid-ethereum
@@ -43,9 +43,9 @@ indexerInstances:
     apiProcessor: indexer-laos-ethereum-api
     host: indexer-ethereum.gorengine.com
     gqlPort: 4000
-    rpcRateLimitOwnership: 10
-    maxBatchCallSizeOwnership: 100
-    pinataGatewayApiTokenSecretKey: "pinataGatewayApiToken" 
+    # rpcRateLimitOwnership: 10
+    # maxBatchCallSizeOwnership: 100
+    # pinataGatewayApiTokenSecretKey: "pinataGatewayApiToken" 
   - dbPodName: indexer-db-arbitrum
     postgresDb: squid-arbitrum
     postgresPassword: postgres
@@ -64,7 +64,7 @@ indexerInstances:
     apiProcessor: indexer-laos-arbitrum-api
     host: indexer-arbitrum.gorengine.com
     gqlPort: 4000
-    rcpRateLimit: 10
-    maxBatchCallSizeOwnership: 300
-    rpcRateLimitOwnership: 10
-    pinataGatewayApiTokenSecretKey: "pinataGatewayApiToken" 
+    # rcpRateLimit: 10
+    # maxBatchCallSizeOwnership: 300
+    # rpcRateLimitOwnership: 10
+    # pinataGatewayApiTokenSecretKey: "pinataGatewayApiToken" 
