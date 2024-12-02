@@ -30,7 +30,3 @@ spec:
               value: "http://laos-api-gateway.protostar.svc.cluster.local:4000/graphql"
           ports:
             - containerPort: 3000
-      volumes:
-        - name: db-certificate
-          secret:
-            secretName: db-cert
