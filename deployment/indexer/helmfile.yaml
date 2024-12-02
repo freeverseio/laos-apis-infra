@@ -53,6 +53,9 @@ helmfiles:
       {{- if hasKey . "rpcRateLimitOwnership" }}
       - rpcRateLimitOwnership: {{ .rpcRateLimitOwnership }}
       {{- end }}
+      {{- if hasKey . "pinataGatewayApiTokenSecretKey" }}
+      - pinataGatewayApiTokenSecretKey: {{ .pinataGatewayApiTokenSecretKey }}
+      {{- end }}
       - command: "process:prod:ownership_chain"
   - path: 'charts/processor/helmfile.yaml'
     values:

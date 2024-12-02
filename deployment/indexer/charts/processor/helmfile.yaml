@@ -28,3 +28,6 @@ releases:
       {{- if hasKey .Values "rpcRateLimitOwnership" }}
       - rpcRateLimitOwnership: {{ .Values.rpcRateLimitOwnership }}
       {{- end }}
+      {{- if hasKey .Values "pinataGatewayApiTokenSecretKey" }}
+      - pinataGatewayApiTokenSecretKey: {{ .Values.pinataGatewayApiTokenSecretKey }}
+      {{- end }}

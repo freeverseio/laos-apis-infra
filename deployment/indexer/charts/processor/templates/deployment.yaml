@@ -75,4 +75,11 @@ spec:
             - name: RPC_RATE_LIMIT_OWNERSHIP
               value: {{ .Values.rpcRateLimitOwnership | quote }}
             {{- end }}
+            {{- if hasKey .Values "pinataGatewayApiTokenSecretKey" }}
+            - name: PRIVATE_IPFS_GATEWAY_API_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: protostar-private-config
+                  key: {{ .Values.pinataGatewayApiTokenSecretKey | quote }}
+            {{- end }}
           command: ["sqd", {{ .Values.command }}]

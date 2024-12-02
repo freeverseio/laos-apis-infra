@@ -24,6 +24,7 @@ indexerInstances:
     gqlPort: 4000
     rpcRateLimitOwnership: 10
     maxBatchCallSizeOwnership: 300
+    pinataGatewayApiTokenSecretKey: "pinataGatewayApiToken" 
   - dbPodName: indexer-db-ethereum
     postgresDb: squid-ethereum
     postgresPassword: postgres
@@ -44,6 +45,7 @@ indexerInstances:
     gqlPort: 4000
     rpcRateLimitOwnership: 10
     maxBatchCallSizeOwnership: 100
+    pinataGatewayApiTokenSecretKey: "pinataGatewayApiToken" 
   - dbPodName: indexer-db-arbitrum
     postgresDb: squid-arbitrum
     postgresPassword: postgres
@@ -65,3 +67,4 @@ indexerInstances:
     rcpRateLimit: 10
     maxBatchCallSizeOwnership: 300
     rpcRateLimitOwnership: 10
+    pinataGatewayApiTokenSecretKey: "pinataGatewayApiToken" 
