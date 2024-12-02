@@ -254,7 +254,7 @@ workflows:
             - deployment-test-laos-node
             - approve-deploy-apis
           environment: development
-          root: deployment
+          root: ./
           imageTag: << pipeline.parameters.imageTag >>
           filters:
             branches:
@@ -267,7 +267,7 @@ workflows:
             - deployment-test-indexer
             - approve-deploy-indexer
           environment: development
-          root: deployment/indexer
+          root: indexer
           imageTag: << pipeline.parameters.imageTag >>
           filters:
             branches:
@@ -280,7 +280,7 @@ workflows:
             - deployment-test-laos-node
             - approve-deploy-apis-staging
           environment: staging
-          root: deployment
+          root: ./
           imageTag: << pipeline.parameters.imageTag >>
           filters:
             branches:
@@ -293,7 +293,7 @@ workflows:
             - deployment-test-indexer
             - approve-deploy-indexer-staging
           environment: staging
-          root: deployment/indexer
+          root: indexer
           imageTag: << pipeline.parameters.imageTag >>
           filters:
             branches:
