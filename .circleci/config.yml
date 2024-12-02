@@ -101,6 +101,7 @@ jobs:
           name: Deploy to << parameters.environment >> environment
           command: |
             echo "Deploying to << parameters.environment >> environment"
+            export IMAGE_TAG=<< parameters.imageTag >>
             git clone --no-checkout git@github.com:freeverseio/laos-apis.git
             cd laos-apis
             if [ "<< parameters.imageTag >>" = "latest" ]; then
@@ -175,6 +176,12 @@ workflows:
           image: freeverseio/laos-indexer
           root: laos-indexer
           context: dockerhub
+
+      - build-app:
+          name: build-extensions
+          image: freeverseio/laos-extensions
+          root: laos-extensions
+          context: dockerhub
           
       - deployment-test:
           name: deployment-test-laos-node
@@ -186,14 +193,20 @@ workflows:
           root: indexer
           imageTag: << pipeline.parameters.imageTag >>
 
+      - deployment-test:
+          name: deployment-apis
+          root: ./
+          imageTag: << pipeline.parameters.imageTag >>
+
       - approval:
           type: approval
-          name: approve-deploy-client-api
+          name: approve-deploy-apis
           requires:
             - deployment-test-laos-node
             - build-client-api
             - build-api-gateway
             - build-playground
+            - build-extensions
           filters:
             branches:
               only:
@@ -201,7 +214,7 @@ workflows:
 
       - approval:
           type: approval
-          name: approve-deploy-client-api-staging
+          name: approve-deploy-apis-staging
           requires:
             - deployment-test-laos-node
             - build-client-api
@@ -234,11 +247,12 @@ workflows:
               only:
                 - main
 
+
       - deploy_to_cluster:
           name: deploy-to-dev-api
           requires:
             - deployment-test-laos-node
-            - approve-deploy-client-api
+            - approve-deploy-apis
           environment: development
           root: deployment
           imageTag: << pipeline.parameters.imageTag >>
@@ -264,7 +278,7 @@ workflows:
           name: deploy-to-staging-api
           requires:
             - deployment-test-laos-node
-            - approve-deploy-client-api-staging
+            - approve-deploy-apis-staging
           environment: staging
           root: deployment
           imageTag: << pipeline.parameters.imageTag >>
