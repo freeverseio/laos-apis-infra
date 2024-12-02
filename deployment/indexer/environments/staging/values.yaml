@@ -22,6 +22,7 @@ indexerInstances:
     apiProcessor: indexer-laos-polygon-api
     host: testnet.polygon-indexer.laosnetwork.io
     gqlPort: 4000
+    pinataGatewayApiTokenSecretKey: "pinataGatewayApiToken" 
   - dbPodName: indexer-db-ethereum
     postgresDb: squid-ethereum
     postgresPassword: postgres
@@ -42,6 +43,7 @@ indexerInstances:
     gqlPort: 4000
     maxBatchCallSizeOwnership: 200
     rpcRateLimitOwnership: 10
+    pinataGatewayApiTokenSecretKey: "pinataGatewayApiToken" 
   - dbPodName: indexer-db-hedera
     postgresDb: squid-hedera
     postgresPassword: postgres
@@ -62,3 +64,4 @@ indexerInstances:
     gqlPort: 4000
     maxBatchCallSizeOwnership: 100
     rpcRateLimitOwnership: 10
+    pinataGatewayApiTokenSecretKey: "pinataGatewayApiToken" 
