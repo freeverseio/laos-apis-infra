@@ -27,6 +27,21 @@ commands:
             cd laos-apis
             git checkout
 
+  get-image-tag:
+    description: Get image tag
+    steps:
+      - run:
+          name: Get image tag
+          command: |
+            git clone --no-checkout git@github.com:freeverseio/laos-apis.git
+            cd laos-apis
+            echo "Fetching image tag $IMAGE_TAG"
+            git fetch origin $IMAGE_TAG
+            git checkout $IMAGE_TAG
+            echo "Using IMAGE_TAG=$IMAGE_TAG"
+            export IMAGE_TAG=$IMAGE_TAG
+
+
   dockerize-and-push:
     parameters:
       image:
@@ -43,10 +58,11 @@ commands:
           name: Build and push Docker image
           command: |
             cd laos-apis
+            IMAGE_TAG=$(git rev-parse HEAD)
             cd << parameters.root >>
-            echo "Docker images for $CIRCLE_SHA1 will be pushed"
-            docker build -t << parameters.image >>:$CIRCLE_SHA1 .
-            docker push << parameters.image >>:$CIRCLE_SHA1
+            echo "Docker images for $IMAGE_TAG will be pushed"
+            docker build -t << parameters.image >>:$IMAGE_TAG .
+            docker push << parameters.image >>:$IMAGE_TAG
 
 jobs:
   build-app:
