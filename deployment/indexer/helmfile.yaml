@@ -42,11 +42,12 @@ helmfiles:
       - postgresPort: {{ .servicePort }}
       - gatewayEndpoint: {{ .gatewayEndpoint }}
       - rpcEndpointSecretKey: {{ .rpcEndpointSecretKey }}
-      - laosGlobalConsensus: {{ $.Values.laosGlobalConsensus }}
-      - laosParachain: {{ $.Values.laosParachain }}
-      - laosPalletInstance: {{ $.Values.laosPalletInstance }}
+      - laosGlobalConsensus: {{ .laosGlobalConsensus }}
+      - laosParachain: {{ .laosParachain }}
+      - laosPalletInstance: {{ .laosPalletInstance }}
       - startingBlockOwnership: {{ .startingBlockOwnership }}
       - startingBlockLaos: {{ .startingBlockLaos }}
+      - indexerLaosRpcEndpointSecretKey: {{ .indexerLaosRpcEndpointSecretKey }}
       {{- if hasKey . "maxBatchCallSizeOwnership" }}  
       - maxBatchCallSizeOwnership: {{ .maxBatchCallSizeOwnership }}
       {{- end }}
@@ -69,12 +70,13 @@ helmfiles:
       - postgresPort: {{ .servicePort }}
       - gatewayEndpoint: ""
       - rpcEndpointSecretKey: {{ .rpcEndpointSecretKey }}
-      - laosGlobalConsensus: {{ $.Values.laosGlobalConsensus }}
-      - laosParachain: {{ $.Values.laosParachain }}
-      - laosPalletInstance: {{ $.Values.laosPalletInstance }}
+      - laosGlobalConsensus: {{ .laosGlobalConsensus }}
+      - laosParachain: {{ .laosParachain }}
+      - laosPalletInstance: {{ .laosPalletInstance }}
       - startingBlockOwnership: {{ .startingBlockOwnership }}
       - startingBlockLaos: {{ .startingBlockLaos }}
       - command: "process:prod:laos"
+      - indexerLaosRpcEndpointSecretKey: {{ .indexerLaosRpcEndpointSecretKey }}
       {{- if hasKey . "rpcRateLimit" }}
       - rpcRateLimit: {{ .rpcRateLimit }}
       {{- end }}

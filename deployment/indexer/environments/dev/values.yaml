@@ -1,8 +1,5 @@
 namespace: protostar
 rpcLaos: wss://rpc.laossigma.laosfoundation.io
-laosGlobalConsensus: "0:0x77afd6190f1554ad45fd0d31aee62aacc33c6db0ea801129acb813f913e0764f"
-laosParachain: "4006"
-laosPalletInstance: "51"
 indexerInstances:
   - dbPodName: indexer-db-polygon
     postgresDb: squid
@@ -24,7 +21,11 @@ indexerInstances:
     gqlPort: 4000
     # rpcRateLimitOwnership: 10
     # maxBatchCallSizeOwnership: 300
-    pinataGatewayApiTokenSecretKey: "pinataGatewayApiToken" 
+    pinataGatewayApiTokenSecretKey: "pinataGatewayApiToken"
+    indexerLaosRpcEndpointSecretKey: "indexerLaosRpcEndpoint"
+    laosGlobalConsensus: "0:0x77afd6190f1554ad45fd0d31aee62aacc33c6db0ea801129acb813f913e0764f"
+    laosParachain: "4006"
+    laosPalletInstance: "51"
   - dbPodName: indexer-db-ethereum
     postgresDb: squid-ethereum
     postgresPassword: postgres
@@ -45,7 +46,11 @@ indexerInstances:
     gqlPort: 4000
     # rpcRateLimitOwnership: 10
     # maxBatchCallSizeOwnership: 100
-    # pinataGatewayApiTokenSecretKey: "pinataGatewayApiToken" 
+    # pinataGatewayApiTokenSecretKey: "pinataGatewayApiToken"
+    indexerLaosRpcEndpointSecretKey: "indexerLaosRpcEndpoint"
+    laosGlobalConsensus: "0:0x77afd6190f1554ad45fd0d31aee62aacc33c6db0ea801129acb813f913e0764f"
+    laosParachain: "4006"
+    laosPalletInstance: "51"
   - dbPodName: indexer-db-arbitrum
     postgresDb: squid-arbitrum
     postgresPassword: postgres
@@ -67,4 +72,8 @@ indexerInstances:
     # rcpRateLimit: 10
     # maxBatchCallSizeOwnership: 300
     # rpcRateLimitOwnership: 10
-    # pinataGatewayApiTokenSecretKey: "pinataGatewayApiToken" 
+    # pinataGatewayApiTokenSecretKey: "pinataGatewayApiToken"
+    indexerLaosRpcEndpointSecretKey: "indexerLaosRpcEndpoint"
+    laosGlobalConsensus: "0:0x77afd6190f1554ad45fd0d31aee62aacc33c6db0ea801129acb813f913e0764f"
+    laosParachain: "4006"
+    laosPalletInstance: "51"

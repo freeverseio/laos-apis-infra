@@ -25,7 +25,8 @@ indexerInstances:
     rpcRateLimit: 40
     maxBatchCallSizeOwnership: 300
     rpcRateLimitOwnership: 10
-    pinataGatewayApiTokenSecretKey: "pinataGatewayApiToken" 
+    pinataGatewayApiTokenSecretKey: "pinataGatewayApiToken"
+    indexerLaosRpcEndpointSecretKey: "indexerLaosRpcEndpoint"
   - dbPodName: indexer-db-ethereum
     postgresDb: squid-ethereum
     postgresPassword: postgres
@@ -47,7 +48,8 @@ indexerInstances:
     rpcRateLimit: 40
     maxBatchCallSizeOwnership: 100
     rpcRateLimitOwnership: 10
-    pinataGatewayApiTokenSecretKey: "pinataGatewayApiToken" 
+    pinataGatewayApiTokenSecretKey: "pinataGatewayApiToken"
+    indexerLaosRpcEndpointSecretKey: "indexerLaosRpcEndpoint"
   - dbPodName: indexer-db-hedera
     postgresDb: squid
     postgresPassword: postgres
@@ -67,4 +69,5 @@ indexerInstances:
     host: hedera-indexer.laosnetwork.io
     gqlPort: 4000
     rpcRateLimit: 40
-    pinataGatewayApiTokenSecretKey: "pinataGatewayApiToken" 
+    pinataGatewayApiTokenSecretKey: "pinataGatewayApiToken"
+    indexerLaosRpcEndpointSecretKey: "indexerLaosRpcEndpoint"
