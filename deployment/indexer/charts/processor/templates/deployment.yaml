@@ -38,8 +38,8 @@ spec:
               value: {{ .Values.postgresUser }}
             {{- if hasKey .Values "gatewayEndpoint" }}
             - name: GATEWAY_ENDPOINT
-            {{- end }}
               value: {{ .Values.gatewayEndpoint }}
+            {{- end }}
             - name: PRIVATE_IPFS_GATEWAY
               valueFrom:
                 secretKeyRef:
