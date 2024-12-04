@@ -11,7 +11,9 @@ releases:
       - postgresPassword: {{ .Values.postgresPassword }}
       - postgresUser: {{ .Values.postgresUser }}
       - postgresPort: {{ .Values.postgresPort }}
+      {{- if hasKey .Values "gatewayEndpoint" }}
       - gatewayEndpoint: {{ .Values.gatewayEndpoint }}
+      {{- end }}
       - rpcEndpointSecretKey: {{ .Values.rpcEndpointSecretKey }}
       - laosGlobalConsensus: {{ .Values.laosGlobalConsensus }}
       - laosParachain: {{ .Values.laosParachain }}

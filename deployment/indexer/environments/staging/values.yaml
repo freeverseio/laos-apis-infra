@@ -61,7 +61,6 @@ indexerInstances:
     mountPath: /var/lib/postgresql/pvdata3
     mountName: indexer-pvc-hedera
     ownershipProcessor: indexer-hedera-processor
-    gatewayEndpoint: https://testnet.hashio.io/api
     startingBlockOwnership: "7333998"
     startingBlockLaos: "67720"
     rpcEndpointSecretKey: "indexerHederaRpcEndpoint"
@@ -87,7 +86,6 @@ indexerInstances:
     mountPath: /var/lib/postgresql/pvdata3
     mountName: indexer-pvc-hedera
     ownershipProcessor: indexer-hedera-processor-2
-    gatewayEndpoint: https://testnet.hashio.io/api
     startingBlockOwnership: "12600100"
     startingBlockLaos: "1023800"
     rpcEndpointSecretKey: "indexerHederaRpcEndpoint"

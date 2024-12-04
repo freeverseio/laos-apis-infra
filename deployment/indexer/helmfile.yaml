@@ -40,7 +40,9 @@ helmfiles:
       - postgresPassword: {{ .postgresPassword }}
       - postgresUser: {{ .postgresUser }}
       - postgresPort: {{ .servicePort }}
+      {{- if hasKey . "gatewayEndpoint" }}
       - gatewayEndpoint: {{ .gatewayEndpoint }}
+      {{- end }}
       - rpcEndpointSecretKey: {{ .rpcEndpointSecretKey }}
       - laosGlobalConsensus: {{ .laosGlobalConsensus }}
       - laosParachain: {{ .laosParachain }}
