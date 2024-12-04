@@ -82,7 +82,7 @@ spec:
               value: {{ .Values.rpcRateLimitOwnership | quote }}
             {{- end }}
             {{- if hasKey .Values "pinataGatewayApiTokenSecretKey" }}
-            - name: PRIVATE_IPFS_GATEWAY_API_TOKEN
+            - name: PRIVATE_IPFS_GATEWAY_API_KEY
               valueFrom:
                 secretKeyRef:
                   name: protostar-private-config

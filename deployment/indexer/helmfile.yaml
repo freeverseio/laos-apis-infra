@@ -83,6 +83,9 @@ helmfiles:
       {{- if hasKey . "rpcRateLimit" }}
       - rpcRateLimit: {{ .rpcRateLimit }}
       {{- end }}
+      {{- if hasKey . "pinataGatewayApiTokenSecretKey" }}
+      - pinataGatewayApiTokenSecretKey: {{ .pinataGatewayApiTokenSecretKey }}
+      {{- end }}
   - path: 'charts/api/helmfile.yaml'
     values:
       - name: {{ .apiProcessor }}
