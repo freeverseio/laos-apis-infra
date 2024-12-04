@@ -198,11 +198,6 @@ workflows:
           image: freeverseio/laos-extensions
           root: laos-extensions
           context: dockerhub
-          
-      - deployment-test:
-          name: deployment-test-laos-node
-          root: laos-node
-          imageTag: << pipeline.parameters.imageTag >>
 
       - deployment-test:
           name: deployment-test-indexer
@@ -218,7 +213,6 @@ workflows:
           type: approval
           name: approve-deploy-apis
           requires:
-            - deployment-test-laos-node
             - build-client-api
             - build-api-gateway
             - build-playground
@@ -232,7 +226,6 @@ workflows:
           type: approval
           name: approve-deploy-apis-staging
           requires:
-            - deployment-test-laos-node
             - build-client-api
             - build-api-gateway
             - build-playground
@@ -267,7 +260,6 @@ workflows:
       - deploy_to_cluster:
           name: deploy-to-dev-api
           requires:
-            - deployment-test-laos-node
             - approve-deploy-apis
           environment: development
           root: ./
@@ -293,7 +285,6 @@ workflows:
       - deploy_to_cluster:
           name: deploy-to-staging-api
           requires:
-            - deployment-test-laos-node
             - approve-deploy-apis-staging
           environment: staging
           root: ./
