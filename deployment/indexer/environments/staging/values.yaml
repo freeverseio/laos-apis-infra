@@ -24,6 +24,7 @@ indexerInstances:
     laosGlobalConsensus: "0:0x77afd6190f1554ad45fd0d31aee62aacc33c6db0ea801129acb813f913e0764f"
     laosParachain: "4006"
     laosPalletInstance: "51"
+    indexerOwnershipParseTraces: "false" 
   - dbPodName: indexer-db-ethereum
     postgresDb: squid-ethereum
     postgresPassword: postgres
@@ -49,6 +50,7 @@ indexerInstances:
     laosGlobalConsensus: "0:0x77afd6190f1554ad45fd0d31aee62aacc33c6db0ea801129acb813f913e0764f"
     laosParachain: "4006"
     laosPalletInstance: "51"
+    indexerOwnershipParseTraces: "false" 
   - dbPodName: indexer-db-hedera
     postgresDb: squid-hedera
     postgresPassword: postgres
@@ -59,7 +61,6 @@ indexerInstances:
     mountPath: /var/lib/postgresql/pvdata3
     mountName: indexer-pvc-hedera
     ownershipProcessor: indexer-hedera-processor
-    gatewayEndpoint: https://testnet.hashio.io/api
     startingBlockOwnership: "7333998"
     startingBlockLaos: "67720"
     rpcEndpointSecretKey: "indexerHederaRpcEndpoint"
@@ -74,6 +75,7 @@ indexerInstances:
     laosGlobalConsensus: "0:0x77afd6190f1554ad45fd0d31aee62aacc33c6db0ea801129acb813f913e0764f"
     laosParachain: "4006"
     laosPalletInstance: "51"
+    indexerOwnershipParseTraces: "false" 
   - dbPodName: indexer-db-hedera-2
     postgresDb: squid-hedera
     postgresPassword: postgres
@@ -84,7 +86,6 @@ indexerInstances:
     mountPath: /var/lib/postgresql/pvdata3
     mountName: indexer-pvc-hedera
     ownershipProcessor: indexer-hedera-processor-2
-    gatewayEndpoint: https://testnet.hashio.io/api
     startingBlockOwnership: "12600100"
     startingBlockLaos: "1023800"
     rpcEndpointSecretKey: "indexerHederaRpcEndpoint"
@@ -99,3 +100,4 @@ indexerInstances:
     laosGlobalConsensus: "2"
     laosParachain: "3370"
     laosPalletInstance: "51"
+    indexerOwnershipParseTraces: "false" 

@@ -40,7 +40,9 @@ helmfiles:
       - postgresPassword: {{ .postgresPassword }}
       - postgresUser: {{ .postgresUser }}
       - postgresPort: {{ .servicePort }}
+      {{- if hasKey . "gatewayEndpoint" }}
       - gatewayEndpoint: {{ .gatewayEndpoint }}
+      {{- end }}
       - rpcEndpointSecretKey: {{ .rpcEndpointSecretKey }}
       - laosGlobalConsensus: {{ .laosGlobalConsensus }}
       - laosParachain: {{ .laosParachain }}
@@ -48,6 +50,7 @@ helmfiles:
       - startingBlockOwnership: {{ .startingBlockOwnership }}
       - startingBlockLaos: {{ .startingBlockLaos }}
       - indexerLaosRpcEndpointSecretKey: {{ .indexerLaosRpcEndpointSecretKey }}
+      - indexerOwnershipParseTraces: {{ .indexerOwnershipParseTraces }}
       {{- if hasKey . "maxBatchCallSizeOwnership" }}  
       - maxBatchCallSizeOwnership: {{ .maxBatchCallSizeOwnership }}
       {{- end }}

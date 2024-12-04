@@ -27,6 +27,7 @@ indexerInstances:
     rpcRateLimitOwnership: 10
     pinataGatewayApiTokenSecretKey: "pinataGatewayApiToken"
     indexerLaosRpcEndpointSecretKey: "indexerLaosRpcEndpoint"
+    indexerOwnershipParseTraces: "false" 
   - dbPodName: indexer-db-ethereum
     postgresDb: squid-ethereum
     postgresPassword: postgres
@@ -50,6 +51,7 @@ indexerInstances:
     rpcRateLimitOwnership: 10
     pinataGatewayApiTokenSecretKey: "pinataGatewayApiToken"
     indexerLaosRpcEndpointSecretKey: "indexerLaosRpcEndpoint"
+    indexerOwnershipParseTraces: "false" 
   - dbPodName: indexer-db-hedera
     postgresDb: squid
     postgresPassword: postgres
@@ -71,3 +73,4 @@ indexerInstances:
     rpcRateLimit: 40
     pinataGatewayApiTokenSecretKey: "pinataGatewayApiToken"
     indexerLaosRpcEndpointSecretKey: "indexerLaosRpcEndpoint"
+    indexerOwnershipParseTraces: "false" 
