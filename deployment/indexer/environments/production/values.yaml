@@ -1,8 +1,5 @@
 namespace: protostar
 rpcLaos: wss://rpc.laos.laosfoundation.io
-laosGlobalConsensus: "2"
-laosParachain: "3370"
-laosPalletInstance: "51"
 indexerInstances:
   - dbPodName: indexer-db-polygon
     postgresDb: squid
@@ -27,7 +24,10 @@ indexerInstances:
     rpcRateLimitOwnership: 10
     pinataGatewayApiTokenSecretKey: "pinataGatewayApiToken"
     indexerLaosRpcEndpointSecretKey: "indexerLaosRpcEndpoint"
-    indexerOwnershipParseTraces: "false" 
+    indexerOwnershipParseTraces: "false"
+    laosGlobalConsensus: "2"
+    laosParachain: "3370"
+    laosPalletInstance: "51"
   - dbPodName: indexer-db-ethereum
     postgresDb: squid-ethereum
     postgresPassword: postgres
@@ -51,7 +51,10 @@ indexerInstances:
     rpcRateLimitOwnership: 10
     pinataGatewayApiTokenSecretKey: "pinataGatewayApiToken"
     indexerLaosRpcEndpointSecretKey: "indexerLaosRpcEndpoint"
-    indexerOwnershipParseTraces: "false" 
+    indexerOwnershipParseTraces: "false"
+    laosGlobalConsensus: "2"
+    laosParachain: "3370"
+    laosPalletInstance: "51"
   - dbPodName: indexer-db-hedera
     postgresDb: squid
     postgresPassword: postgres
@@ -62,9 +65,8 @@ indexerInstances:
     mountPath: /var/lib/postgresql/pvdata3
     mountName: indexer-pvc-hedera
     ownershipProcessor: indexer-hedera-processor
-    gatewayEndpoint: https://mainnet.hashio.io/api
     startingBlockOwnership: "72113678"
-    startingBlockLaos: "1023800"
+    startingBlockLaos: "992886"
     rpcEndpointSecretKey: "indexerHederaRpcEndpoint"
     laosProcessor: indexer-laos-processor-hedera
     apiProcessor: indexer-laos-hedera-api
@@ -72,5 +74,8 @@ indexerInstances:
     gqlPort: 4000
     rpcRateLimit: 40
     pinataGatewayApiTokenSecretKey: "pinataGatewayApiToken"
-    indexerLaosRpcEndpointSecretKey: "indexerLaosRpcEndpointForHedera"
+    indexerLaosRpcEndpointSecretKey: "indexerLaosRpcEndpoint"
     indexerOwnershipParseTraces: "false" 
+    laosGlobalConsensus: "2"
+    laosParachain: "3370"
+    laosPalletInstance: "51"
