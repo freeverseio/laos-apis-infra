@@ -64,7 +64,7 @@ indexerInstances:
     ownershipProcessor: indexer-hedera-processor
     gatewayEndpoint: https://mainnet.hashio.io/api
     startingBlockOwnership: "72113678"
-    startingBlockLaos: "1"
+    startingBlockLaos: "1023800"
     rpcEndpointSecretKey: "indexerHederaRpcEndpoint"
     laosProcessor: indexer-laos-processor-hedera
     apiProcessor: indexer-laos-hedera-api
@@ -72,5 +72,5 @@ indexerInstances:
     gqlPort: 4000
     rpcRateLimit: 40
     pinataGatewayApiTokenSecretKey: "pinataGatewayApiToken"
-    indexerLaosRpcEndpointSecretKey: "indexerLaosRpcEndpoint"
+    indexerLaosRpcEndpointSecretKey: "indexerLaosRpcEndpointForHedera"
     indexerOwnershipParseTraces: "false" 

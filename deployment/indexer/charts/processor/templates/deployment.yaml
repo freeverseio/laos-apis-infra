@@ -67,7 +67,7 @@ spec:
               value: {{ .Values.startingBlockOwnership | quote }}
             {{- if hasKey .Values "indexerOwnershipParseTraces" }}
             - name: OWNERSHIP_PARSE_TRACES
-              value: {{ .Values.indexerOwnershipParseTraces }}
+              value: {{ .Values.indexerOwnershipParseTraces | quote }}
             {{- end }}
             {{- if hasKey .Values "rpcRateLimit" }}
             - name: RPC_RATE_LIMIT
