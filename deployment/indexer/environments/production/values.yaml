@@ -20,10 +20,10 @@ indexerInstances:
     host: polygon-indexer.laosnetwork.io
     gqlPort: 4000
     rpcRateLimit: 40
-    maxBatchCallSizeOwnership: 300
-    rpcRateLimitOwnership: 10
-    pinataGatewayApiTokenSecretKey: "pinataGatewayApiToken"
-    indexerLaosRpcEndpointSecretKey: "indexerLaosRpcEndpoint"
+    # maxBatchCallSizeOwnership: 300
+    # rpcRateLimitOwnership: 10
+    # pinataGatewayApiTokenSecretKey: "pinataGatewayApiToken"
+    indexerLaosRpcEndpointSecretKey: "indexerLaosRpcEndpointA"
     indexerOwnershipParseTraces: "false"
     laosGlobalConsensus: "2"
     laosParachain: "3370"
@@ -47,10 +47,10 @@ indexerInstances:
     host: ethereum-indexer.laosnetwork.io
     gqlPort: 4000
     rpcRateLimit: 40
-    maxBatchCallSizeOwnership: 100
-    rpcRateLimitOwnership: 10
-    pinataGatewayApiTokenSecretKey: "pinataGatewayApiToken"
-    indexerLaosRpcEndpointSecretKey: "indexerLaosRpcEndpoint"
+    # maxBatchCallSizeOwnership: 100
+    # rpcRateLimitOwnership: 10
+    # pinataGatewayApiTokenSecretKey: "pinataGatewayApiToken"
+    indexerLaosRpcEndpointSecretKey: "indexerLaosRpcEndpointA"
     indexerOwnershipParseTraces: "false"
     laosGlobalConsensus: "2"
     laosParachain: "3370"
@@ -73,9 +73,20 @@ indexerInstances:
     host: hedera-indexer.laosnetwork.io
     gqlPort: 4000
     rpcRateLimit: 40
+    # maxBatchCallSizeOwnership: 100
+    # rpcRateLimitOwnership: 10
     pinataGatewayApiTokenSecretKey: "pinataGatewayApiToken"
-    indexerLaosRpcEndpointSecretKey: "indexerLaosRpcEndpoint"
+    indexerLaosRpcEndpointSecretKey: "indexerLaosRpcEndpointB"
     indexerOwnershipParseTraces: "false" 
     laosGlobalConsensus: "2"
     laosParachain: "3370"
     laosPalletInstance: "51"
+laosNodesInstances:
+  - name: laos-node-protostar
+    nodeVersion: "v0.20.0"
+    chain: "laos"
+    setDnsPolicy: true
+  - name: laos-node-protostar-1
+    nodeVersion: "v0.22.0"
+    chain: "laos"
+    setDnsPolicy: true

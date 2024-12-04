@@ -139,4 +139,7 @@ releases:
               volumeSize: 512Gi
             flags:
               - --sync=fast
+      {{- if and (hasKey . "setDnsPolicy") .setDnsPolicy }}
+      - dnsPolicy: Default
+      {{- end }}
 {{- end }}
