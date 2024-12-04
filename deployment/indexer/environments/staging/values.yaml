@@ -24,6 +24,7 @@ indexerInstances:
     laosGlobalConsensus: "0:0x77afd6190f1554ad45fd0d31aee62aacc33c6db0ea801129acb813f913e0764f"
     laosParachain: "4006"
     laosPalletInstance: "51"
+    indexerOwnershipParseTraces: "false" 
   - dbPodName: indexer-db-ethereum
     postgresDb: squid-ethereum
     postgresPassword: postgres
@@ -49,6 +50,7 @@ indexerInstances:
     laosGlobalConsensus: "0:0x77afd6190f1554ad45fd0d31aee62aacc33c6db0ea801129acb813f913e0764f"
     laosParachain: "4006"
     laosPalletInstance: "51"
+    indexerOwnershipParseTraces: "false" 
   - dbPodName: indexer-db-hedera
     postgresDb: squid-hedera
     postgresPassword: postgres
@@ -74,6 +76,7 @@ indexerInstances:
     laosGlobalConsensus: "0:0x77afd6190f1554ad45fd0d31aee62aacc33c6db0ea801129acb813f913e0764f"
     laosParachain: "4006"
     laosPalletInstance: "51"
+    indexerOwnershipParseTraces: "false" 
   - dbPodName: indexer-db-hedera-2
     postgresDb: squid-hedera
     postgresPassword: postgres
@@ -99,3 +102,4 @@ indexerInstances:
     laosGlobalConsensus: "2"
     laosParachain: "3370"
     laosPalletInstance: "51"
+    indexerOwnershipParseTraces: "false" 

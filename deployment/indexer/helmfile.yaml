@@ -48,6 +48,7 @@ helmfiles:
       - startingBlockOwnership: {{ .startingBlockOwnership }}
       - startingBlockLaos: {{ .startingBlockLaos }}
       - indexerLaosRpcEndpointSecretKey: {{ .indexerLaosRpcEndpointSecretKey }}
+      - indexerOwnershipParseTraces: {{ .indexerOwnershipParseTraces }}
       {{- if hasKey . "maxBatchCallSizeOwnership" }}  
       - maxBatchCallSizeOwnership: {{ .maxBatchCallSizeOwnership }}
       {{- end }}

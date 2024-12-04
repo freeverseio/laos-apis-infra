@@ -19,6 +19,9 @@ releases:
       - startingBlockOwnership: {{ .Values.startingBlockOwnership }}
       - startingBlockLaos: {{ .Values.startingBlockLaos }}      
       - command: {{ .Values.command }}
+      {{- if hasKey .Values "indexerOwnershipParseTraces" }}
+      - indexerOwnershipParseTraces: {{ .Values.indexerOwnershipParseTraces }}   
+      {{- end }}
       {{- if hasKey .Values "indexerLaosRpcEndpointSecretKey" }}
       - indexerLaosRpcEndpointSecretKey: {{ .Values.indexerLaosRpcEndpointSecretKey }}
       {{- end }}

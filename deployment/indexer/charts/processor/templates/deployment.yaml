@@ -63,6 +63,10 @@ spec:
               value: {{ .Values.startingBlockLaos | quote }}
             - name: STARTING_BLOCK_OWNERSHIP
               value: {{ .Values.startingBlockOwnership | quote }}
+            {{- if hasKey .Values "indexerOwnershipParseTraces" }}
+            - name: OWNERSHIP_PARSE_TRACES
+              value: {{ .Values.indexerOwnershipParseTraces }}
+            {{- end }}
             {{- if hasKey .Values "rpcRateLimit" }}
             - name: RPC_RATE_LIMIT
               value: {{ .Values.rpcRateLimit | quote }}
