@@ -26,6 +26,7 @@ helmfiles:
       - postgresHost: {{ .Values.postgresHost }}
       - postgresDb: {{ .Values.postgresDb }}
       - postgresPort: {{ .Values.postgresPort }}
+      - laosChain: {{ .Values.laosChain }}
   - path: 'charts/gateway/helmfile.yaml'
     values:
       - namespace: {{ .Values.namespace }}
