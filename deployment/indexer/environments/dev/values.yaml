@@ -104,5 +104,13 @@ indexerInstances:
     laosGlobalConsensus: "2"
     laosParachain: "3370"
     laosPalletInstance: "51"
-    indexerOwnershipParseTraces: "false" 
+    indexerOwnershipParseTraces: "false"
+laosNodesInstances:
+  - name: public-node-protostar
+    nodeVersion: "v0.20.0"
+    chain: "laos-sigma"
+  - name: laos-node-protostar
+    nodeVersion: "v0.22.0"
+    chain: "laos"
+    setDnsPolicy: true
 

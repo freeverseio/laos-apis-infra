@@ -1,6 +1,8 @@
 repositories:
   - name: stable
     url: https://charts.helm.sh/stable
+  - name: parity
+    url: https://paritytech.github.io/helm-charts/
 
 environments:
   default:
@@ -99,5 +101,45 @@ helmfiles:
       - host: {{ .host }}
       - gqlPort: {{ .gqlPort }}
 {{- end }}
-  
 
+releases:
+{{- range .Values.laosNodesInstances }}
+  - name: {{ .name }}
+    namespace: {{ $.Values.namespace }}
+    chart: parity/node
+    version: 5.5.1
+    values:
+      - image:
+          repository: freeverseio/laos-node
+          tag: {{ .nodeVersion }}
+      - node:
+          replicas: 1
+          chain: {{ .chain }}
+          command: "laos"
+          isParachain: true
+          telemetryUrls:
+            - 'wss://telemetry.polkadot.io/submit 0'
+          chainData:
+            volumeSize: 256Gi
+            pruning: false
+          flags:
+            - "--pruning=archive"
+            - "--rpc-max-connections=500"
+          perNodeServices:
+            apiService:
+              enabled: true
+            setPublicAddressToExternalIp:
+              enabled: true
+              autodiscoveryFix: true
+            paraP2pService:
+              enabled: true
+              type: NodePort
+          collatorRelayChain:
+            chainData:
+              volumeSize: 512Gi
+            flags:
+              - --sync=fast
+      {{- if and (hasKey . "setDnsPolicy") .setDnsPolicy }}
+      - dnsPolicy: Default
+      {{- end }}
+{{- end }}
