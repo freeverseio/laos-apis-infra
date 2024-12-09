@@ -82,6 +82,21 @@ spec:
                   key: apiRpcPolygon
             - name: LAOS_CHAIN
               value: "{{.Values.laosChain}}"
+            {{- $secret := lookup "v1" "Secret" .Release.Namespace "protostar-private-config" }}
+            {{- if and $secret (hasKey $secret.data "apiRpcHederaMainnet") }}
+            - name: API_RPC_HEDERA_MAINNET
+              valueFrom:
+                secretKeyRef:
+                  name: protostar-private-config
+                  key: apiRpcHederaMainnet
+            {{- end }}
+            {{- if and $secret (hasKey $secret.data "apiRpcHederaTestnet") }}
+            - name: API_RPC_HEDERA_TESTNET
+              valueFrom:
+                secretKeyRef:
+                  name: protostar-private-config
+                  key: apiRpcHederaTestnet
+            {{- end }}
           ports:
             - containerPort: 4001
       volumes:
