@@ -12,8 +12,8 @@ indexerInstances:
     mountName: indexer-pvc
     ownershipProcessor: indexer-polygon-processor
     gatewayEndpoint: https://v2.archive.subsquid.io/network/polygon-mainnet
-    startingBlockOwnership: "59689828"
-    startingBlockLaos: "1"
+    startingBlockOwnership: "65270190"
+    startingBlockLaos: "1062804"
     rpcEndpointSecretKey: "indexerPolygonRpcEndpoint"
     laosProcessor: indexer-laos-processor-polygon
     apiProcessor: indexer-laos-polygon-api
@@ -22,9 +22,9 @@ indexerInstances:
     # rpcRateLimitOwnership: 10
     # maxBatchCallSizeOwnership: 300
     pinataGatewayApiTokenSecretKey: "pinataGatewayApiToken"
-    indexerLaosRpcEndpointSecretKey: "indexerLaosRpcEndpoint"
-    laosGlobalConsensus: "0:0x77afd6190f1554ad45fd0d31aee62aacc33c6db0ea801129acb813f913e0764f"
-    laosParachain: "4006"
+    indexerLaosRpcEndpointSecretKey: "indexerLaosRpcEndpointForPolygon"
+    laosGlobalConsensus: "2"
+    laosParachain: "3370"
     laosPalletInstance: "51"
     indexerOwnershipParseTraces: "false"
   - dbPodName: indexer-db-ethereum
@@ -38,8 +38,8 @@ indexerInstances:
     mountName: indexer-pvc-ethereum
     ownershipProcessor: indexer-ethereum-processor
     gatewayEndpoint: https://v2.archive.subsquid.io/network/ethereum-mainnet
-    startingBlockOwnership: "20365510"
-    startingBlockLaos: "1"
+    startingBlockOwnership: "21364679"
+    startingBlockLaos: "1062804"
     rpcEndpointSecretKey: "indexerEthereumRpcEndpoint"
     laosProcessor: indexer-laos-processor-ethereum
     apiProcessor: indexer-laos-ethereum-api
@@ -48,36 +48,9 @@ indexerInstances:
     # rpcRateLimitOwnership: 10
     # maxBatchCallSizeOwnership: 100
     # pinataGatewayApiTokenSecretKey: "pinataGatewayApiToken"
-    indexerLaosRpcEndpointSecretKey: "indexerLaosRpcEndpoint"
-    laosGlobalConsensus: "0:0x77afd6190f1554ad45fd0d31aee62aacc33c6db0ea801129acb813f913e0764f"
-    laosParachain: "4006"
-    laosPalletInstance: "51"
-    indexerOwnershipParseTraces: "false" 
-  - dbPodName: indexer-db-arbitrum
-    postgresDb: squid-arbitrum
-    postgresPassword: postgres
-    postgresUser: postgres
-    pvcName: pvc-squid-arbitrum-1
-    servicePort: 5434
-    containerPort: 5434
-    mountPath: /var/lib/postgresql/pvdata2
-    mountName: indexer-pvc-arbitrum
-    ownershipProcessor: indexer-arbitrum-processor
-    gatewayEndpoint: https://v2.archive.subsquid.io/network/arbitrum-one
-    startingBlockOwnership: "254168565"
-    startingBlockLaos: "372000"
-    rpcEndpointSecretKey: "indexerArbitrumRpcEndpoint"
-    laosProcessor: indexer-laos-processor-arbitrum
-    apiProcessor: indexer-laos-arbitrum-api
-    host: indexer-arbitrum.gorengine.com
-    gqlPort: 4000
-    # rcpRateLimit: 10
-    # maxBatchCallSizeOwnership: 300
-    # rpcRateLimitOwnership: 10
-    # pinataGatewayApiTokenSecretKey: "pinataGatewayApiToken"
-    indexerLaosRpcEndpointSecretKey: "indexerLaosRpcEndpoint"
-    laosGlobalConsensus: "0:0x77afd6190f1554ad45fd0d31aee62aacc33c6db0ea801129acb813f913e0764f"
-    laosParachain: "4006"
+    indexerLaosRpcEndpointSecretKey: "indexerLaosRpcEndpointForEthereum"
+    laosGlobalConsensus: "2"
+    laosParachain: "3370"
     laosPalletInstance: "51"
     indexerOwnershipParseTraces: "false" 
   - dbPodName: indexer-db-hedera
@@ -90,8 +63,8 @@ indexerInstances:
     mountPath: /var/lib/postgresql/pvdata3
     mountName: indexer-pvc-hedera
     ownershipProcessor: indexer-hedera-processor
-    startingBlockOwnership: "12600100"
-    startingBlockLaos: "1023800"
+    startingBlockOwnership: "12861134"
+    startingBlockLaos: "1062804"
     rpcEndpointSecretKey: "indexerHederaRpcEndpoint"
     laosProcessor: indexer-laos-processor-hedera
     apiProcessor: indexer-laos-hedera-api
@@ -113,4 +86,9 @@ laosNodesInstances:
     nodeVersion: "v0.22.0"
     chain: "laos"
     setDnsPolicy: true
-
+  - name: laos-node-protostar-2
+    nodeVersion: "v0.22.0"
+    chain: "laos"
+  - name: laos-node-protostar-3
+    nodeVersion: "v0.22.0"
+    chain: "laos"
