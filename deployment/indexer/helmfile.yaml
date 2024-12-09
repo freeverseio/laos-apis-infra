@@ -106,6 +106,7 @@ releases:
 {{- range .Values.laosNodesInstances }}
   - name: {{ .name }}
     namespace: {{ $.Values.namespace }}
+    createNamespace: false
     chart: parity/node
     version: 5.5.1
     values:
