@@ -23,7 +23,7 @@ indexerInstances:
     # maxBatchCallSizeOwnership: 300
     # rpcRateLimitOwnership: 10
     # pinataGatewayApiTokenSecretKey: "pinataGatewayApiToken"
-    indexerLaosRpcEndpointSecretKey: "indexerLaosRpcEndpointA"
+    indexerLaosRpcEndpointSecretKey: "indexerLaosRpcEndpoint"
     indexerOwnershipParseTraces: "false"
     laosGlobalConsensus: "2"
     laosParachain: "3370"
@@ -50,7 +50,7 @@ indexerInstances:
     # maxBatchCallSizeOwnership: 100
     # rpcRateLimitOwnership: 10
     # pinataGatewayApiTokenSecretKey: "pinataGatewayApiToken"
-    indexerLaosRpcEndpointSecretKey: "indexerLaosRpcEndpointA"
+    indexerLaosRpcEndpointSecretKey: "indexerLaosRpcEndpointForEthereum"
     indexerOwnershipParseTraces: "false"
     laosGlobalConsensus: "2"
     laosParachain: "3370"
@@ -76,17 +76,50 @@ indexerInstances:
     # maxBatchCallSizeOwnership: 100
     # rpcRateLimitOwnership: 10
     pinataGatewayApiTokenSecretKey: "pinataGatewayApiToken"
-    indexerLaosRpcEndpointSecretKey: "indexerLaosRpcEndpointB"
+    indexerLaosRpcEndpointSecretKey: "indexerLaosRpcEndpointForHedera"
     indexerOwnershipParseTraces: "false" 
     laosGlobalConsensus: "2"
     laosParachain: "3370"
     laosPalletInstance: "51"
+  - dbPodName: indexer-db-hedera-testnet
+    postgresDb: squid-hedera
+    postgresPassword: postgres
+    postgresUser: postgres
+    pvcName: pvc-squid-hedera-testnet
+    servicePort: 5434
+    containerPort: 5434
+    mountPath: /var/lib/postgresql/pvdata3
+    mountName: indexer-pvc-hedera-testnet
+    ownershipProcessor: indexer-hedera-testnet-processor
+    startingBlockOwnership: "12600100"
+    startingBlockLaos: "1023800"
+    rpcEndpointSecretKey: "indexerHederaTestnetRpcEndpoint"
+    laosProcessor: indexer-laos-processor-hedera-testnet
+    apiProcessor: indexer-laos-hedera-testnet-api
+    # host: laos-mainnet.hedera-testnet-indexer.laosnetwork.io
+    gqlPort: 4000
+    # maxBatchCallSizeOwnership: 100
+    # rpcRateLimitOwnership: 10
+    pinataGatewayApiTokenSecretKey: "pinataGatewayApiToken" 
+    indexerLaosRpcEndpointSecretKey: "indexerLaosRpcEndpointForHederaTestnet"
+    laosGlobalConsensus: "2"
+    laosParachain: "3370"
+    laosPalletInstance: "51"
+    indexerOwnershipParseTraces: "false" 
 laosNodesInstances:
   - name: laos-node-protostar
     nodeVersion: "v0.20.0"
     chain: "laos"
     setDnsPolicy: true
   - name: laos-node-protostar-1
+    nodeVersion: "v0.22.0"
+    chain: "laos"
+    setDnsPolicy: true
+  - name: laos-node-protostar-2
+    nodeVersion: "v0.22.0"
+    chain: "laos"
+    setDnsPolicy: true
+  - name: laos-node-protostar-3
     nodeVersion: "v0.22.0"
     chain: "laos"
     setDnsPolicy: true

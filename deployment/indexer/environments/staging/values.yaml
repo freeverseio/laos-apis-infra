@@ -109,3 +109,11 @@ laosNodesInstances:
     nodeVersion: "v0.22.0"
     chain: "laos"
     setDnsPolicy: true
+  - name: laos-node-protostar-1
+    nodeVersion: "v0.22.0"
+    chain: "laos"
+    setDnsPolicy: true
+  - name: laos-node-protostar-2
+    nodeVersion: "v0.22.0"
+    chain: "laos"
+    setDnsPolicy: true
