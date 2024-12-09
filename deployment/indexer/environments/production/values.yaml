@@ -22,7 +22,7 @@ indexerInstances:
     rpcRateLimit: 40
     # maxBatchCallSizeOwnership: 300
     # rpcRateLimitOwnership: 10
-    # pinataGatewayApiTokenSecretKey: "pinataGatewayApiToken"
+    pinataGatewayApiTokenSecretKey: "pinataGatewayApiToken"
     indexerLaosRpcEndpointSecretKey: "indexerLaosRpcEndpoint"
     indexerOwnershipParseTraces: "false"
     laosGlobalConsensus: "2"
@@ -49,7 +49,7 @@ indexerInstances:
     rpcRateLimit: 40
     # maxBatchCallSizeOwnership: 100
     # rpcRateLimitOwnership: 10
-    # pinataGatewayApiTokenSecretKey: "pinataGatewayApiToken"
+    pinataGatewayApiTokenSecretKey: "pinataGatewayApiToken"
     indexerLaosRpcEndpointSecretKey: "indexerLaosRpcEndpointForEthereum"
     indexerOwnershipParseTraces: "false"
     laosGlobalConsensus: "2"
