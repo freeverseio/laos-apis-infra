@@ -7,4 +7,4 @@ postgresHost: dev-db-do-user-4813238-0.j.db.ondigitalocean.com
 postgresDb: protostardb
 postgresPort: "25060"
 postgresUser: "protostar"
-laosChain: "laos"
+laosChain: "laos."
