@@ -21,8 +21,8 @@ indexerInstances:
     gqlPort: 4000
     pinataGatewayApiTokenSecretKey: "pinataGatewayApiToken" 
     indexerLaosRpcEndpointSecretKey: "indexerLaosRpcEndpointA"
-    laosGlobalConsensus: "0:0x77afd6190f1554ad45fd0d31aee62aacc33c6db0ea801129acb813f913e0764f"
-    laosParachain: "4006"
+    laosGlobalConsensus: "2"
+    laosParachain: "3370"
     laosPalletInstance: "51"
     indexerOwnershipParseTraces: "false" 
   - dbPodName: indexer-db-ethereum
@@ -47,8 +47,8 @@ indexerInstances:
     # rpcRateLimitOwnership: 10
     pinataGatewayApiTokenSecretKey: "pinataGatewayApiToken" 
     indexerLaosRpcEndpointSecretKey: "indexerLaosRpcEndpointA"
-    laosGlobalConsensus: "0:0x77afd6190f1554ad45fd0d31aee62aacc33c6db0ea801129acb813f913e0764f"
-    laosParachain: "4006"
+    laosGlobalConsensus: "2"
+    laosParachain: "3370"
     laosPalletInstance: "51"
     indexerOwnershipParseTraces: "false" 
   - dbPodName: indexer-db-hedera
@@ -72,8 +72,8 @@ indexerInstances:
     # rpcRateLimitOwnership: 10
     pinataGatewayApiTokenSecretKey: "pinataGatewayApiToken" 
     indexerLaosRpcEndpointSecretKey: "indexerLaosRpcEndpointB"
-    laosGlobalConsensus: "0:0x77afd6190f1554ad45fd0d31aee62aacc33c6db0ea801129acb813f913e0764f"
-    laosParachain: "4006"
+    laosGlobalConsensus: "2"
+    laosParachain: "3370"
     laosPalletInstance: "51"
     indexerOwnershipParseTraces: "false" 
   - dbPodName: indexer-db-hedera-2
