@@ -20,7 +20,7 @@ indexerInstances:
     host: testnet.polygon-indexer.laosnetwork.io
     gqlPort: 4000
     pinataGatewayApiTokenSecretKey: "pinataGatewayApiToken" 
-    indexerLaosRpcEndpointSecretKey: "indexerLaosRpcEndpointA"
+    indexerLaosRpcEndpointSecretKey: "indexerLaosRpcEndpointForPolygon"
     laosGlobalConsensus: "2"
     laosParachain: "3370"
     laosPalletInstance: "51"
@@ -46,32 +46,7 @@ indexerInstances:
     # maxBatchCallSizeOwnership: 200
     # rpcRateLimitOwnership: 10
     pinataGatewayApiTokenSecretKey: "pinataGatewayApiToken" 
-    indexerLaosRpcEndpointSecretKey: "indexerLaosRpcEndpointA"
-    laosGlobalConsensus: "2"
-    laosParachain: "3370"
-    laosPalletInstance: "51"
-    indexerOwnershipParseTraces: "false" 
-  - dbPodName: indexer-db-hedera
-    postgresDb: squid-hedera
-    postgresPassword: postgres
-    postgresUser: postgres
-    pvcName: pvc-squid-hedera-1
-    servicePort: 5434
-    containerPort: 5434
-    mountPath: /var/lib/postgresql/pvdata3
-    mountName: indexer-pvc-hedera
-    ownershipProcessor: indexer-hedera-processor
-    startingBlockOwnership: "7333998"
-    startingBlockLaos: "67720"
-    rpcEndpointSecretKey: "indexerHederaRpcEndpoint"
-    laosProcessor: indexer-laos-processor-hedera
-    apiProcessor: indexer-laos-hedera-api
-    host: testnet.hedera-indexer.laosnetwork.io
-    gqlPort: 4000
-    # maxBatchCallSizeOwnership: 100
-    # rpcRateLimitOwnership: 10
-    pinataGatewayApiTokenSecretKey: "pinataGatewayApiToken" 
-    indexerLaosRpcEndpointSecretKey: "indexerLaosRpcEndpointB"
+    indexerLaosRpcEndpointSecretKey: "indexerLaosRpcEndpointForEthereum"
     laosGlobalConsensus: "2"
     laosParachain: "3370"
     laosPalletInstance: "51"
@@ -87,7 +62,7 @@ indexerInstances:
     mountName: indexer-pvc-hedera
     ownershipProcessor: indexer-hedera-processor-2
     startingBlockOwnership: "12600100"
-    startingBlockLaos: "1023800"
+    startingBlockLaos: "1"
     rpcEndpointSecretKey: "indexerHederaRpcEndpoint"
     laosProcessor: indexer-laos-processor-hedera-2
     apiProcessor: indexer-laos-hedera-api-2

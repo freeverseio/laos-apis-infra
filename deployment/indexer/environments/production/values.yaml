@@ -66,7 +66,7 @@ indexerInstances:
     mountName: indexer-pvc-hedera
     ownershipProcessor: indexer-hedera-processor
     startingBlockOwnership: "72113678"
-    startingBlockLaos: "992886"
+    startingBlockLaos: "1"
     rpcEndpointSecretKey: "indexerHederaRpcEndpoint"
     laosProcessor: indexer-laos-processor-hedera
     apiProcessor: indexer-laos-hedera-api
@@ -92,11 +92,11 @@ indexerInstances:
     mountName: indexer-pvc-hedera-testnet
     ownershipProcessor: indexer-hedera-testnet-processor
     startingBlockOwnership: "12600100"
-    startingBlockLaos: "1023800"
+    startingBlockLaos: "1"
     rpcEndpointSecretKey: "indexerHederaTestnetRpcEndpoint"
     laosProcessor: indexer-laos-processor-hedera-testnet
     apiProcessor: indexer-laos-hedera-testnet-api
-    # host: laos-mainnet.hedera-testnet-indexer.laosnetwork.io
+    host: laos-mainnet.hedera-testnet-indexer.laosnetwork.io
     gqlPort: 4000
     # maxBatchCallSizeOwnership: 100
     # rpcRateLimitOwnership: 10
