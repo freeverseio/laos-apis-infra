@@ -98,7 +98,9 @@ helmfiles:
       - postgresPort: {{ .servicePort }}
       - postgresPassword: {{ .postgresPassword }}
       - postgresUser: {{ .postgresUser }}
+      {{- if hasKey . "host" }}
       - host: {{ .host }}
+      {{- end }}
       - gqlPort: {{ .gqlPort }}
 {{- end }}
 

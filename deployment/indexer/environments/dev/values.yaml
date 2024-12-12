@@ -47,7 +47,7 @@ indexerInstances:
     gqlPort: 4000
     # rpcRateLimitOwnership: 10
     # maxBatchCallSizeOwnership: 100
-    # pinataGatewayApiTokenSecretKey: "pinataGatewayApiToken"
+    pinataGatewayApiTokenSecretKey: "pinataGatewayApiToken"
     indexerLaosRpcEndpointSecretKey: "indexerLaosRpcEndpointForEthereum"
     laosGlobalConsensus: "2"
     laosParachain: "3370"
@@ -72,7 +72,7 @@ indexerInstances:
     gqlPort: 4000
     # maxBatchCallSizeOwnership: 100
     # rpcRateLimitOwnership: 10
-    # pinataGatewayApiTokenSecretKey: "pinataGatewayApiToken" 
+    pinataGatewayApiTokenSecretKey: "pinataGatewayApiToken" 
     indexerLaosRpcEndpointSecretKey: "indexerLaosRpcEndpointForHedera"
     laosGlobalConsensus: "2"
     laosParachain: "3370"
