@@ -32,6 +32,7 @@ helmfiles:
       - containerPort: {{ .containerPort }}
       - mountPath: {{ .mountPath }}
       - mountName: {{ .mountName }}
+      - installed: {{ .installed }}
   - path: 'charts/processor/helmfile.yaml'
     values:
       - name: {{ .ownershipProcessor }}
@@ -63,6 +64,7 @@ helmfiles:
       - pinataGatewayApiTokenSecretKey: {{ .pinataGatewayApiTokenSecretKey }}
       {{- end }}
       - command: "process:prod:ownership_chain"
+      - installed: {{ .installed }}
   - path: 'charts/processor/helmfile.yaml'
     values:
       - name: {{ .laosProcessor }}
@@ -88,6 +90,7 @@ helmfiles:
       {{- if hasKey . "pinataGatewayApiTokenSecretKey" }}
       - pinataGatewayApiTokenSecretKey: {{ .pinataGatewayApiTokenSecretKey }}
       {{- end }}
+      - installed: {{ .installed }}
   - path: 'charts/api/helmfile.yaml'
     values:
       - name: {{ .apiProcessor }}
@@ -102,6 +105,7 @@ helmfiles:
       - host: {{ .host }}
       {{- end }}
       - gqlPort: {{ .gqlPort }}
+      - installed: {{ .installed }}
 {{- end }}
 
 releases:

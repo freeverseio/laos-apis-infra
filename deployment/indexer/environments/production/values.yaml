@@ -28,6 +28,7 @@ indexerInstances:
     laosGlobalConsensus: "2"
     laosParachain: "3370"
     laosPalletInstance: "51"
+    installed: "true"
   - dbPodName: indexer-db-ethereum
     postgresDb: squid-ethereum
     postgresPassword: postgres
@@ -55,6 +56,7 @@ indexerInstances:
     laosGlobalConsensus: "2"
     laosParachain: "3370"
     laosPalletInstance: "51"
+    installed: "true"
   - dbPodName: indexer-db-hedera
     postgresDb: squid
     postgresPassword: postgres
@@ -81,6 +83,7 @@ indexerInstances:
     laosGlobalConsensus: "2"
     laosParachain: "3370"
     laosPalletInstance: "51"
+    installed: "true"
   - dbPodName: indexer-db-hedera-testnet
     postgresDb: squid-hedera
     postgresPassword: postgres
@@ -106,6 +109,7 @@ indexerInstances:
     laosParachain: "3370"
     laosPalletInstance: "51"
     indexerOwnershipParseTraces: "false" 
+    installed: "true"
 laosNodesInstances:
   - name: laos-node-protostar
     nodeVersion: "v0.24.0"

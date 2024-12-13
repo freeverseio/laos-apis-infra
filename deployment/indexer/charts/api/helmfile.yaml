@@ -3,6 +3,7 @@ releases:
     namespace: '{{ .Values.namespace }}'
     createNamespace: false
     chart: .
+    installed: {{ .Values.installed }}
     values:
       - name: {{ .Values.name }}
       - imageTag: {{ .Values.imageTag }}
