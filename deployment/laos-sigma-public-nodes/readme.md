@@ -1,1 +1,0 @@
-Two public nodes for orion protostar namespace in prod cluster that were deployed to mitigate the error in ziggy's public laos sigma node.
