@@ -26,4 +26,7 @@ helmfiles:
     values:
       - namespace: "protostar"
       - name: {{ .name }}
+      {{- if and (hasKey . "setDnsPolicy") .setDnsPolicy }}
+      - setDnsPolicy: {{ .setDnsPolicy }}
+      {{- end }}
   {{- end }}
