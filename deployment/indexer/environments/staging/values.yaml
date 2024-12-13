@@ -51,44 +51,19 @@ indexerInstances:
     laosParachain: "3370"
     laosPalletInstance: "51"
     indexerOwnershipParseTraces: "false" 
-  - dbPodName: indexer-db-hedera-2
-    postgresDb: squid-hedera
-    postgresPassword: postgres
-    postgresUser: postgres
-    pvcName: pvc-squid-hedera-2
-    servicePort: 5434
-    containerPort: 5434
-    mountPath: /var/lib/postgresql/pvdata3
-    mountName: indexer-pvc-hedera
-    ownershipProcessor: indexer-hedera-processor-2
-    startingBlockOwnership: "12600100"
-    startingBlockLaos: "1"
-    rpcEndpointSecretKey: "indexerHederaRpcEndpoint"
-    laosProcessor: indexer-laos-processor-hedera-2
-    apiProcessor: indexer-laos-hedera-api-2
-    host: laos-mainnet.hedera-testnet-indexer.laosnetwork.io
-    gqlPort: 4000
-    # maxBatchCallSizeOwnership: 100
-    # rpcRateLimitOwnership: 10
-    pinataGatewayApiTokenSecretKey: "pinataGatewayApiToken" 
-    indexerLaosRpcEndpointSecretKey: "indexerLaosRpcEndpointForHedera"
-    laosGlobalConsensus: "2"
-    laosParachain: "3370"
-    laosPalletInstance: "51"
-    indexerOwnershipParseTraces: "false" 
 laosNodesInstances:
   - name: public-node-protostar
-    nodeVersion: "v0.22.0"
+    nodeVersion: "v0.24.0"
     chain: "laos-sigma"
   - name: laos-node-protostar
-    nodeVersion: "v0.22.0"
+    nodeVersion: "v0.24.0"
     chain: "laos"
     setDnsPolicy: true
   - name: laos-node-protostar-1
-    nodeVersion: "v0.22.0"
+    nodeVersion: "v0.24.0"
     chain: "laos"
     setDnsPolicy: true
   - name: laos-node-protostar-2
-    nodeVersion: "v0.22.0"
+    nodeVersion: "v0.24.0"
     chain: "laos"
     setDnsPolicy: true
