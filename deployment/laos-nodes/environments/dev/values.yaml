@@ -1,0 +1,6 @@
+namespace: protostar
+nodeInstances:
+  - name: laos-node-1
+    nginxServiceUrl: http://laos-node-1.protostar.svc.cluster.local:9944
+  - name: laos-node-2
+    nginxServiceUrl: http://laos-node-2.protostar.svc.cluster.local:9944
