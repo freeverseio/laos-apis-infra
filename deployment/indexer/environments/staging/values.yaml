@@ -25,6 +25,7 @@ indexerInstances:
     laosParachain: "3370"
     laosPalletInstance: "51"
     indexerOwnershipParseTraces: "false" 
+    installed: "true"
   - dbPodName: indexer-db-ethereum
     postgresDb: squid-ethereum
     postgresPassword: postgres
@@ -51,6 +52,7 @@ indexerInstances:
     laosParachain: "3370"
     laosPalletInstance: "51"
     indexerOwnershipParseTraces: "false" 
+    installed: "true"
 laosNodesInstances:
   - name: public-node-protostar
     nodeVersion: "v0.24.0"
