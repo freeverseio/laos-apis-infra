@@ -107,6 +107,23 @@ helmfiles:
       - gqlPort: {{ .gqlPort }}
       - installed: {{ .installed }}
 {{- end }}
+{{- range .Values.laosNodesInstances }}
+{{- if hasKey . "nginxServiceUrl" }}
+  - path: 'charts/nginx/helmfile.yaml'
+    values:
+      - namespace: {{ $.Values.namespace }}
+      - name: nginx-{{ .name }}
+      - nginxServiceUrl: {{ .nginxServiceUrl }}
+      - installed: {{ .installed }}
+{{- else }}
+  - path: 'charts/nginx/helmfile.yaml'
+    values:
+      - namespace: {{ $.Values.namespace }}
+      - name: nginx-{{ .name }}
+      - nginxServiceUrl: ""
+      - installed: false
+{{- end }}
+{{- end }}
 
 releases:
 {{- range .Values.laosNodesInstances }}
@@ -115,6 +132,7 @@ releases:
     createNamespace: false
     chart: parity/node
     version: 5.5.1
+    installed: {{ .installed }}
     values:
       - image:
           repository: freeverseio/laos-node
