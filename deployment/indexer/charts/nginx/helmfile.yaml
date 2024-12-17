@@ -1,0 +1,9 @@
+releases:
+  - name: {{ .Values.name }}-release
+    namespace: '{{ .Values.namespace }}'
+    createNamespace: false
+    installed: {{ .Values.installed }}
+    chart: .
+    values:
+      - name: {{ .Values.name }}  
+      - nginxServiceUrl: {{ .Values.nginxServiceUrl }}
