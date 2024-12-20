@@ -3,6 +3,8 @@ repositories:
     url: https://charts.helm.sh/stable
   - name: parity
     url: https://paritytech.github.io/helm-charts/
+  - name: bitnami
+    url: https://charts.bitnami.com/bitnami
 
 environments:
   default:
