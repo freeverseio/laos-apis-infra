@@ -31,7 +31,7 @@ indexerInstances:
     postgresPassword: postgres
     postgresUser: postgres
     pvcName: pvc-squid-ethereum-1
-    servicePort: 5433
+    servicePort: 5432
     containerPort: 5433
     mountPath: /var/lib/postgresql/pvdata2
     mountName: indexer-pvc-ethereum

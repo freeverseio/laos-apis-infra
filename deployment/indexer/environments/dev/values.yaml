@@ -21,6 +21,7 @@ indexerInstances:
     gqlPort: 4000
     # rpcRateLimitOwnership: 10
     # maxBatchCallSizeOwnership: 300
+    # rpcRateLimit: 15
     pinataGatewayApiTokenSecretKey: "pinataGatewayApiToken"
     indexerLaosRpcEndpointSecretKey: "indexerLaosRpcEndpointForPolygon"
     laosGlobalConsensus: "2"
@@ -33,7 +34,7 @@ indexerInstances:
     postgresPassword: postgres
     postgresUser: postgres
     pvcName: pvc-squid-ethereum-1
-    servicePort: 5433
+    servicePort: 5432
     containerPort: 5433
     mountPath: /var/lib/postgresql/pvdata2
     mountName: indexer-pvc-ethereum
@@ -48,6 +49,7 @@ indexerInstances:
     gqlPort: 4000
     # rpcRateLimitOwnership: 10
     # maxBatchCallSizeOwnership: 100
+    # rpcRateLimit: 15
     pinataGatewayApiTokenSecretKey: "pinataGatewayApiToken"
     indexerLaosRpcEndpointSecretKey: "indexerLaosRpcEndpointForEthereum"
     laosGlobalConsensus: "2"
@@ -60,7 +62,7 @@ indexerInstances:
     postgresPassword: postgres
     postgresUser: postgres
     pvcName: pvc-squid-hedera
-    servicePort: 5434
+    servicePort: 5432
     containerPort: 5434
     mountPath: /var/lib/postgresql/pvdata3
     mountName: indexer-pvc-hedera
@@ -74,6 +76,7 @@ indexerInstances:
     gqlPort: 4000
     # maxBatchCallSizeOwnership: 100
     # rpcRateLimitOwnership: 10
+    rpcRateLimit: 15
     pinataGatewayApiTokenSecretKey: "pinataGatewayApiToken" 
     indexerLaosRpcEndpointSecretKey: "indexerLaosRpcEndpointForHedera"
     laosGlobalConsensus: "2"
@@ -101,4 +104,5 @@ laosNodesInstances:
   - name: laos-node-protostar-3
     nodeVersion: "v0.24.0"
     chain: "laos"
+    nginxServiceUrl: http://laos-node-protostar-3.protostar.svc.cluster.local:9944
     installed: false
