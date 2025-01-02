@@ -1,6 +1,29 @@
 namespace: protostar
 rpcLaos: wss://rpc.laos.laosfoundation.io
 indexerInstances:
+  - dbPodName: indexer-db-polygon
+    postgresDb: squid
+    postgresPassword: postgres
+    postgresUser: postgres
+    servicePort: 5432
+    ownershipProcessor: indexer-polygon-processor
+    gatewayEndpoint: https://v2.archive.subsquid.io/network/polygon-mainnet
+    startingBlockOwnership: "61394132"
+    startingBlockLaos: "1"
+    rpcEndpointSecretKey: "indexerPolygonRpcEndpoint"
+    laosProcessor: indexer-laos-processor-polygon
+    apiProcessor: indexer-laos-polygon-api
+    gqlPort: 4000
+    rpcRateLimit: 40
+    # maxBatchCallSizeOwnership: 300
+    # rpcRateLimitOwnership: 10
+    pinataGatewayApiTokenSecretKey: "pinataGatewayApiToken"
+    indexerLaosRpcEndpointSecretKey: "indexerLaosRpcEndpointBackupFix"
+    indexerOwnershipParseTraces: "false"
+    laosGlobalConsensus: "2"
+    laosParachain: "3370"
+    laosPalletInstance: "51"
+    installed: "false"
   - dbPodName: indexer-db-polygon-backup-fix
     postgresDb: squid
     postgresPassword: postgres
@@ -24,6 +47,30 @@ indexerInstances:
     laosParachain: "3370"
     laosPalletInstance: "51"
     installed: "true"
+  - dbPodName: indexer-db-ethereum
+    postgresDb: squid-ethereum
+    postgresPassword: postgres
+    postgresUser: postgres
+    servicePort: 5432
+    ownershipProcessor: indexer-ethereum-processor
+    gatewayEndpoint: https://v2.archive.subsquid.io/network/ethereum-mainnet
+    startingBlockOwnership: "20673497"
+    startingBlockLaos: "1"
+    rpcEndpointSecretKey: "indexerEthereumRpcEndpoint"
+    laosProcessor: indexer-laos-processor-ethereum
+    apiProcessor: indexer-laos-ethereum-api
+    host: ethereum-indexer.laosnetwork.io
+    gqlPort: 4000
+    rpcRateLimit: 40
+    # maxBatchCallSizeOwnership: 100
+    # rpcRateLimitOwnership: 10
+    pinataGatewayApiTokenSecretKey: "pinataGatewayApiToken"
+    indexerLaosRpcEndpointSecretKey: "indexerLaosRpcEndpointForEthereum"
+    indexerOwnershipParseTraces: "false"
+    laosGlobalConsensus: "2"
+    laosParachain: "3370"
+    laosPalletInstance: "51"
+    installed: "false"
   - dbPodName: indexer-db-ethereum-backup-fix
     postgresDb: squid-ethereum
     postgresPassword: postgres
@@ -36,7 +83,7 @@ indexerInstances:
     rpcEndpointSecretKey: "indexerEthereumRpcEndpoint"
     laosProcessor: indexer-laos-processor-ethereum-backup-fix
     apiProcessor: indexer-laos-ethereum-api-backup-fix
-    # host: ethereum-indexer.laosnetwork.io
+    host: ethereum-indexer.laosnetwork.io
     gqlPort: 4000
     rpcRateLimit: 40
     # maxBatchCallSizeOwnership: 100
@@ -48,6 +95,29 @@ indexerInstances:
     laosParachain: "3370"
     laosPalletInstance: "51"
     installed: "true"
+  - dbPodName: indexer-db-hedera
+    postgresDb: squid
+    postgresPassword: postgres
+    postgresUser: postgres
+    servicePort: 5432
+    ownershipProcessor: indexer-hedera-processor
+    startingBlockOwnership: "72113678"
+    startingBlockLaos: "1"
+    rpcEndpointSecretKey: "indexerHederaRpcEndpoint"
+    laosProcessor: indexer-laos-processor-hedera
+    apiProcessor: indexer-laos-hedera-api
+    host: hedera-indexer.laosnetwork.io
+    gqlPort: 4000
+    rpcRateLimit: 40
+    # maxBatchCallSizeOwnership: 100
+    # rpcRateLimitOwnership: 10
+    pinataGatewayApiTokenSecretKey: "pinataGatewayApiToken"
+    indexerLaosRpcEndpointSecretKey: "indexerLaosRpcEndpointForHedera"
+    indexerOwnershipParseTraces: "false" 
+    laosGlobalConsensus: "2"
+    laosParachain: "3370"
+    laosPalletInstance: "51"
+    installed: "false"
   - dbPodName: indexer-db-hedera-backup-fix
     postgresDb: squid
     postgresPassword: postgres
@@ -59,7 +129,7 @@ indexerInstances:
     rpcEndpointSecretKey: "indexerHederaRpcEndpoint"
     laosProcessor: indexer-laos-processor-hedera-backup-fix
     apiProcessor: indexer-laos-hedera-api-backup-fix
-    # host: hedera-indexer.laosnetwork.io
+    host: hedera-indexer.laosnetwork.io
     gqlPort: 4000
     rpcRateLimit: 40
     # maxBatchCallSizeOwnership: 100
@@ -71,6 +141,28 @@ indexerInstances:
     laosParachain: "3370"
     laosPalletInstance: "51"
     installed: "true"
+  - dbPodName: indexer-db-hedera-testnet
+    postgresDb: squid-hedera
+    postgresPassword: postgres
+    postgresUser: postgres
+    servicePort: 5432
+    ownershipProcessor: indexer-hedera-testnet-processor
+    startingBlockOwnership: "12600100"
+    startingBlockLaos: "1"
+    rpcEndpointSecretKey: "indexerHederaTestnetRpcEndpoint"
+    laosProcessor: indexer-laos-processor-hedera-testnet
+    apiProcessor: indexer-laos-hedera-testnet-api
+    host: laos-mainnet.hedera-testnet-indexer.laosnetwork.io
+    gqlPort: 4000
+    # maxBatchCallSizeOwnership: 100
+    # rpcRateLimitOwnership: 10
+    pinataGatewayApiTokenSecretKey: "pinataGatewayApiToken" 
+    indexerLaosRpcEndpointSecretKey: "indexerLaosRpcEndpointForHederaTestnet"
+    laosGlobalConsensus: "2"
+    laosParachain: "3370"
+    laosPalletInstance: "51"
+    indexerOwnershipParseTraces: "false" 
+    installed: "false"
   - dbPodName: indexer-db-hed-testnet-backup-fix
     postgresDb: squid-hedera
     postgresPassword: postgres
@@ -82,7 +174,7 @@ indexerInstances:
     rpcEndpointSecretKey: "indexerHederaTestnetRpcEndpoint"
     laosProcessor: indexer-laos-processor-hed-testnet-backup-fix
     apiProcessor: indexer-laos-hed-testnet-api-backup-fix
-    # host: laos-mainnet.hedera-testnet-indexer.laosnetwork.io
+    host: laos-mainnet.hedera-testnet-indexer.laosnetwork.io
     gqlPort: 4000
     # maxBatchCallSizeOwnership: 100
     # rpcRateLimitOwnership: 10
