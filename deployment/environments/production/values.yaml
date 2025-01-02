@@ -8,3 +8,11 @@ postgresDb: protostardb
 postgresPort: "25060"
 postgresUser: "protostar"
 laosChain: "laos"
+gatewayPolygonService: indexer-laos-polygon-api-backup-fix
+gatewayPolygonPort: 4000
+gatewayEthereumService: indexer-laos-ethereum-api-backup-fix
+gatewayEthereumPort: 4000
+gatewayHederaService: indexer-laos-hedera-api-backup-fix
+gatewayHederaPort: 4000
+gatewayClientApiService: laos-client-api
+gatewayClientApiPort: 4001
