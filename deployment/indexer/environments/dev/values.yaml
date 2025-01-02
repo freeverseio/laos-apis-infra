@@ -5,11 +5,7 @@ indexerInstances:
     postgresDb: squid
     postgresPassword: postgres
     postgresUser: postgres
-    pvcName: pvc-squid-1
     servicePort: 5432
-    containerPort: 5432
-    mountPath: /var/lib/postgresql/pvdata
-    mountName: indexer-pvc
     ownershipProcessor: indexer-polygon-processor
     gatewayEndpoint: https://v2.archive.subsquid.io/network/polygon-mainnet
     startingBlockOwnership: "65270190"
@@ -23,9 +19,9 @@ indexerInstances:
     # maxBatchCallSizeOwnership: 300
     # rpcRateLimit: 15
     pinataGatewayApiTokenSecretKey: "pinataGatewayApiToken"
-    indexerLaosRpcEndpointSecretKey: "indexerLaosRpcEndpointForPolygon"
-    laosGlobalConsensus: "2"
-    laosParachain: "3370"
+    indexerLaosRpcEndpointSecretKey: "indexerLaosSigmaRpcEndpointForPolygon"
+    laosGlobalConsensus: "0:0x77afd6190f1554ad45fd0d31aee62aacc33c6db0ea801129acb813f913e0764f"
+    laosParachain: "4006"
     laosPalletInstance: "51"
     indexerOwnershipParseTraces: "false"
     installed: "true"
@@ -33,11 +29,7 @@ indexerInstances:
     postgresDb: squid-ethereum
     postgresPassword: postgres
     postgresUser: postgres
-    pvcName: pvc-squid-ethereum-1
     servicePort: 5432
-    containerPort: 5433
-    mountPath: /var/lib/postgresql/pvdata2
-    mountName: indexer-pvc-ethereum
     ownershipProcessor: indexer-ethereum-processor
     gatewayEndpoint: https://v2.archive.subsquid.io/network/ethereum-mainnet
     startingBlockOwnership: "21364679"
@@ -49,11 +41,11 @@ indexerInstances:
     gqlPort: 4000
     # rpcRateLimitOwnership: 10
     # maxBatchCallSizeOwnership: 100
-    # rpcRateLimit: 15
+    rpcRateLimit: 15
     pinataGatewayApiTokenSecretKey: "pinataGatewayApiToken"
-    indexerLaosRpcEndpointSecretKey: "indexerLaosRpcEndpointForEthereum"
-    laosGlobalConsensus: "2"
-    laosParachain: "3370"
+    indexerLaosRpcEndpointSecretKey: "indexerLaosSigmaRpcEndpointForEthereum"
+    laosGlobalConsensus: "0:0x77afd6190f1554ad45fd0d31aee62aacc33c6db0ea801129acb813f913e0764f"
+    laosParachain: "4006"
     laosPalletInstance: "51"
     indexerOwnershipParseTraces: "false"
     installed: "true"
@@ -61,11 +53,7 @@ indexerInstances:
     postgresDb: squid-hedera
     postgresPassword: postgres
     postgresUser: postgres
-    pvcName: pvc-squid-hedera
     servicePort: 5432
-    containerPort: 5434
-    mountPath: /var/lib/postgresql/pvdata3
-    mountName: indexer-pvc-hedera
     ownershipProcessor: indexer-hedera-processor
     startingBlockOwnership: "12861134"
     startingBlockLaos: "1"
@@ -78,31 +66,36 @@ indexerInstances:
     # rpcRateLimitOwnership: 10
     rpcRateLimit: 15
     pinataGatewayApiTokenSecretKey: "pinataGatewayApiToken" 
-    indexerLaosRpcEndpointSecretKey: "indexerLaosRpcEndpointForHedera"
-    laosGlobalConsensus: "2"
-    laosParachain: "3370"
+    indexerLaosRpcEndpointSecretKey: "indexerLaosSigmaRpcEndpointForHedera"
+    laosGlobalConsensus: "0:0x77afd6190f1554ad45fd0d31aee62aacc33c6db0ea801129acb813f913e0764f"
+    laosParachain: "4006"
     laosPalletInstance: "51"
     indexerOwnershipParseTraces: "false"
     installed: "true"
 laosNodesInstances:
   - name: public-node-protostar
-    nodeVersion: "v0.24.0"
+    nodeVersion: "v0.25.0"
     chain: "laos-sigma"
     nginxServiceUrl: http://public-node-protostar.protostar.svc.cluster.local:9944
     installed: true
+  - name: public-node-protostar-2
+    nodeVersion: "v0.25.0"
+    chain: "laos-sigma"
+    nginxServiceUrl: http://public-node-protostar-2.protostar.svc.cluster.local:9944
+    installed: true
   - name: laos-node-protostar
-    nodeVersion: "v0.24.0"
+    nodeVersion: "v0.25.0"
     chain: "laos"
     setDnsPolicy: true
     nginxServiceUrl: http://laos-node-protostar.protostar.svc.cluster.local:9944
-    installed: true
+    installed: false
   - name: laos-node-protostar-2
-    nodeVersion: "v0.24.0"
+    nodeVersion: "v0.25.0"
     chain: "laos"
     nginxServiceUrl: http://laos-node-protostar-2.protostar.svc.cluster.local:9944
-    installed: true
+    installed: false
   - name: laos-node-protostar-3
-    nodeVersion: "v0.24.0"
+    nodeVersion: "v0.25.0"
     chain: "laos"
     nginxServiceUrl: http://laos-node-protostar-3.protostar.svc.cluster.local:9944
     installed: false
