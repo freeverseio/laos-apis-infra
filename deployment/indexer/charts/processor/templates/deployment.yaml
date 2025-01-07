@@ -95,7 +95,7 @@ spec:
               - sh
               - -c
               - |
-                BLOCKS_PER_SECOND=$(curl -s http://localhost:3000/metrics | grep 'sqd_processor_mapping_blocks_per_second' | awk '{print $2}')
+                BLOCKS_PER_SECOND=$(wget -qO- http://localhost:3000/metrics | grep 'sqd_processor_mapping_blocks_per_second' | awk '{print $2}')
                 if [ -z "$BLOCKS_PER_SECOND" ]; then
                   echo "Metric not available. /metrics endpoint might not be accessible."
                   exit 1
@@ -105,7 +105,7 @@ spec:
                   exit 1
                 fi
                 exit 0
-            failureThreshold: 3
-            initialDelaySeconds: 10
+            failureThreshold: 5
+            initialDelaySeconds: 30
             periodSeconds: 15
-            timeoutSeconds: 1
+            timeoutSeconds: 3
