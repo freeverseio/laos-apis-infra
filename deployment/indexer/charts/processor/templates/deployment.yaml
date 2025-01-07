@@ -89,3 +89,23 @@ spec:
                   key: {{ .Values.pinataGatewayApiTokenSecretKey | quote }}
             {{- end }}
           command: ["sqd", {{ .Values.command }}]
+          livenessProbe:
+            exec:
+              command:
+              - sh
+              - -c
+              - |
+                BLOCKS_PER_SECOND=$(curl -s http://localhost:3000/metrics | grep 'sqd_processor_mapping_blocks_per_second' | awk '{print $2}')
+                if [ -z "$BLOCKS_PER_SECOND" ]; then
+                  echo "Metric not available. /metrics endpoint might not be accessible."
+                  exit 1
+                fi
+                if (( $(echo "$BLOCKS_PER_SECOND < 1" | bc -l) )); then
+                  echo "Processor stalled! Blocks per second is too low: $BLOCKS_PER_SECOND"
+                  exit 1
+                fi
+                exit 0
+            failureThreshold: 3
+            initialDelaySeconds: 10
+            periodSeconds: 15
+            timeoutSeconds: 1
