@@ -32,6 +32,14 @@ helmfiles:
       - namespace: {{ .Values.namespace }}
       - imageTag: {{ requiredEnv "IMAGE_TAG" }}
       - host: {{ .Values.host }}
+      - gatewayPolygonService: {{ .Values.gatewayPolygonService }}
+      - gatewayPolygonPort: {{ .Values.gatewayPolygonPort }}
+      - gatewayEthereumService: {{ .Values.gatewayEthereumService }}
+      - gatewayEthereumPort: {{ .Values.gatewayEthereumPort }}
+      - gatewayHederaService: {{ .Values.gatewayHederaService }}
+      - gatewayHederaPort: {{ .Values.gatewayHederaPort }}
+      - gatewayClientApiService: {{ .Values.gatewayClientApiService }}
+      - gatewayClientApiPort: {{ .Values.gatewayClientApiPort }}
   - path: 'charts/playground/helmfile.yaml'
     values:
       - namespace: {{ .Values.namespace }}
@@ -43,3 +51,4 @@ helmfiles:
       - namespace: {{ .Values.namespace }}
       - imageTag: {{ requiredEnv "IMAGE_TAG" }}
       - host: {{ .Values.extensionsHost }}
+      
