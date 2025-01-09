@@ -6,3 +6,11 @@ releases:
     values:
       - imageTag: {{ .Values.imageTag }}
       - host: {{ .Values.host }}
+      - gatewayPolygonService: {{ .Values.gatewayPolygonService }}
+      - gatewayPolygonPort: {{ .Values.gatewayPolygonPort }}
+      - gatewayEthereumService: {{ .Values.gatewayEthereumService }}
+      - gatewayEthereumPort: {{ .Values.gatewayEthereumPort }}
+      - gatewayHederaService: {{ .Values.gatewayHederaService }}
+      - gatewayHederaPort: {{ .Values.gatewayHederaPort }}
+      - gatewayClientApiService: {{ .Values.gatewayClientApiService }}
+      - gatewayClientApiPort: {{ .Values.gatewayClientApiPort }}
