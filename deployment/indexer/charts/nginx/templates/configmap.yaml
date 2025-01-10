@@ -10,12 +10,12 @@ data:
     }
 
     http {
-      limit_req_zone "global_key" zone=global:10m rate=40r/s;
+      limit_req_zone "global_key" zone=global:10m rate=25r/s;
 
       server {
         listen 80;
 
-        limit_req zone=global burst=10;
+        limit_req zone=global burst=5;
 
         location / {
           # Forward requests to the internal service
