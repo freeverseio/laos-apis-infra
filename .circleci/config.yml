@@ -64,7 +64,6 @@ commands:
             IMAGE_TAG=$(git rev-parse HEAD)
             cd << parameters.root >>
             
-            # Modify the image tag if chainName is provided
             if [ "<< parameters.chainName >>" != "" ]; then
               IMAGE_TAG="<< parameters.chainName >>-$IMAGE_TAG"
               BUILD_ARGS="--build-arg CHAIN_NAME=<< parameters.chainName >>"
