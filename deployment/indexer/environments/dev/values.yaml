@@ -1,6 +1,6 @@
 namespace: protostar
 rpcLaos: wss://rpc.laossigma.laosfoundation.io
-laosIndexer:
+laosIndexerInstances:
   - chainName: laos
     indexerName: indexer-laos
     postgresDb: squid

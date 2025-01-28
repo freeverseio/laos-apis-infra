@@ -42,39 +42,39 @@ commands:
             export IMAGE_TAG=$IMAGE_TAG
 
 
-dockerize-and-push:
-  parameters:
-    image:
-      type: string
-    root:
-      type: string
-    chainName:
-      type: string
-      default: "" # Default to an empty string if chainName is not provided
-  steps:
-    - attach_workspace:
-        at: ./
-    - run:
-        name: Docker login
-        command: echo $DOCKER_PASSWD | docker login -u $DOCKER_ID --password-stdin
-    - run:
-        name: Build and push Docker image
-        command: |
-          cd laos-apis
-          IMAGE_TAG=$(git rev-parse HEAD)
-          cd << parameters.root >>
-          
-          # Modify the image tag if chainName is provided
-          if [ "<< parameters.chainName >>" != "" ]; then
-            IMAGE_TAG="<< parameters.chainName >>-$IMAGE_TAG"
-            BUILD_ARGS="--build-arg CHAIN_NAME=<< parameters.chainName >>"
-          else
-            BUILD_ARGS=""
-          fi
+  dockerize-and-push:
+    parameters:
+      image:
+        type: string
+      root:
+        type: string
+      chainName:
+        type: string
+        default: ""
+    steps:
+      - attach_workspace:
+          at: ./
+      - run:
+          name: Docker login
+          command: echo $DOCKER_PASSWD | docker login -u $DOCKER_ID --password-stdin
+      - run:
+          name: Build and push Docker image
+          command: |
+            cd laos-apis
+            IMAGE_TAG=$(git rev-parse HEAD)
+            cd << parameters.root >>
+            
+            # Modify the image tag if chainName is provided
+            if [ "<< parameters.chainName >>" != "" ]; then
+              IMAGE_TAG="<< parameters.chainName >>-$IMAGE_TAG"
+              BUILD_ARGS="--build-arg CHAIN_NAME=<< parameters.chainName >>"
+            else
+              BUILD_ARGS=""
+            fi
 
-          echo "Docker images for $IMAGE_TAG will be pushed"
-          docker build $BUILD_ARGS -t << parameters.image >>:$IMAGE_TAG .
-          docker push << parameters.image >>:$IMAGE_TAG
+            echo "Docker images for $IMAGE_TAG will be pushed"
+            docker build $BUILD_ARGS -t << parameters.image >>:$IMAGE_TAG .
+            docker push << parameters.image >>:$IMAGE_TAG
 
 jobs:
   build-app:
@@ -286,7 +286,9 @@ workflows:
           name: approve-deploy-indexer
           requires:
             - deployment-test-indexer
-            - build-indexer
+            - build-laos-indexer
+            - build-ethereum-ownership-indexer
+            - build-polygon-ownership-indexer
           filters:
             branches:
               only:
@@ -297,7 +299,9 @@ workflows:
           name: approve-deploy-indexer-staging
           requires:
             - deployment-test-indexer
-            - build-indexer
+            - build-laos-indexer
+            - build-ethereum-ownership-indexer
+            - build-polygon-ownership-indexer
           filters:
             branches:
               only:

@@ -120,21 +120,6 @@ helmfiles:
       - rpcRateLimit: {{ .rpcRateLimit }}
       {{- end }}
       - installed: {{ .installed }}
-  - path: 'charts/api/helmfile.yaml'
-    values:
-      - name: {{ .apiProcessor }}
-      - namespace: {{ $.Values.namespace }}
-      - imageTag: {{ requiredEnv "IMAGE_TAG" }}
-      - postgresDb: {{ .postgresDb }}
-      - postgresDbHost: {{ .postgresHost }}
-      - postgresPort: {{ .postgresPort }}
-      - postgresPasswordSecretKey: {{ .postgresPasswordSecretKey }}
-      - postgresUser: {{ .postgresUser }}
-      {{- if hasKey . "host" }}
-      - host: {{ .host }}
-      {{- end }}
-      - gqlPort: {{ .gqlPort }}
-      - installed: {{ .installed }}
 {{- end }}
 
 {{- range .Values.laosNodesInstances }}
