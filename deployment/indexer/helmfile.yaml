@@ -21,28 +21,6 @@ environments:
       - ./environments/production/values.yaml
 
 releases:
-{{- range .Values.indexerInstances }}
-  - name: postgresql-{{ .dbPodName }}
-    namespace: {{ $.Values.namespace }}
-    chart: bitnami/postgresql
-    version: 11.9.13
-    installed: {{ .installed }}
-    values:
-      - global:
-          postgresql:
-            auth:
-              postgresPassword: {{ .postgresPassword }}
-              database:  {{ .postgresDb }}
-              username: {{ .postgresUser }}
-              password: "blockscout"
-      - primary:
-          extraEnvVars:
-            - name: POSTGRESQL_MAX_CONNECTIONS
-              value: "3000"
-          persistence:
-            size: 10Gi
-{{- end }}
-
 {{- range .Values.laosNodesInstances }}
   - name: {{ .name }}
     namespace: {{ $.Values.namespace }}
@@ -87,17 +65,40 @@ releases:
 {{- end }}
 
 helmfiles:
-  {{- range .Values.indexerInstances }}
-  - path: 'charts/processor/helmfile.yaml'
+  {{- range .Values.laosIndexerInstances }}
+  - path: 'charts/laos-procesor/helmfile.yaml'
     values:
-      - name: {{ .ownershipProcessor }}
+      - name: {{ .indexerName }}
       - namespace: {{ $.Values.namespace }}
       - imageTag: {{ requiredEnv "IMAGE_TAG" }}
       - postgresDb: {{ .postgresDb }}
-      - postgresDbHost: postgresql-{{ .dbPodName }}
-      - postgresPassword: {{ .postgresPassword }}
+      - postgresDbHost: {{ .postgresHost }}
+      - postgresPasswordSecretKey: {{ .postgresPasswordSecretKey }}
       - postgresUser: {{ .postgresUser }}
-      - postgresPort: {{ .servicePort }}
+      - postgresPort: {{ .postgresPort }}
+      - rpcEndpointSecretKey: {{ .rpcEndpointSecretKey }}
+      - startingBlock: {{ .startingBlock }}
+      {{- if hasKey . "rpcRateLimit" }}
+      - rpcRateLimit: {{ .rpcRateLimit }}
+      {{- end }}
+      {{- if hasKey . "pinataGatewayApiTokenSecretKey" }}
+      - pinataGatewayApiTokenSecretKey: {{ .pinataGatewayApiTokenSecretKey }}
+      {{- end }}
+      - command: "process:prod:laos"
+      - installed: {{ .installed }}
+  {{- end }}
+
+  {{- range .Values.ownershipIndexerInstances }}
+  - path: 'charts/processor/helmfile.yaml'
+    values:
+      - name: {{ .indexerName }}
+      - namespace: {{ $.Values.namespace }}
+      - imageTag: {{ .chainName }}-{{ requiredEnv "IMAGE_TAG" }}
+      - postgresDb: {{ .postgresDb }}
+      - postgresDbHost: {{ .postgresHost }}
+      - postgresPasswordSecretKey: {{ .postgresPasswordSecretKey }}
+      - postgresUser: {{ .postgresUser }}
+      - postgresPort: {{ .postgresPort }}
       {{- if hasKey . "gatewayEndpoint" }}
       - gatewayEndpoint: {{ .gatewayEndpoint }}
       {{- end }}
@@ -105,45 +106,18 @@ helmfiles:
       - laosGlobalConsensus: {{ .laosGlobalConsensus }}
       - laosParachain: {{ .laosParachain }}
       - laosPalletInstance: {{ .laosPalletInstance }}
-      - startingBlockOwnership: {{ .startingBlockOwnership }}
-      - startingBlockLaos: {{ .startingBlockLaos }}
-      - indexerLaosRpcEndpointSecretKey: {{ .indexerLaosRpcEndpointSecretKey }}
-      - indexerOwnershipParseTraces: {{ .indexerOwnershipParseTraces | quote }}
+      - startingBlock: {{ .startingBlock }}
+      - indexerOwnershipParseTraces: {{ .indexerParseTraces | quote }}
       {{- if hasKey . "maxBatchCallSizeOwnership" }}  
       - maxBatchCallSizeOwnership: {{ .maxBatchCallSizeOwnership }}
-      {{- end }}
-      {{- if hasKey . "rpcRateLimitOwnership" }}
-      - rpcRateLimitOwnership: {{ .rpcRateLimitOwnership }}
       {{- end }}
       {{- if hasKey . "pinataGatewayApiTokenSecretKey" }}
       - pinataGatewayApiTokenSecretKey: {{ .pinataGatewayApiTokenSecretKey }}
       {{- end }}
       - command: "process:prod:ownership_chain"
       - installed: {{ .installed }}
-  - path: 'charts/processor/helmfile.yaml'
-    values:
-      - name: {{ .laosProcessor }}
-      - namespace: {{ $.Values.namespace }}
-      - imageTag: {{ requiredEnv "IMAGE_TAG" }}
-      - postgresDb: {{ .postgresDb }}
-      - postgresDbHost: postgresql-{{ .dbPodName }}
-      - postgresPassword: {{ .postgresPassword }}
-      - postgresUser: {{ .postgresUser }}
-      - postgresPort: {{ .servicePort }}
-      - gatewayEndpoint: ""
-      - rpcEndpointSecretKey: {{ .rpcEndpointSecretKey }}
-      - laosGlobalConsensus: {{ .laosGlobalConsensus }}
-      - laosParachain: {{ .laosParachain }}
-      - laosPalletInstance: {{ .laosPalletInstance }}
-      - startingBlockOwnership: {{ .startingBlockOwnership }}
-      - startingBlockLaos: {{ .startingBlockLaos }}
-      - command: "process:prod:laos"
-      - indexerLaosRpcEndpointSecretKey: {{ .indexerLaosRpcEndpointSecretKey }}
       {{- if hasKey . "rpcRateLimit" }}
       - rpcRateLimit: {{ .rpcRateLimit }}
-      {{- end }}
-      {{- if hasKey . "pinataGatewayApiTokenSecretKey" }}
-      - pinataGatewayApiTokenSecretKey: {{ .pinataGatewayApiTokenSecretKey }}
       {{- end }}
       - installed: {{ .installed }}
   - path: 'charts/api/helmfile.yaml'
@@ -152,9 +126,9 @@ helmfiles:
       - namespace: {{ $.Values.namespace }}
       - imageTag: {{ requiredEnv "IMAGE_TAG" }}
       - postgresDb: {{ .postgresDb }}
-      - postgresDbHost: postgresql-{{ .dbPodName }}
-      - postgresPort: {{ .servicePort }}
-      - postgresPassword: {{ .postgresPassword }}
+      - postgresDbHost: {{ .postgresHost }}
+      - postgresPort: {{ .postgresPort }}
+      - postgresPasswordSecretKey: {{ .postgresPasswordSecretKey }}
       - postgresUser: {{ .postgresUser }}
       {{- if hasKey . "host" }}
       - host: {{ .host }}
@@ -162,6 +136,7 @@ helmfiles:
       - gqlPort: {{ .gqlPort }}
       - installed: {{ .installed }}
 {{- end }}
+
 {{- range .Values.laosNodesInstances }}
 {{- if hasKey . "nginxServiceUrl" }}
   - path: 'charts/nginx/helmfile.yaml'

@@ -42,27 +42,39 @@ commands:
             export IMAGE_TAG=$IMAGE_TAG
 
 
-  dockerize-and-push:
-    parameters:
-      image:
-        type: string
-      root:
-        type: string
-    steps:
-      - attach_workspace:
-          at: ./
-      - run:
-          name: Docker login
-          command: echo $DOCKER_PASSWD | docker login -u $DOCKER_ID --password-stdin
-      - run:
-          name: Build and push Docker image
-          command: |
-            cd laos-apis
-            IMAGE_TAG=$(git rev-parse HEAD)
-            cd << parameters.root >>
-            echo "Docker images for $IMAGE_TAG will be pushed"
-            docker build -t << parameters.image >>:$IMAGE_TAG .
-            docker push << parameters.image >>:$IMAGE_TAG
+dockerize-and-push:
+  parameters:
+    image:
+      type: string
+    root:
+      type: string
+    chainName:
+      type: string
+      default: "" # Default to an empty string if chainName is not provided
+  steps:
+    - attach_workspace:
+        at: ./
+    - run:
+        name: Docker login
+        command: echo $DOCKER_PASSWD | docker login -u $DOCKER_ID --password-stdin
+    - run:
+        name: Build and push Docker image
+        command: |
+          cd laos-apis
+          IMAGE_TAG=$(git rev-parse HEAD)
+          cd << parameters.root >>
+          
+          # Modify the image tag if chainName is provided
+          if [ "<< parameters.chainName >>" != "" ]; then
+            IMAGE_TAG="<< parameters.chainName >>-$IMAGE_TAG"
+            BUILD_ARGS="--build-arg CHAIN_NAME=<< parameters.chainName >>"
+          else
+            BUILD_ARGS=""
+          fi
+
+          echo "Docker images for $IMAGE_TAG will be pushed"
+          docker build $BUILD_ARGS -t << parameters.image >>:$IMAGE_TAG .
+          docker push << parameters.image >>:$IMAGE_TAG
 
 jobs:
   build-app:
@@ -81,6 +93,26 @@ jobs:
       - dockerize-and-push:
           image: << parameters.image >>
           root: << parameters.root >>
+
+  build-indexer:
+    parameters:
+      image:
+        type: string
+      root:
+        type: string
+      chainName:
+        type: string
+    docker:
+      - image: cimg/node:lts
+    steps:
+      - checkout
+      - setup_remote_docker:
+          docker_layer_caching: true
+      - checkout-app
+      - dockerize-and-push:
+          image: << parameters.image >>
+          root: << parameters.root >>
+          chainName: << parameters.chainName >>
 
   deploy_to_cluster:
     parameters:
@@ -187,10 +219,25 @@ workflows:
           root: graphql-playground
           context: dockerhub
       
-      - build-app:
-          name: build-indexer
+      - build-indexer:
+          name: build-laos-indexer
           image: freeverseio/laos-indexer
           root: laos-indexer
+          chainName: laos
+          context: dockerhub
+        
+      - build-indexer:
+          name: build-polygon-ownership-indexer
+          image: freeverseio/laos-ownership-indexer
+          root: laos-ownership-indexer
+          chainName: Polygon
+          context: dockerhub
+
+      - build-indexer:
+          name: build-ethereum-ownership-indexer
+          image: freeverseio/laos-ownership-indexer
+          root: laos-ownership-indexer
+          chainName: Ethereum
           context: dockerhub
 
       - build-app:
