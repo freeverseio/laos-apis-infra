@@ -4,6 +4,7 @@ releases:
     createNamespace: false
     installed: {{ .Values.installed }}
     chart: .
+    wait: true
     values:
       - name: {{ .Values.name }}
       - imageTag: {{ .Values.imageTag }}
