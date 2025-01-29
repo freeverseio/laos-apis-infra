@@ -120,6 +120,7 @@ helmfiles:
       - rpcRateLimit: {{ .rpcRateLimit }}
       {{- end }}
       - installed: {{ .installed }}
+      - chainName: {{ .chainName }}
 {{- end }}
 
 {{- range .Values.laosNodesInstances }}
