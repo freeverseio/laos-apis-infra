@@ -206,23 +206,11 @@ workflows:
   ci-workflow:
     jobs:
       - build-app:
-          name: build-client-api
-          image: freeverseio/laos-client-api
-          root: laos-client-api
+          name: build-laos-indexer-api
+          image: freeverseio/laos-indexer-api
+          root: laos-indexer-api
           context: dockerhub
 
-      - build-app:
-          name: build-api-gateway
-          image: freeverseio/laos-api-gateway
-          root: laos-api-gateway
-          context: dockerhub
-
-      - build-app:
-          name: build-playground
-          image: freeverseio/laos-graphql-playground
-          root: graphql-playground
-          context: dockerhub
-      
       - build-indexer:
           name: build-laos-indexer
           image: freeverseio/laos-indexer
@@ -244,12 +232,6 @@ workflows:
           chainName: Ethereum
           context: dockerhub
 
-      - build-app:
-          name: build-extensions
-          image: freeverseio/laos-extensions
-          root: laos-extensions
-          context: dockerhub
-
       - deployment-test:
           name: deployment-test-indexer
           root: indexer
@@ -264,10 +246,7 @@ workflows:
           type: approval
           name: approve-deploy-apis
           requires:
-            - build-client-api
-            - build-api-gateway
-            - build-playground
-            - build-extensions
+            - build-laos-indexer-api
           filters:
             branches:
               only:
@@ -277,9 +256,7 @@ workflows:
           type: approval
           name: approve-deploy-apis-staging
           requires:
-            - build-client-api
-            - build-api-gateway
-            - build-playground
+            - build-laos-indexer-api
           filters:
             branches:
               only:

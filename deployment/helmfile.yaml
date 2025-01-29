@@ -17,38 +17,15 @@ environments:
       - ./environments/production/values.yaml
 
 helmfiles:  
-  - path: 'charts/api/helmfile.yaml'
+  - path: 'charts/indexer-api/helmfile.yaml'
     values:
       - namespace: {{ .Values.namespace }}
       - imageTag: {{ requiredEnv "IMAGE_TAG" }}
-      - host: {{ .Values.host }}
+      - indexerApiHost: {{ .Values.indexerApiHost }}
       - postgresUser: {{ .Values.postgresUser }}
       - postgresHost: {{ .Values.postgresHost }}
       - postgresDb: {{ .Values.postgresDb }}
       - postgresPort: {{ .Values.postgresPort }}
-      - laosChain: {{ .Values.laosChain }}
-  - path: 'charts/gateway/helmfile.yaml'
-    values:
-      - namespace: {{ .Values.namespace }}
-      - imageTag: {{ requiredEnv "IMAGE_TAG" }}
-      - host: {{ .Values.host }}
-      - gatewayPolygonService: {{ .Values.gatewayPolygonService }}
-      - gatewayPolygonPort: {{ .Values.gatewayPolygonPort }}
-      - gatewayEthereumService: {{ .Values.gatewayEthereumService }}
-      - gatewayEthereumPort: {{ .Values.gatewayEthereumPort }}
-      - gatewayHederaService: {{ .Values.gatewayHederaService }}
-      - gatewayHederaPort: {{ .Values.gatewayHederaPort }}
-      - gatewayClientApiService: {{ .Values.gatewayClientApiService }}
-      - gatewayClientApiPort: {{ .Values.gatewayClientApiPort }}
-  - path: 'charts/playground/helmfile.yaml'
-    values:
-      - namespace: {{ .Values.namespace }}
-      - imageTag: {{ requiredEnv "IMAGE_TAG" }}
-      - graphqlEndpoint: {{ .Values.graphqlEndpoint }}
-      - host: {{ .Values.playgroundHost }}
-  - path: 'charts/extensions/helmfile.yaml'
-    values:
-      - namespace: {{ .Values.namespace }}
-      - imageTag: {{ requiredEnv "IMAGE_TAG" }}
-      - host: {{ .Values.extensionsHost }}
-      
+      - postgresPasswordSecretKey: {{ .Values.postgresPasswordSecretKey }}
+      - supportedChains: {{ .Values.supportedChains | toJson }}
+
