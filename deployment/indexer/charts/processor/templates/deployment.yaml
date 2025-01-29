@@ -29,14 +29,14 @@ spec:
             - name: DB_NAME
               value: {{ .Values.postgresDb }}
             - name: DB_PORT
+              value: {{ .Values.postgresPort | quote }}
+            - name: DB_HOST
+              value: {{ .Values.postgresDbHost }}
+            - name: DB_PASS
               valueFrom:
                 secretKeyRef:
                   name: indexers-private-config
                   key: {{ .Values.postgresPasswordSecretKey }}
-            - name: DB_HOST
-              value: {{ .Values.postgresDbHost }}
-            - name: DB_PASS
-              value: {{ .Values.postgresPassword }}
             - name: DB_USER
               value: {{ .Values.postgresUser }}
             {{- if hasKey .Values "gatewayEndpoint" }}

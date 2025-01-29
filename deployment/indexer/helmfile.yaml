@@ -70,7 +70,7 @@ helmfiles:
     values:
       - name: {{ .indexerName }}
       - namespace: {{ $.Values.namespace }}
-      - imageTag: {{ requiredEnv "IMAGE_TAG" }}
+      - imageTag: {{ .chainName }}-{{ requiredEnv "IMAGE_TAG" }}
       - postgresDb: {{ .postgresDb }}
       - postgresDbHost: {{ .postgresHost }}
       - postgresPasswordSecretKey: {{ .postgresPasswordSecretKey }}
