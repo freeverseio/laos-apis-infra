@@ -35,7 +35,7 @@ spec:
             - name: DB_PASS
               valueFrom:
                 secretKeyRef:
-                  name: protostar-private-config
+                  name: indexers-private-config
                   key: {{ .Values.postgresPasswordSecretKey }}
             - name: DB_USER
               value: {{ .Values.postgresUser }}
@@ -43,12 +43,12 @@ spec:
             - name: PRIVATE_IPFS_GATEWAY
               valueFrom:
                 secretKeyRef:
-                  name: protostar-private-config
+                  name: indexers-private-config
                   key: indexerIpfsGateway
             - name: RPC_LAOS_ENDPOINT
               valueFrom:
                 secretKeyRef:
-                  name: protostar-private-config
+                  name: indexers-private-config
                   key: {{ .Values.rpcEndpointSecretKey }}
             - name: STARTING_BLOCK_LAOS
               value: {{ .Values.startingBlock | quote }}
@@ -60,7 +60,7 @@ spec:
             - name: PRIVATE_IPFS_GATEWAY_API_KEY
               valueFrom:
                 secretKeyRef:
-                  name: protostar-private-config
+                  name: indexers-private-config
                   key: {{ .Values.pinataGatewayApiTokenSecretKey | quote }}
             {{- end }}
           command: ["sqd", {{ .Values.command }}]

@@ -1,4 +1,4 @@
-namespace: protostar
+namespace: indexers
 rpcLaos: wss://rpc.laossigma.laosfoundation.io
 laosIndexerInstances:
   - chainName: laos
