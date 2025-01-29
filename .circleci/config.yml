@@ -151,9 +151,9 @@ jobs:
             echo "Deploying to << parameters.environment >> environment"
             export IMAGE_TAG=<< parameters.imageTag >>
             git clone --no-checkout git@github.com:freeverseio/laos-apis.git
+            cd laos-apis
             git fetch origin feature/star-topology
             git checkout feature/star-topology
-            cd laos-apis
             if [ "<< parameters.imageTag >>" = "latest" ]; then
               IMAGE_TAG=$(git rev-parse HEAD)
             fi
@@ -185,9 +185,9 @@ jobs:
             echo "Helmfile tests passing"
             export IMAGE_TAG=<< parameters.imageTag >>
             git clone --no-checkout git@github.com:freeverseio/laos-apis.git
+            cd laos-apis
             git fetch origin feature/star-topology
             git checkout feature/star-topology
-            cd laos-apis
             if [ "<< parameters.imageTag >>" = "latest" ]; then
               IMAGE_TAG=$(git rev-parse HEAD)
             fi
