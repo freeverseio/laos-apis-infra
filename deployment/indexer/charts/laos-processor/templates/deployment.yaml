@@ -39,7 +39,6 @@ spec:
                   key: {{ .Values.postgresPasswordSecretKey }}
             - name: DB_USER
               value: {{ .Values.postgresUser }}
-            {{- end }}
             - name: PRIVATE_IPFS_GATEWAY
               valueFrom:
                 secretKeyRef:

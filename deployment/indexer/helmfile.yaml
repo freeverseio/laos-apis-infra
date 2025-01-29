@@ -66,7 +66,7 @@ releases:
 
 helmfiles:
   {{- range .Values.laosIndexerInstances }}
-  - path: 'charts/laos-procesor/helmfile.yaml'
+  - path: 'charts/laos-processor/helmfile.yaml'
     values:
       - name: {{ .indexerName }}
       - namespace: {{ $.Values.namespace }}
