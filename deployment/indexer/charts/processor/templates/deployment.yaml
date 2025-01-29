@@ -87,6 +87,16 @@ spec:
                   name: indexers-private-config
                   key: {{ .Values.pinataGatewayApiTokenSecretKey | quote }}
             {{- end }}
+            - name: CHAIN_NAME
+              value: {{ .Values.chainName }}
+            - name: OWNERSHIP_CONTRACT_MODEL
+              value: {{ .Values.chainName}}OwnershipContract
+            - name: ASSET_MODEL
+              value: {{ .Values.chainName}}Asset
+            - name: TRANSFER_MODEL
+              value: {{ .Values.chainName}}Transfer
+            - name: SCHEMA_NAME
+              value: ownership_chain_{{ .Values.chainName | lower }}_processor
           command: ["sqd", {{ .Values.command }}]
           livenessProbe:
             exec:
