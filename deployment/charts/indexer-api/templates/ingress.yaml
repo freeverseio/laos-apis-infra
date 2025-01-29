@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: laos-graphql-playground-ingress
+  name: laos-indexer-api-ingress
   annotations:
     kubernetes.io/ingress.class: 'nginx'
     nginx.ingress.kubernetes.io/auth-tls-verify-client: 'on'
@@ -11,19 +11,22 @@ metadata:
     cert-manager.io/cluster-issuer: letsencrypt-freeverse
     nginx.ingress.kubernetes.io/client-max-body-size: 6M
     nginx.ingress.kubernetes.io/proxy-body-size: 6M
+    nginx.ingress.kubernetes.io/proxy-next-upstream-timeout: '180'
+    nginx.ingress.kubernetes.io/proxy-read-timeout: '180'
+    nginx.ingress.kubernetes.io/proxy-send-timeout: '180'
 spec:
   tls:
     - hosts:
-        - {{ .Values.host }}
-      secretName: laos-graphql-playground-tls
+        - {{ .Values.indexerApiHost }}
+      secretName: indexer-api-tls
   rules:
-    - host: {{ .Values.host }}
+    - host: {{ .Values.indexerApiHost }}
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: laos-graphql-playground
+                name: laos-indexer-api
                 port:
-                  number: 8080
+                  number: 4001
