@@ -134,7 +134,7 @@ jobs:
             equal: [ development, << parameters.environment >> ]
           steps:
             - kube-orb/install-kubeconfig:
-                kubeconfig: KUBECONFIG_DATA
+                kubeconfig: KUBECONFIG_INDEXERS_DATA
       - when:
           condition:
             equal: [ staging, << parameters.environment >> ]
