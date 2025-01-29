@@ -3,7 +3,7 @@ rpcLaos: wss://rpc.laossigma.laosfoundation.io
 laosIndexerInstances:
   - chainName: laos
     indexerName: indexer-laos
-    postgresDb: squid
+    postgresDb: indexerdb
     postgresPasswordSecretKey: indexerPostgresPassword
     postgresUser: indexer
     postgresHost: "dev-db-do-user-4813238-0.j.db.ondigitalocean.com"
@@ -14,7 +14,7 @@ laosIndexerInstances:
     pinataGatewayApiTokenSecretKey: "pinataGatewayApiToken"
     installed: "true"
 ownershipIndexerInstances:
-  - postgresDb: squid
+  - postgresDb: indexerdb
     postgresPasswordSecretKey: indexerPostgresPassword
     postgresUser: indexer
     postgresHost: "dev-db-do-user-4813238-0.j.db.ondigitalocean.com" 
