@@ -32,7 +32,7 @@ ownershipIndexerInstances:
     laosPalletInstance: "51"
     indexerParseTraces: "false"
     installed: "true"
-  - postgresDb: squid
+  - postgresDb: indexerdb
     postgresPasswordSecretKey: indexerPostgresPassword
     postgresUser: indexer
     postgresHost: "dev-db-do-user-4813238-0.j.db.ondigitalocean.com" 
