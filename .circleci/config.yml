@@ -25,7 +25,7 @@ commands:
           command: |
             git clone git@github.com:freeverseio/laos-apis.git
             cd laos-apis
-            git checkout
+            git checkout feature/star-topology
 
   get-image-tag:
     description: Get image tag
@@ -48,6 +48,9 @@ commands:
         type: string
       root:
         type: string
+      chainName:
+        type: string
+        default: ""
     steps:
       - attach_workspace:
           at: ./
@@ -60,8 +63,16 @@ commands:
             cd laos-apis
             IMAGE_TAG=$(git rev-parse HEAD)
             cd << parameters.root >>
+            
+            if [ "<< parameters.chainName >>" != "" ]; then
+              IMAGE_TAG="<< parameters.chainName >>-$IMAGE_TAG"
+              BUILD_ARGS="--build-arg CHAIN_NAME=<< parameters.chainName >>"
+            else
+              BUILD_ARGS=""
+            fi
+
             echo "Docker images for $IMAGE_TAG will be pushed"
-            docker build -t << parameters.image >>:$IMAGE_TAG .
+            docker build $BUILD_ARGS -t << parameters.image >>:$IMAGE_TAG .
             docker push << parameters.image >>:$IMAGE_TAG
 
 jobs:
@@ -81,6 +92,26 @@ jobs:
       - dockerize-and-push:
           image: << parameters.image >>
           root: << parameters.root >>
+
+  build-indexer:
+    parameters:
+      image:
+        type: string
+      root:
+        type: string
+      chainName:
+        type: string
+    docker:
+      - image: cimg/node:lts
+    steps:
+      - checkout
+      - setup_remote_docker:
+          docker_layer_caching: true
+      - checkout-app
+      - dockerize-and-push:
+          image: << parameters.image >>
+          root: << parameters.root >>
+          chainName: << parameters.chainName >>
 
   deploy_to_cluster:
     parameters:
@@ -103,7 +134,7 @@ jobs:
             equal: [ development, << parameters.environment >> ]
           steps:
             - kube-orb/install-kubeconfig:
-                kubeconfig: KUBECONFIG_DATA
+                kubeconfig: KUBECONFIG_INDEXERS_DATA
       - when:
           condition:
             equal: [ staging, << parameters.environment >> ]
@@ -187,10 +218,25 @@ workflows:
           root: graphql-playground
           context: dockerhub
       
-      - build-app:
-          name: build-indexer
+      - build-indexer:
+          name: build-laos-indexer
           image: freeverseio/laos-indexer
           root: laos-indexer
+          chainName: laos
+          context: dockerhub
+        
+      - build-indexer:
+          name: build-polygon-ownership-indexer
+          image: freeverseio/laos-ownership-indexer
+          root: laos-ownership-indexer
+          chainName: Polygon
+          context: dockerhub
+
+      - build-indexer:
+          name: build-ethereum-ownership-indexer
+          image: freeverseio/laos-ownership-indexer
+          root: laos-ownership-indexer
+          chainName: Ethereum
           context: dockerhub
 
       - build-app:
@@ -239,7 +285,9 @@ workflows:
           name: approve-deploy-indexer
           requires:
             - deployment-test-indexer
-            - build-indexer
+            - build-laos-indexer
+            - build-ethereum-ownership-indexer
+            - build-polygon-ownership-indexer
           filters:
             branches:
               only:
@@ -250,7 +298,9 @@ workflows:
           name: approve-deploy-indexer-staging
           requires:
             - deployment-test-indexer
-            - build-indexer
+            - build-laos-indexer
+            - build-ethereum-ownership-indexer
+            - build-polygon-ownership-indexer
           filters:
             branches:
               only:

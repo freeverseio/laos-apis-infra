@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: {{ .Values.name }}
-          image: freeverseio/laos-ownership-indexer:{{ .Values.imageTag }}
+          image: freeverseio/laos-indexer:{{ .Values.imageTag }}
           imagePullPolicy: Always
           resources:
             requests:
@@ -29,49 +29,32 @@ spec:
             - name: DB_NAME
               value: {{ .Values.postgresDb }}
             - name: DB_PORT
+              value: {{ .Values.postgresPort | quote }}
+            - name: DB_HOST
+              value: {{ .Values.postgresDbHost }}
+            - name: DB_PASS
               valueFrom:
                 secretKeyRef:
                   name: indexers-private-config
                   key: {{ .Values.postgresPasswordSecretKey }}
-            - name: DB_HOST
-              value: {{ .Values.postgresDbHost }}
-            - name: DB_PASS
-              value: {{ .Values.postgresPassword }}
             - name: DB_USER
               value: {{ .Values.postgresUser }}
-            {{- if hasKey .Values "gatewayEndpoint" }}
-            - name: GATEWAY_ENDPOINT
-              value: {{ .Values.gatewayEndpoint }}
             {{- end }}
             - name: PRIVATE_IPFS_GATEWAY
               valueFrom:
                 secretKeyRef:
                   name: indexers-private-config
                   key: indexerIpfsGateway
-            - name: RPC_ENDPOINT
+            - name: RPC_LAOS_ENDPOINT
               valueFrom:
                 secretKeyRef:
                   name: indexers-private-config
-                  key: {{ .Values.rpcEndpointSecretKey | quote }}
-            - name: LAOS_GLOBAL_CONSENSUS
-              value: {{ .Values.laosGlobalConsensus | quote }}
-            - name: LAOS_PARACHAIN
-              value: {{ .Values.laosParachain | quote }}
-            - name: LAOS_PALLET_INSTANCE
-              value: {{ .Values.laosPalletInstance | quote }}
-            - name: STARTING_BLOCK_OWNERSHIP
+                  key: {{ .Values.rpcEndpointSecretKey }}
+            - name: STARTING_BLOCK_LAOS
               value: {{ .Values.startingBlock | quote }}
-            {{- if hasKey .Values "indexerOwnershipParseTraces" }}
-            - name: OWNERSHIP_PARSE_TRACES
-              value: {{ .Values.indexerOwnershipParseTraces | quote }}
-            {{- end }}
             {{- if hasKey .Values "rpcRateLimit" }}
-            - name: RPC_RATE_LIMIT_OWNERSHIP
+            - name: RPC_RATE_LIMIT
               value: {{ .Values.rpcRateLimit | quote }}
-            {{- end }}
-            {{- if hasKey .Values "maxBatchCallSizeOwnership" }}
-            - name: MAX_BATCH_CALL_SIZE_OWNERSHIP
-              value: {{ .Values.maxBatchCallSizeOwnership | quote }}
             {{- end }}
             {{- if hasKey .Values "pinataGatewayApiTokenSecretKey" }}
             - name: PRIVATE_IPFS_GATEWAY_API_KEY
