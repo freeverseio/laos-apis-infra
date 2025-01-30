@@ -32,3 +32,4 @@ helmfiles:
     values:
       - namespace: {{ .Values.namespace }}
       - imageTag: {{ requiredEnv "IMAGE_TAG" }}
+      - host: {{ .Values.extensionsHost }}
