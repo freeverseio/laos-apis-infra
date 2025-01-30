@@ -1,13 +1,14 @@
 releases:
-  - name: laos-client-release
+  - name: laos-indexer-api-release
     namespace: '{{ .Values.namespace }}'
     createNamespace: false
     chart: .
     values:
       - imageTag: {{ .Values.imageTag }}
-      - host: {{ .Values.host }}
+      - indexerApiHost: {{ .Values.indexerApiHost }}
       - postgresUser: {{ .Values.postgresUser }}
       - postgresHost: {{ .Values.postgresHost }}
       - postgresDb: {{ .Values.postgresDb }}
       - postgresPort: {{ .Values.postgresPort }}
-      - laosChain: {{ .Values.laosChain }}
+      - postgresPasswordSecretKey: {{ .Values.postgresPasswordSecretKey }}
+      

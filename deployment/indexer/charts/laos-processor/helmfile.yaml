@@ -13,25 +13,12 @@ releases:
       - postgresPasswordSecretKey: {{ .Values.postgresPasswordSecretKey }}
       - postgresUser: {{ .Values.postgresUser }}
       - postgresPort: {{ .Values.postgresPort }}
-      {{- if hasKey .Values "gatewayEndpoint" }}
-      - gatewayEndpoint: {{ .Values.gatewayEndpoint }}
-      {{- end }}
       - rpcEndpointSecretKey: {{ .Values.rpcEndpointSecretKey }}
-      - laosGlobalConsensus: {{ .Values.laosGlobalConsensus }}
-      - laosParachain: {{ .Values.laosParachain }}
-      - laosPalletInstance: {{ .Values.laosPalletInstance }}
-      - startingBlock: {{ .Values.startingBlock }}
+      - startingBlock: {{ .Values.startingBlock }}      
       - command: {{ .Values.command }}
-      {{- if hasKey .Values "indexerOwnershipParseTraces" }}
-      - indexerOwnershipParseTraces: {{ .Values.indexerOwnershipParseTraces }}   
-      {{- end }}
       {{- if hasKey .Values "rpcRateLimit" }}
       - rpcRateLimit: {{ .Values.rpcRateLimit }}
-      {{- end }}
-      {{- if hasKey .Values "maxBatchCallSizeOwnership" }}
-      - maxBatchCallSizeOwnership: {{ .Values.maxBatchCallSizeOwnership }}
       {{- end }}
       {{- if hasKey .Values "pinataGatewayApiTokenSecretKey" }}
       - pinataGatewayApiTokenSecretKey: {{ .Values.pinataGatewayApiTokenSecretKey }}
       {{- end }}
-      - chainName: {{ .Values.chainName }}

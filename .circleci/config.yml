@@ -25,7 +25,8 @@ commands:
           command: |
             git clone git@github.com:freeverseio/laos-apis.git
             cd laos-apis
-            git checkout
+            git fetch origin feature/star-topology
+            git checkout feature/star-topology
 
   get-image-tag:
     description: Get image tag
@@ -48,6 +49,9 @@ commands:
         type: string
       root:
         type: string
+      chainName:
+        type: string
+        default: ""
     steps:
       - attach_workspace:
           at: ./
@@ -60,8 +64,18 @@ commands:
             cd laos-apis
             IMAGE_TAG=$(git rev-parse HEAD)
             cd << parameters.root >>
+
+            CHAIN_NAME_LOWER=$(echo "<< parameters.chainName >>" | tr '[:upper:]' '[:lower:]')
+
+            if [ "$CHAIN_NAME_LOWER" != "" ]; then
+              IMAGE_TAG="$CHAIN_NAME_LOWER-$IMAGE_TAG"
+              BUILD_ARGS="--build-arg CHAIN_NAME=<< parameters.chainName >>"
+            else
+              BUILD_ARGS=""
+            fi
+
             echo "Docker images for $IMAGE_TAG will be pushed"
-            docker build -t << parameters.image >>:$IMAGE_TAG .
+            docker build $BUILD_ARGS -t << parameters.image >>:$IMAGE_TAG .
             docker push << parameters.image >>:$IMAGE_TAG
 
 jobs:
@@ -81,6 +95,26 @@ jobs:
       - dockerize-and-push:
           image: << parameters.image >>
           root: << parameters.root >>
+
+  build-indexer:
+    parameters:
+      image:
+        type: string
+      root:
+        type: string
+      chainName:
+        type: string
+    docker:
+      - image: cimg/node:lts
+    steps:
+      - checkout
+      - setup_remote_docker:
+          docker_layer_caching: true
+      - checkout-app
+      - dockerize-and-push:
+          image: << parameters.image >>
+          root: << parameters.root >>
+          chainName: << parameters.chainName >>
 
   deploy_to_cluster:
     parameters:
@@ -103,7 +137,7 @@ jobs:
             equal: [ development, << parameters.environment >> ]
           steps:
             - kube-orb/install-kubeconfig:
-                kubeconfig: KUBECONFIG_DATA
+                kubeconfig: KUBECONFIG_INDEXERS_DATA
       - when:
           condition:
             equal: [ staging, << parameters.environment >> ]
@@ -120,6 +154,8 @@ jobs:
             export IMAGE_TAG=<< parameters.imageTag >>
             git clone --no-checkout git@github.com:freeverseio/laos-apis.git
             cd laos-apis
+            git fetch origin feature/star-topology
+            git checkout feature/star-topology
             if [ "<< parameters.imageTag >>" = "latest" ]; then
               IMAGE_TAG=$(git rev-parse HEAD)
             fi
@@ -152,6 +188,8 @@ jobs:
             export IMAGE_TAG=<< parameters.imageTag >>
             git clone --no-checkout git@github.com:freeverseio/laos-apis.git
             cd laos-apis
+            git fetch origin feature/star-topology
+            git checkout feature/star-topology
             if [ "<< parameters.imageTag >>" = "latest" ]; then
               IMAGE_TAG=$(git rev-parse HEAD)
             fi
@@ -170,33 +208,30 @@ workflows:
   ci-workflow:
     jobs:
       - build-app:
-          name: build-client-api
-          image: freeverseio/laos-client-api
-          root: laos-client-api
+          name: build-laos-indexer-api
+          image: freeverseio/laos-indexer-api
+          root: laos-indexer-api
           context: dockerhub
 
-      - build-app:
-          name: build-api-gateway
-          image: freeverseio/laos-api-gateway
-          root: laos-api-gateway
-          context: dockerhub
-
-      - build-app:
-          name: build-playground
-          image: freeverseio/laos-graphql-playground
-          root: graphql-playground
-          context: dockerhub
-      
-      - build-app:
-          name: build-indexer
+      - build-indexer:
+          name: build-laos-indexer
           image: freeverseio/laos-indexer
           root: laos-indexer
+          chainName: laos
+          context: dockerhub
+        
+      - build-indexer:
+          name: build-polygon-ownership-indexer
+          image: freeverseio/laos-ownership-indexer
+          root: laos-ownership-indexer
+          chainName: Polygon
           context: dockerhub
 
-      - build-app:
-          name: build-extensions
-          image: freeverseio/laos-extensions
-          root: laos-extensions
+      - build-indexer:
+          name: build-ethereum-ownership-indexer
+          image: freeverseio/laos-ownership-indexer
+          root: laos-ownership-indexer
+          chainName: Ethereum
           context: dockerhub
 
       - deployment-test:
@@ -213,10 +248,7 @@ workflows:
           type: approval
           name: approve-deploy-apis
           requires:
-            - build-client-api
-            - build-api-gateway
-            - build-playground
-            - build-extensions
+            - build-laos-indexer-api
           filters:
             branches:
               only:
@@ -226,9 +258,7 @@ workflows:
           type: approval
           name: approve-deploy-apis-staging
           requires:
-            - build-client-api
-            - build-api-gateway
-            - build-playground
+            - build-laos-indexer-api
           filters:
             branches:
               only:
@@ -239,7 +269,9 @@ workflows:
           name: approve-deploy-indexer
           requires:
             - deployment-test-indexer
-            - build-indexer
+            - build-laos-indexer
+            - build-ethereum-ownership-indexer
+            - build-polygon-ownership-indexer
           filters:
             branches:
               only:
@@ -250,7 +282,9 @@ workflows:
           name: approve-deploy-indexer-staging
           requires:
             - deployment-test-indexer
-            - build-indexer
+            - build-laos-indexer
+            - build-ethereum-ownership-indexer
+            - build-polygon-ownership-indexer
           filters:
             branches:
               only:

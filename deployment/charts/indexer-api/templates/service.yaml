@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: laos-client-api
+  name: laos-indexer-api
   labels:
-    app.kubernetes.io/app: laos-client-api
+    app.kubernetes.io/app: laos-indexer-api
 spec:
   type: ClusterIP
   selector:
-    app.kubernetes.io/app: laos-client-api
+    app.kubernetes.io/app: laos-indexer-api
   ports:
     - port: 4001
       targetPort: 4001
