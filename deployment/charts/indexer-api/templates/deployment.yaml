@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: laos-indexer-api
-          image: freeverseio/laos-indexer-api:{{ .Values.imageTag }}
+          image: freeverseio/laos-indexer-api:{{ .Values.imageTag | lower }}
           imagePullPolicy: Always
           volumeMounts:
             - name: db-certificate

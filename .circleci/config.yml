@@ -64,10 +64,12 @@ commands:
             cd laos-apis
             IMAGE_TAG=$(git rev-parse HEAD)
             cd << parameters.root >>
-            
-            if [ "<< parameters.chainName >>" != "" ]; then
-              IMAGE_TAG="<< parameters.chainName >>-$IMAGE_TAG"
-              BUILD_ARGS="--build-arg CHAIN_NAME=<< parameters.chainName >>"
+
+            CHAIN_NAME_LOWER=$(echo "<< parameters.chainName >>" | tr '[:upper:]' '[:lower:]')
+
+            if [ "$CHAIN_NAME_LOWER" != "" ]; then
+              IMAGE_TAG="$CHAIN_NAME_LOWER-$IMAGE_TAG"
+              BUILD_ARGS="--build-arg CHAIN_NAME=$CHAIN_NAME_LOWER"
             else
               BUILD_ARGS=""
             fi
