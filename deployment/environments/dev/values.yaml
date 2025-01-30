@@ -5,4 +5,3 @@ postgresDb: indexerdb
 postgresPort: "25060"
 postgresPasswordSecretKey: indexerPostgresPassword
 postgresUser: "indexer"
-supportedChains: {"137":"polygon","1":"ethereum"}
