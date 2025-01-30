@@ -23,7 +23,7 @@ commands:
       - run:
           name: Checkout API
           command: |
-            git clone git@github.com:freeverseio/laos-apis.git
+            git clone git@github.com:freeverseio/laos-apis-v2.git
             cd laos-apis
             git fetch origin feature/star-topology
             git checkout feature/star-topology
@@ -34,7 +34,7 @@ commands:
       - run:
           name: Get image tag
           command: |
-            git clone --no-checkout git@github.com:freeverseio/laos-apis.git
+            git clone --no-checkout git@github.com:freeverseio/laos-apis-v2.git
             cd laos-apis
             echo "Fetching image tag $IMAGE_TAG"
             git fetch origin $IMAGE_TAG
@@ -152,7 +152,7 @@ jobs:
           command: |
             echo "Deploying to << parameters.environment >> environment"
             export IMAGE_TAG=<< parameters.imageTag >>
-            git clone --no-checkout git@github.com:freeverseio/laos-apis.git
+            git clone --no-checkout git@github.com:freeverseio/laos-apis-v2.git
             cd laos-apis
             git fetch origin feature/star-topology
             git checkout feature/star-topology
@@ -186,7 +186,7 @@ jobs:
           command: |
             echo "Helmfile tests passing"
             export IMAGE_TAG=<< parameters.imageTag >>
-            git clone --no-checkout git@github.com:freeverseio/laos-apis.git
+            git clone --no-checkout git@github.com:freeverseio/laos-apis-v2.git
             cd laos-apis
             git fetch origin feature/star-topology
             git checkout feature/star-topology

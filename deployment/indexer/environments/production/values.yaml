@@ -1,5 +1,4 @@
 namespace: protostar
-rpcLaos: wss://rpc.laos.laosfoundation.io
 indexerInstances:
   - dbPodName: indexer-db-polygon-backup-fix
     postgresDb: squid

@@ -1,7 +1,6 @@
 namespace: indexers
-rpcLaos: wss://rpc.laossigma.laosfoundation.io
 laosIndexerInstances:
-  - chainName: laos
+  - chainName: laos-sigma
     indexerName: indexer-laos
     postgresDb: indexerdb
     postgresPasswordSecretKey: indexerPostgresPassword
@@ -24,7 +23,6 @@ ownershipIndexerInstances:
     gatewayEndpoint: https://v2.archive.subsquid.io/network/polygon-mainnet
     startingBlock: "65270190"
     rpcEndpointSecretKey: "indexerPolygonRpcEndpoint"
-    apiProcessor: indexer-laos-polygon-api
     # rpcRateLimit: 10
     pinataGatewayApiTokenSecretKey: "pinataGatewayApiToken"
     laosGlobalConsensus: "0:0x77afd6190f1554ad45fd0d31aee62aacc33c6db0ea801129acb813f913e0764f"
@@ -42,7 +40,6 @@ ownershipIndexerInstances:
     gatewayEndpoint: https://v2.archive.subsquid.io/network/ethereum-mainnet
     startingBlock: "21364679"
     rpcEndpointSecretKey: "indexerEthereumRpcEndpoint"
-    apiProcessor: indexer-laos-ethereum-api
     # rpcRateLimit: 10
     pinataGatewayApiTokenSecretKey: "pinataGatewayApiToken"
     laosGlobalConsensus: "0:0x77afd6190f1554ad45fd0d31aee62aacc33c6db0ea801129acb813f913e0764f"
