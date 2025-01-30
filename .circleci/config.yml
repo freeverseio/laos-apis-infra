@@ -219,6 +219,13 @@ workflows:
           root: laos-indexer
           chainName: laos
           context: dockerhub
+
+      - build-indexer:
+          name: build-laos-indexer
+          image: freeverseio/laos-indexer
+          root: laos-indexer
+          chainName: laos-sigma
+          context: dockerhub
         
       - build-indexer:
           name: build-polygon-ownership-indexer

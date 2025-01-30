@@ -1,7 +1,7 @@
 namespace: indexers
 laosIndexerInstances:
   - chainName: laos-sigma
-    indexerName: indexer-laos
+    indexerName: indexer-laos-sigma
     postgresDb: indexerdb
     postgresPasswordSecretKey: indexerPostgresPassword
     postgresUser: indexer
@@ -74,20 +74,20 @@ laosNodesInstances:
     nodeVersion: "v0.25.0"
     chain: "laos-sigma"
     nginxServiceUrl: http://public-node-protostar-2.indexers.svc.cluster.local:9944
-    installed: true
+    installed: false
   - name: laos-node-protostar
     nodeVersion: "v0.25.0"
     chain: "laos"
     setDnsPolicy: true
-    nginxServiceUrl: http://laos-node-protostar.protostar.svc.cluster.local:9944
+    nginxServiceUrl: http://laos-node-protostar.indexers.svc.cluster.local:9944
     installed: false
   - name: laos-node-protostar-2
     nodeVersion: "v0.25.0"
     chain: "laos"
-    nginxServiceUrl: http://laos-node-protostar-2.protostar.svc.cluster.local:9944
+    nginxServiceUrl: http://laos-node-protostar-2.indexers.svc.cluster.local:9944
     installed: false
   - name: laos-node-protostar-3
     nodeVersion: "v0.25.0"
     chain: "laos"
-    nginxServiceUrl: http://laos-node-protostar-3.protostar.svc.cluster.local:9944
+    nginxServiceUrl: http://laos-node-protostar-3.indexers.svc.cluster.local:9944
     installed: false
