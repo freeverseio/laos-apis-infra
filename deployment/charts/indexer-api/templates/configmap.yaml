@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: supported-chains
+data:
+  supported-chains.json: |
+    {
+      "137": "polygon",
+      "1": "ethereum"
+    }

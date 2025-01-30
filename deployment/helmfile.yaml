@@ -27,5 +27,4 @@ helmfiles:
       - postgresDb: {{ .Values.postgresDb }}
       - postgresPort: {{ .Values.postgresPort }}
       - postgresPasswordSecretKey: {{ .Values.postgresPasswordSecretKey }}
-      - supportedChains: {{ .Values.supportedChains | toJson }}
 

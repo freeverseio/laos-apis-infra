@@ -16,11 +16,14 @@ spec:
     spec:
       containers:
         - name: laos-indexer-api
-          image: freeverseio/laos-indexer-api:{{ .Values.imageTag }}
+          image: freeverseio/laos-indexer-api:{{ .Values.imageTag | lower }}
           imagePullPolicy: Always
           volumeMounts:
             - name: db-certificate
               mountPath: "/app/data"
+              readOnly: true
+            - name: supported-chains
+              mountPath: "/app/supported-chains/"
               readOnly: true
           resources:
             requests:
@@ -40,10 +43,16 @@ spec:
             - name: DATABASE_URL
               value: "postgres://{{ .Values.postgresUser }}:$(POSTGRES_PASSWORD)@{{.Values.postgresHost}}:{{.Values.postgresPort}}/{{.Values.postgresDb}}?sslmode=require&sslrootcert=./data/ca-certificate.pem"            
             - name: SUPPORTED_CHAINS
-              values: {{ .Values.supportedChains | toJson }}
+              valueFrom:
+                configMapKeyRef:
+                  name: supported-chains
+                  key: supported-chains.json
           ports:
             - containerPort: 4001
       volumes:
         - name: db-certificate
           secret:
             secretName: db-cert
+        - name: supported-chains
+          configMap:
+            name: supported-chains
