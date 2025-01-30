@@ -42,11 +42,6 @@ spec:
                   key: {{ .Values.postgresPasswordSecretKey }}
             - name: DATABASE_URL
               value: "postgres://{{ .Values.postgresUser }}:$(POSTGRES_PASSWORD)@{{.Values.postgresHost}}:{{.Values.postgresPort}}/{{.Values.postgresDb}}?sslmode=require&sslrootcert=./data/ca-certificate.pem"            
-            - name: SUPPORTED_CHAINS
-              valueFrom:
-                configMapKeyRef:
-                  name: supported-chains
-                  key: supported-chains.json
           ports:
             - containerPort: 4001
       volumes:
