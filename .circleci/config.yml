@@ -69,7 +69,7 @@ commands:
 
             if [ "$CHAIN_NAME_LOWER" != "" ]; then
               IMAGE_TAG="$CHAIN_NAME_LOWER-$IMAGE_TAG"
-              BUILD_ARGS="--build-arg CHAIN_NAME=$CHAIN_NAME"
+              BUILD_ARGS="--build-arg CHAIN_NAME="<< parameters.chainName >>"
             else
               BUILD_ARGS=""
             fi
