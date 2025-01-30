@@ -24,7 +24,7 @@ commands:
           name: Checkout API
           command: |
             git clone git@github.com:freeverseio/laos-apis-v2.git
-            cd laos-apis
+            cd laos-apis-v2
             git fetch origin feature/star-topology
             git checkout feature/star-topology
 
@@ -35,7 +35,7 @@ commands:
           name: Get image tag
           command: |
             git clone --no-checkout git@github.com:freeverseio/laos-apis-v2.git
-            cd laos-apis
+            cd laos-apis-v2
             echo "Fetching image tag $IMAGE_TAG"
             git fetch origin $IMAGE_TAG
             git checkout $IMAGE_TAG
@@ -61,7 +61,7 @@ commands:
       - run:
           name: Build and push Docker image
           command: |
-            cd laos-apis
+            cd laos-apis-v2
             IMAGE_TAG=$(git rev-parse HEAD)
             cd << parameters.root >>
 
@@ -153,7 +153,7 @@ jobs:
             echo "Deploying to << parameters.environment >> environment"
             export IMAGE_TAG=<< parameters.imageTag >>
             git clone --no-checkout git@github.com:freeverseio/laos-apis-v2.git
-            cd laos-apis
+            cd laos-apis-v2
             git fetch origin feature/star-topology
             git checkout feature/star-topology
             if [ "<< parameters.imageTag >>" = "latest" ]; then
@@ -187,7 +187,7 @@ jobs:
             echo "Helmfile tests passing"
             export IMAGE_TAG=<< parameters.imageTag >>
             git clone --no-checkout git@github.com:freeverseio/laos-apis-v2.git
-            cd laos-apis
+            cd laos-apis-v2
             git fetch origin feature/star-topology
             git checkout feature/star-topology
             if [ "<< parameters.imageTag >>" = "latest" ]; then
@@ -221,7 +221,7 @@ workflows:
           context: dockerhub
 
       - build-indexer:
-          name: build-laos-indexer
+          name: build-laos-sigma-indexer
           image: freeverseio/laos-indexer
           root: laos-indexer
           chainName: laos-sigma
@@ -277,6 +277,7 @@ workflows:
           requires:
             - deployment-test-indexer
             - build-laos-indexer
+            - build-laos-sigma-indexer
             - build-ethereum-ownership-indexer
             - build-polygon-ownership-indexer
           filters:
@@ -290,6 +291,7 @@ workflows:
           requires:
             - deployment-test-indexer
             - build-laos-indexer
+            - build-laos-sigma-indexer
             - build-ethereum-ownership-indexer
             - build-polygon-ownership-indexer
           filters:
