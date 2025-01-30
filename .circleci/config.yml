@@ -213,6 +213,12 @@ workflows:
           root: laos-indexer-api
           context: dockerhub
 
+      - build-app:
+          name: build-laos-extensions
+          image: freeverseio/laos-extensions
+          root: laos-extensions
+          context: dockerhub
+
       - build-indexer:
           name: build-laos-indexer
           image: freeverseio/laos-indexer
@@ -249,6 +255,7 @@ workflows:
           name: approve-deploy-apis
           requires:
             - build-laos-indexer-api
+            - build-laos-extensions
           filters:
             branches:
               only:
@@ -259,6 +266,7 @@ workflows:
           name: approve-deploy-apis-staging
           requires:
             - build-laos-indexer-api
+            - build-laos-extensions
           filters:
             branches:
               only:
