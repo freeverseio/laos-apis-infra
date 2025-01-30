@@ -27,6 +27,6 @@ spec:
               cpu: '2'
           env:  
             - name: GRAPHQL_ENDPOINT
-              value: "http://laos-api-gateway.protostar.svc.cluster.local:4000/graphql"
+              value: "http://laos-indexer-api.indexers.svc.cluster.local:4001/graphql"
           ports:
             - containerPort: 3000
