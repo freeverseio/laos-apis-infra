@@ -25,8 +25,6 @@ commands:
           command: |
             git clone git@github.com:freeverseio/laos-apis-v2.git
             cd laos-apis-v2
-            git fetch origin feature/star-topology
-            git checkout feature/star-topology
 
   get-image-tag:
     description: Get image tag
@@ -154,8 +152,6 @@ jobs:
             export IMAGE_TAG=<< parameters.imageTag >>
             git clone --no-checkout git@github.com:freeverseio/laos-apis-v2.git
             cd laos-apis-v2
-            git fetch origin feature/star-topology
-            git checkout feature/star-topology
             if [ "<< parameters.imageTag >>" = "latest" ]; then
               IMAGE_TAG=$(git rev-parse HEAD)
             fi
@@ -188,8 +184,6 @@ jobs:
             export IMAGE_TAG=<< parameters.imageTag >>
             git clone --no-checkout git@github.com:freeverseio/laos-apis-v2.git
             cd laos-apis-v2
-            git fetch origin feature/star-topology
-            git checkout feature/star-topology
             if [ "<< parameters.imageTag >>" = "latest" ]; then
               IMAGE_TAG=$(git rev-parse HEAD)
             fi
