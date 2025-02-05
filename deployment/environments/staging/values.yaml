@@ -5,3 +5,4 @@ postgresDb: indexerdb
 postgresPort: "25060"
 postgresPasswordSecretKey: indexerPostgresPassword
 postgresUser: "indexer"
+extensionsHost: extensions.indexers.staging.gorengine.com
