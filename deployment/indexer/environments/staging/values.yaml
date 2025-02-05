@@ -34,6 +34,7 @@ ownershipIndexerInstances:
   - postgresDb: indexerdb
     postgresPasswordSecretKey: indexerPostgresPassword
     postgresUser: indexer
+    postgresHost: "stg-db-do-user-4813238-0.j.db.ondigitalocean.com" 
     postgresPort: 25060
     chainName: Ethereum
     chainId: "1"
@@ -51,6 +52,7 @@ ownershipIndexerInstances:
   - postgresDb: squid-hedera
     postgresPasswordSecretKey: indexerPostgresPassword
     postgresUser: indexer
+    postgresHost: "stg-db-do-user-4813238-0.j.db.ondigitalocean.com" 
     postgresPort: 25060
     chainName: Hedera
     chainId: "296"
