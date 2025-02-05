@@ -218,7 +218,7 @@ workflows:
             parameters:
               image: [ "freeverseio/laos-indexer" ]
               root: [ "laos-indexer"]
-              chainName: [ "laos", "laos-sigma" ]
+              chainName: [ "mainnet", "sigma" ]
           name: build-<< matrix.chainName >>
           image: << matrix.image >>
           root: << matrix.root >>
