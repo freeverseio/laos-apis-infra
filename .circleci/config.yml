@@ -214,31 +214,12 @@ workflows:
           context: dockerhub
 
       - build-indexer:
-          name: build-laos-indexer
-          image: freeverseio/laos-indexer
-          root: laos-indexer
-          chainName: laos
-          context: dockerhub
-
-      - build-indexer:
-          name: build-laos-sigma-indexer
-          image: freeverseio/laos-indexer
-          root: laos-indexer
-          chainName: laos-sigma
-          context: dockerhub
-        
-      - build-indexer:
-          name: build-polygon-ownership-indexer
-          image: freeverseio/laos-ownership-indexer
-          root: laos-ownership-indexer
-          chainName: Polygon
-          context: dockerhub
-
-      - build-indexer:
-          name: build-ethereum-ownership-indexer
-          image: freeverseio/laos-ownership-indexer
-          root: laos-ownership-indexer
-          chainName: Ethereum
+          name: build-<< matrix.chainName >>
+          matrix:
+            parameters:
+              image: ["freeverseio/laos-indexer", "freeverseio/laos-ownership-indexer"]
+              root: ["laos-indexer", "laos-ownership-indexer"]
+              chainName: ["laos", "laos-sigma", "Polygon", "Ethereum", "HederaTestnet"]
           context: dockerhub
 
       - deployment-test:
