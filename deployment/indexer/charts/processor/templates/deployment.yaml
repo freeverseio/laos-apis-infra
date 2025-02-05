@@ -87,8 +87,6 @@ spec:
                   name: indexers-private-config
                   key: {{ .Values.pinataGatewayApiTokenSecretKey | quote }}
             {{- end }}
-            - name: CHAIN_ID
-              value: {{ .Values.chainId | quote }}
             - name: CHAIN_NAME
               value: {{ .Values.chainName }}
             - name: OWNERSHIP_CONTRACT_MODEL

@@ -35,4 +35,3 @@ releases:
       - pinataGatewayApiTokenSecretKey: {{ .Values.pinataGatewayApiTokenSecretKey }}
       {{- end }}
       - chainName: {{ .Values.chainName }}
-      - chainId: {{ .Values.chainId }}

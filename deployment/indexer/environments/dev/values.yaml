@@ -19,7 +19,6 @@ ownershipIndexerInstances:
     postgresHost: "dev-db-do-user-4813238-0.j.db.ondigitalocean.com" 
     postgresPort: 25060
     chainName: Polygon # TODO make case insensitive
-    chainId: "137"
     indexerName: indexer-polygon-processor
     gatewayEndpoint: https://v2.archive.subsquid.io/network/polygon-mainnet
     startingBlock: "65270190"
@@ -37,7 +36,6 @@ ownershipIndexerInstances:
     postgresHost: "dev-db-do-user-4813238-0.j.db.ondigitalocean.com" 
     postgresPort: 25060
     chainName: Ethereum # TODO make case insensitive
-    chainId: "1"
     indexerName: indexer-ethereum-processor
     gatewayEndpoint: https://v2.archive.subsquid.io/network/ethereum-mainnet
     startingBlock: "21364679"
