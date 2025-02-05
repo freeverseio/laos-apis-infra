@@ -121,7 +121,6 @@ helmfiles:
       {{- end }}
       - installed: {{ .installed }}
       - chainName: {{ .chainName }}
-      - chainId: {{ .chainId | quote }}
 {{- end }}
 
 {{- range .Values.laosNodesInstances }}
