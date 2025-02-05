@@ -19,6 +19,7 @@ ownershipIndexerInstances:
     postgresHost: "stg-db-do-user-4813238-0.j.db.ondigitalocean.com" 
     postgresPort: 25060
     chainName: Polygon
+    chainId: "137"
     indexerName: indexer-polygon-processor
     gatewayEndpoint: https://v2.archive.subsquid.io/network/polygon-mainnet
     startingBlock: "59689828"
@@ -35,6 +36,7 @@ ownershipIndexerInstances:
     postgresUser: indexer
     postgresPort: 25060
     chainName: Ethereum
+    chainId: "1"
     indexerName: indexer-ethereum-processor
     gatewayEndpoint: https://v2.archive.subsquid.io/network/ethereum-mainnet
     startingBlock: "20365510"
@@ -51,6 +53,7 @@ ownershipIndexerInstances:
     postgresUser: indexer
     postgresPort: 25060
     chainName: Hedera
+    chainId: "296"
     indexerName: indexer-hedera-testnet-processor
     startingBlock: "12600100"
     rpcEndpointSecretKey: "indexerHederaTestnetRpcEndpoint"
