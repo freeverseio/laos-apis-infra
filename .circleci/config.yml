@@ -259,10 +259,11 @@ workflows:
           name: approve-deploy-indexer
           requires:
             - deployment-test-indexer
-            - build-laos-indexer
-            - build-laos-sigma-indexer
-            - build-ethereum-ownership-indexer
-            - build-polygon-ownership-indexer
+            - build-laos
+            - build-laos-sigma
+            - build-Ethereum
+            - build-Polygon
+            - build-HederaTestnet
           filters:
             branches:
               only:
@@ -273,10 +274,11 @@ workflows:
           name: approve-deploy-indexer-staging
           requires:
             - deployment-test-indexer
-            - build-laos-indexer
-            - build-laos-sigma-indexer
-            - build-ethereum-ownership-indexer
-            - build-polygon-ownership-indexer
+            - build-laos
+            - build-laos-sigma
+            - build-Ethereum
+            - build-Polygon
+            - build-HederaTestnet
           filters:
             branches:
               only:
