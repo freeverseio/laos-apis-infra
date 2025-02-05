@@ -80,7 +80,7 @@ laosNodesInstances:
     chain: "laos"
     setDnsPolicy: true
     nginxServiceUrl: http://laos-node-protostar.indexers.svc.cluster.local:9944
-    installed: false
+    installed: true
   - name: laos-node-protostar-2
     nodeVersion: "v0.25.0"
     chain: "laos"
