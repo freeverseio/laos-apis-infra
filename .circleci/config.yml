@@ -212,13 +212,29 @@ workflows:
           root: laos-extensions
           context: dockerhub
 
+
       - build-indexer:
-          name: build-<< matrix.chainName >>-<< matrix.root >>
           matrix:
             parameters:
-              image: ["freeverseio/laos-indexer", "freeverseio/laos-ownership-indexer"]
-              root: ["laos-indexer", "laos-ownership-indexer"]
-              chainName: ["laos", "laos-sigma", "Polygon", "Ethereum", "HederaTestnet"]
+              image: [ "freeverseio/laos-indexer" ]
+              root: [ "laos-indexer"]
+              chainName: [ "laos", "laos-sigma" ]
+          name: build-<< matrix.chainName >>
+          image: << matrix.image >>
+          root: << matrix.root >>
+          chainName: << matrix.chainName >>
+          context: dockerhub
+
+      - build-indexer:
+          matrix:
+            parameters:
+              image: [ "freeverseio/laos-ownership-indexer" ]
+              root: [ "laos-ownership-indexer"]
+              chainName: [ "Polygon", "Ethereum", "HederaTestnet" ]
+          name: build-<< matrix.chainName >>
+          image: << matrix.image >>
+          root: << matrix.root >>
+          chainName: << matrix.chainName >>
           context: dockerhub
 
       - deployment-test:
@@ -258,11 +274,11 @@ workflows:
           name: approve-deploy-indexer
           requires:
             - deployment-test-indexer
-            - build-laos-laos-indexer
-            - build-laos-sigma-laos-indexer
-            - build-Polygon-laos-ownership-indexer
-            - build-Ethereum-laos-ownership-indexer
-            - build-HederaTestnet-laos-indexer
+            - build-laos
+            - build-laos-sigma
+            - build-Polygon
+            - build-Ethereum
+            - build-HederaTestnet
           filters:
             branches:
               only:
@@ -273,11 +289,11 @@ workflows:
           name: approve-deploy-indexer-staging
           requires:
             - deployment-test-indexer
-            - build-laos-laos-indexer
-            - build-laos-sigma-laos-indexer
-            - build-Polygon-laos-ownership-indexer
-            - build-Ethereum-laos-ownership-indexer
-            - build-HederaTestnet-laos-indexer
+            - build-laos
+            - build-laos-sigma
+            - build-Polygon
+            - build-Ethereum
+            - build-HederaTestnet
           filters:
             branches:
               only:
