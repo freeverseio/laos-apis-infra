@@ -22,3 +22,4 @@ releases:
       {{- if hasKey .Values "pinataGatewayApiTokenSecretKey" }}
       - pinataGatewayApiTokenSecretKey: {{ .Values.pinataGatewayApiTokenSecretKey }}
       {{- end }}
+      - chainName: {{ .Values.chainName }}
