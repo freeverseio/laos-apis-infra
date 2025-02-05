@@ -274,8 +274,8 @@ workflows:
           name: approve-deploy-indexer
           requires:
             - deployment-test-indexer
-            - build-laos
-            - build-laos-sigma
+            - build-mainnet
+            - build-sigma
             - build-Polygon
             - build-Ethereum
             - build-HederaTestnet
@@ -289,8 +289,8 @@ workflows:
           name: approve-deploy-indexer-staging
           requires:
             - deployment-test-indexer
-            - build-laos
-            - build-laos-sigma
+            - build-mainnet
+            - build-sigma
             - build-Polygon
             - build-Ethereum
             - build-HederaTestnet
