@@ -8,3 +8,13 @@ data:
       "137": "polygon",
       "1": "ethereum"
     }
+  default-ownership-laos-chain.json: |
+    {
+      "137": "6283",
+       "1":"62850"
+    }
+  supported-laos-chains.json: |
+    {
+      "6283":"mainnet",
+      "62850":"sigma"
+    }
