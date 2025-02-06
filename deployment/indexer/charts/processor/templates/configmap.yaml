@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: supported-chains
+  name: laos-consensus
 data:
   laos-consensus.json: |
     {

@@ -23,7 +23,7 @@ spec:
           volumeMounts:
             - name: db-certificate
               mountPath: "/squid/data"
-            - name: supported-chains
+            - name: laos-consensus
               mountPath: "/squid/supported-chains/"
               readOnly: true
           resources:
@@ -127,6 +127,6 @@ spec:
         - name: db-certificate
           secret:
             secretName: db-cert
-        - name: supported-chains
+        - name: laos-consensus
           configMap:
-            name: supported-chains
+            name: laos-consensus
