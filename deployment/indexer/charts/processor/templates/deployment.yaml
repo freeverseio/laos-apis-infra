@@ -24,7 +24,7 @@ spec:
             - name: db-certificate
               mountPath: "/squid/data"
             - name: laos-consensus
-              mountPath: "/squid/supported-chains/"
+              mountPath: "/squid/laos-consensus/"
               readOnly: true
           resources:
             requests:
