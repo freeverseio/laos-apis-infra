@@ -24,7 +24,7 @@ spec:
             - name: db-certificate
               mountPath: "/squid/data"
             - name: supported-chains
-              mountPath: "/app/supported-chains/"
+              mountPath: "/squid/supported-chains/"
               readOnly: true
           resources:
             requests:
