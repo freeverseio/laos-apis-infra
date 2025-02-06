@@ -1,6 +1,6 @@
 namespace: indexers
 laosIndexerInstances:
-  - chainName: laos-sigma
+  - chainName: sigma
     indexerName: indexer-laos-sigma
     postgresDb: indexerdb
     postgresPasswordSecretKey: indexerPostgresPassword

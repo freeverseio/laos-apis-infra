@@ -218,7 +218,7 @@ workflows:
             parameters:
               image: [ "freeverseio/laos-indexer" ]
               root: [ "laos-indexer"]
-              chainName: [ "laos", "laos-sigma" ]
+              chainName: [ "Mainnet", "Sigma" ]
           name: build-<< matrix.chainName >>
           image: << matrix.image >>
           root: << matrix.root >>
@@ -274,8 +274,8 @@ workflows:
           name: approve-deploy-indexer
           requires:
             - deployment-test-indexer
-            - build-laos
-            - build-laos-sigma
+            - build-Mainnet
+            - build-Sigma
             - build-Polygon
             - build-Ethereum
             - build-HederaTestnet
@@ -289,8 +289,8 @@ workflows:
           name: approve-deploy-indexer-staging
           requires:
             - deployment-test-indexer
-            - build-laos
-            - build-laos-sigma
+            - build-Mainnet
+            - build-Sigma
             - build-Polygon
             - build-Ethereum
             - build-HederaTestnet

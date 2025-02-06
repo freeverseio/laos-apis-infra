@@ -1,6 +1,6 @@
 namespace: indexers
 laosIndexerInstances:
-  - chainName: laos-sigma
+  - chainName: Sigma # TODO make case insensitive
     indexerName: indexer-laos-sigma
     postgresDb: indexerdb
     postgresPasswordSecretKey: indexerPostgresPassword
@@ -9,6 +9,18 @@ laosIndexerInstances:
     postgresPort: 25060
     startingBlock: "1"
     rpcEndpointSecretKey: "indexerLaosSigmaRpcEndpointForPolygon"
+    rpcRateLimit: 10
+    pinataGatewayApiTokenSecretKey: "pinataGatewayApiToken"
+    installed: "true"
+  - chainName: Mainnet # TODO make case insensitive
+    indexerName: indexer-laos-mainnet
+    postgresDb: indexerdb
+    postgresPasswordSecretKey: indexerPostgresPassword
+    postgresUser: indexer
+    postgresHost: "dev-db-do-user-4813238-0.j.db.ondigitalocean.com"
+    postgresPort: 25060
+    startingBlock: "1"
+    rpcEndpointSecretKey: "indexerLaosRpcEndpointForPolygon"
     rpcRateLimit: 10
     pinataGatewayApiTokenSecretKey: "pinataGatewayApiToken"
     installed: "true"

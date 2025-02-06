@@ -70,6 +70,16 @@ spec:
                 secretKeyRef:
                   name: indexers-private-config
                   key: {{ .Values.pinataGatewayApiTokenSecretKey | quote }}
+            - name: CHAIN_NAME
+              value: {{ .Values.chainName }}
+            - name: ASSET_MODEL
+              value: {{ .Values.chainName}}LaosAsset
+            - name: METADATA_MODEL
+              value: {{ .Values.chainName}}Metadata
+            - name: TOKEN_URI_MODEL
+              value: {{ .Values.chainName}}TokenUri
+            - name: SCHEMA_NAME
+              value: {{ .Values.chainName | lower }}_laos_processor
             {{- end }}
           command: ["sqd", {{ .Values.command }}]
           livenessProbe:

@@ -86,6 +86,7 @@ helmfiles:
       {{- end }}
       - command: "process:prod:laos"
       - installed: {{ .installed }}
+      - chainName: {{ .chainName }}
   {{- end }}
 
   {{- range .Values.ownershipIndexerInstances }}
