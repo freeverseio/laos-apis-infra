@@ -9,7 +9,7 @@ laosIndexerInstances:
     postgresPort: 25060
     startingBlock: "1"
     rpcEndpointSecretKey: "indexerLaosSigmaRpcEndpointForPolygon"
-    rpcRateLimit: 10
+    # rpcRateLimit: 10
     pinataGatewayApiTokenSecretKey: "pinataGatewayApiToken"
     installed: "true"
 ownershipIndexerInstances:
