@@ -1,0 +1,8 @@
+releases:
+  - name: indexers-config-release
+    namespace: '{{ .Values.namespace }}'
+    createNamespace: false
+    installed: {{ .Values.installed }}
+    chart: .
+    wait: true
+    
