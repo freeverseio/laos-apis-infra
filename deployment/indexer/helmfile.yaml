@@ -65,6 +65,11 @@ releases:
 {{- end }}
 
 helmfiles:
+  - path: 'charts/config/helmfile.yaml'
+    values:
+      - installed: true
+        namespace: {{ .Values.namespace }}
+        
   {{- range .Values.laosIndexerInstances }}
   - path: 'charts/laos-processor/helmfile.yaml'
     values:
