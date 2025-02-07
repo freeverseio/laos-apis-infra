@@ -67,7 +67,6 @@ laosNodesInstances:
   - name: public-node-protostar
     nodeVersion: "v0.25.0"
     chain: "laos-sigma"
-    nginxServiceUrl: http://public-node-protostar.indexers.svc.cluster.local:9944
     installed: true
   - name: public-node-protostar-2
     nodeVersion: "v0.25.0"
@@ -78,7 +77,6 @@ laosNodesInstances:
     nodeVersion: "v0.25.0"
     chain: "laos"
     setDnsPolicy: true
-    nginxServiceUrl: http://laos-node-protostar.indexers.svc.cluster.local:9944
     installed: true
   - name: laos-node-protostar-1
     nodeVersion: "v0.25.0"
