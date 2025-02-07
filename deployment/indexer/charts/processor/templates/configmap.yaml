@@ -1,3 +1,4 @@
+{{- if not (lookup "v1" "ConfigMap" .Release.Namespace "laos-consensus") }}
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -22,3 +23,4 @@ data:
         }
       ]
     }
+{{- end }}
