@@ -22,6 +22,9 @@ spec:
             - name: db-certificate
               mountPath: "/app/data"
               readOnly: true
+            - name: supported-chains
+              mountPath: "/app/supported-chains/"
+              readOnly: true
           resources:
             requests:
               memory: '256Mi'
@@ -101,3 +104,6 @@ spec:
         - name: db-certificate
           secret:
             secretName: db-cert
+        - name: supported-chains
+          configMap:
+            name: supported-chains
