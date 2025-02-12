@@ -27,7 +27,15 @@ helmfiles:
       - postgresDb: {{ .Values.postgresDb }}
       - postgresPort: {{ .Values.postgresPort }}
       - postgresPasswordSecretKey: {{ .Values.postgresPasswordSecretKey }}
-
+  - path: 'charts/api/helmfile.yaml'
+    values:
+      - namespace: {{ .Values.namespace }}
+      - imageTag: {{ requiredEnv "IMAGE_TAG" }}
+      - host: {{ .Values.clientApiHost }}
+      - postgresUser: {{ .Values.postgresUser }}
+      - postgresHost: {{ .Values.postgresHost }}
+      - postgresDb: {{ .Values.postgresDb }}
+      - postgresPort: {{ .Values.postgresPort }}
   - path: 'charts/extensions/helmfile.yaml'
     values:
       - namespace: {{ .Values.namespace }}

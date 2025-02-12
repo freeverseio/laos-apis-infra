@@ -212,6 +212,11 @@ workflows:
           root: laos-extensions
           context: dockerhub
 
+      - build-app:
+          name: build-laos-client-api
+          image: freeverseio/laos-client-api
+          root: laos-client-api
+          context: dockerhub
 
       - build-indexer:
           matrix:
@@ -253,6 +258,7 @@ workflows:
           requires:
             - build-laos-indexer-api
             - build-laos-extensions
+            - build-laos-client-api
           filters:
             branches:
               only:
@@ -264,6 +270,7 @@ workflows:
           requires:
             - build-laos-indexer-api
             - build-laos-extensions
+            - build-laos-client-api
           filters:
             branches:
               only:
