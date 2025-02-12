@@ -37,65 +37,61 @@ spec:
               value: "/app"
             - name: GQL_PORT
               value: "4001"
-            - name: INDEXER_POLYGON_ENDPOINT
-              value: "http://indexer-laos-polygon-api.protostar.svc.cluster.local:4000/graphql"
-            - name: INDEXER_ETHEREUM_ENDPOINT
-              value: "http://indexer-laos-ethereum-api.protostar.svc.cluster.local:4000/graphql"
             - name: MINTER_PVK
               valueFrom:
                 secretKeyRef:
-                  name: protostar-private-config
+                  name: indexers-private-config
                   key: minterPvk
             - name: RPC_MINTER
               valueFrom:
                 secretKeyRef:
-                  name: protostar-private-config
+                  name: indexers-private-config
                   key: rpcMinter
             - name: PINATA_API_KEY
               valueFrom:
                 secretKeyRef:
-                  name: protostar-private-config
+                  name: indexers-private-config
                   key: pinataApiKey
             - name: PINATA_API_SECRET
               valueFrom:
                 secretKeyRef:
-                  name: protostar-private-config
+                  name: indexers-private-config
                   key: pinataApiSecret
             - name: MINTER_KEYS
               valueFrom:
                 secretKeyRef:
-                  name: protostar-private-config
+                  name: indexers-private-config
                   key: clientApiMinterKeys
             - name: POSTGRES_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: protostar-private-config
+                  name: indexers-private-config
                   key: postgresPassword
             - name: DATABASE_URL
               value: "postgres://{{ .Values.postgresUser }}:$(POSTGRES_PASSWORD)@{{.Values.postgresHost}}:{{.Values.postgresPort}}/{{.Values.postgresDb}}?sslmode=require&sslrootcert=./data/ca-certificate.pem"            
             - name: API_RPC_ETHEREUM
               valueFrom:
                 secretKeyRef:
-                  name: protostar-private-config
+                  name: indexers-private-config
                   key: apiRpcEthereum
             - name: API_RPC_POLYGON
               valueFrom:
                 secretKeyRef:
-                  name: protostar-private-config
+                  name: indexers-private-config
                   key: apiRpcPolygon
-            {{- $secret := lookup "v1" "Secret" .Release.Namespace "protostar-private-config" }}
+            {{- $secret := lookup "v1" "Secret" .Release.Namespace "indexers-private-config" }}
             {{- if and $secret (hasKey $secret.data "apiRpcHederaMainnet") }}
             - name: API_RPC_HEDERA_MAINNET
               valueFrom:
                 secretKeyRef:
-                  name: protostar-private-config
+                  name: indexers-private-config
                   key: apiRpcHederaMainnet
             {{- end }}
             {{- if and $secret (hasKey $secret.data "apiRpcHederaTestnet") }}
             - name: API_RPC_HEDERA_TESTNET
               valueFrom:
                 secretKeyRef:
-                  name: protostar-private-config
+                  name: indexers-private-config
                   key: apiRpcHederaTestnet
             {{- end }}
           ports:
