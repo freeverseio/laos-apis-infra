@@ -6,4 +6,5 @@ postgresDb: protostardb
 postgresPort: "25060"
 postgresPasswordSecretKey: indexerPostgresPassword
 postgresUser: "protostar"
+postgresUserIndexerApi: "indexer"
 extensionsHost: extensions.indexers.gorengine.com
