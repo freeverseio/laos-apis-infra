@@ -22,7 +22,7 @@ helmfiles:
       - namespace: {{ .Values.namespace }}
       - imageTag: {{ requiredEnv "IMAGE_TAG" }}
       - indexerApiHost: {{ .Values.indexerApiHost }}
-      - postgresUser: {{ .Values.postgresUser }}
+      - postgresUser: {{ .Values.postgresUserIndexerApi }}
       - postgresHost: {{ .Values.postgresHost }}
       - postgresDb: {{ .Values.postgresDb }}
       - postgresPort: {{ .Values.postgresPort }}
