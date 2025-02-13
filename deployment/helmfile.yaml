@@ -24,7 +24,7 @@ helmfiles:
       - indexerApiHost: {{ .Values.indexerApiHost }}
       - postgresUser: {{ .Values.postgresUserIndexerApi }}
       - postgresHost: {{ .Values.postgresHost }}
-      - postgresDb: {{ .Values.postgresDb }}
+      - postgresDb: {{ .Values.postgresDbIndexerApi }}
       - postgresPort: {{ .Values.postgresPort }}
       - postgresPasswordSecretKey: {{ .Values.postgresPasswordSecretKey }}
   - path: 'charts/api/helmfile.yaml'
