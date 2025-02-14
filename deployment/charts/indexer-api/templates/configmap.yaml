@@ -11,7 +11,7 @@ data:
   default-ownership-laos-chain.json: |
     {
       "137": "6283",
-       "1":"62850"
+       "1":"6283"
     }
   supported-laos-chains.json: |
     {
