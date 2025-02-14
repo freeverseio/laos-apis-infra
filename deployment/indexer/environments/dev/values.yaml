@@ -50,7 +50,7 @@ ownershipIndexerInstances:
     chainName: Ethereum # TODO make case insensitive
     indexerName: indexer-ethereum-processor
     gatewayEndpoint: https://v2.archive.subsquid.io/network/ethereum-mainnet
-    startingBlock: "21364679"
+    startingBlock: "21022000"
     rpcEndpointSecretKey: "indexerEthereumRpcEndpoint"
     # rpcRateLimit: 10
     pinataGatewayApiTokenSecretKey: "pinataGatewayApiToken"
