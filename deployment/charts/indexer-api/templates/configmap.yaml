@@ -18,3 +18,8 @@ data:
       "6283":"mainnet",
       "62850":"sigma"
     }
+  laos-chain-rpc.json: |
+    {
+    "6283": "https://rpc.laos.laosfoundation.io",
+    "62850": "https://rpc.laossigma.laosfoundation.io"
+    }
