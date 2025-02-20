@@ -235,7 +235,7 @@ workflows:
             parameters:
               image: [ "freeverseio/laos-ownership-indexer" ]
               root: [ "laos-ownership-indexer"]
-              chainName: [ "Polygon", "Ethereum", "HederaTestnet" ]
+              chainName: [ "Polygon", "Ethereum", "HederaTestnet", "Hedera" ]
           name: build-<< matrix.chainName >>
           image: << matrix.image >>
           root: << matrix.root >>

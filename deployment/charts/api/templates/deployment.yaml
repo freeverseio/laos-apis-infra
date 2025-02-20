@@ -42,11 +42,6 @@ spec:
                 secretKeyRef:
                   name: indexers-private-config
                   key: minterPvk
-            - name: RPC_MINTER
-              valueFrom:
-                secretKeyRef:
-                  name: indexers-private-config
-                  key: rpcMinter
             - name: PINATA_API_KEY
               valueFrom:
                 secretKeyRef:
