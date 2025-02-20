@@ -81,7 +81,7 @@ ownershipIndexerInstances:
     postgresUser: indexer
     postgresHost: "pro-db-do-user-4813238-0.h.db.ondigitalocean.com" 
     postgresPort: 25060
-    chainName: HederaTestnet
+    chainName: Hederatestnet
     indexerName: indexer-hedera-testnet-processor
     startingBlock: "12600100"
     rpcEndpointSecretKey: "indexerHederaTestnetRpcEndpoint"
