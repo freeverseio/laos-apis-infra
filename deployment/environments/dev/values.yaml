@@ -1,6 +1,6 @@
 namespace: indexers
 indexerApiHost: indexers.gorengine.com
-clientApiHost: api.indexers.gorengine.com
+clientApiHost: api.laos.gorengine.com
 postgresHost: dev-db-do-user-4813238-0.j.db.ondigitalocean.com
 postgresDb: protostardb
 postgresPort: "25060"
