@@ -65,8 +65,7 @@ ownershipIndexerInstances:
     postgresHost: "pro-db-do-user-4813238-0.h.db.ondigitalocean.com"
     postgresPort: 25060
     chainName: Hedera # TODO make case insensitive
-    indexerName: indexer-hedera-processor
-    gatewayEndpoint: https://v2.archive.subsquid.io/network/ethereum-mainnet
+    indexerName: indexer-hedera-processor    
     startingBlock: "21022000"
     rpcEndpointSecretKey: "indexerHederaRpcEndpoint"
     # rpcRateLimit: 10
