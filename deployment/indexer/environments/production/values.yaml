@@ -66,7 +66,7 @@ ownershipIndexerInstances:
     postgresPort: 25060
     chainName: Hedera # TODO make case insensitive
     indexerName: indexer-hedera-processor    
-    startingBlock: "21022000"
+    startingBlock: "71000000"
     rpcEndpointSecretKey: "indexerHederaRpcEndpoint"
     # rpcRateLimit: 10
     pinataGatewayApiTokenSecretKey: "pinataGatewayApiToken"
