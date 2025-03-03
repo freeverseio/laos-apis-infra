@@ -1,0 +1,14 @@
+releases:
+  - name: laos-indexer-btc-api-release
+    namespace: '{{ .Values.namespace }}'
+    createNamespace: false
+    chart: .
+    values:
+      - imageTag: {{ .Values.imageTag }}
+      - indexerBtcApiHost: {{ .Values.indexerBtcApiHost }}
+      - postgresUser: {{ .Values.postgresUser }}
+      - postgresHost: {{ .Values.postgresHost }}
+      - postgresDb: {{ .Values.postgresDb }}
+      - postgresPort: {{ .Values.postgresPort }}
+      - postgresPasswordSecretKey: {{ .Values.postgresPasswordSecretKey }}
+      
