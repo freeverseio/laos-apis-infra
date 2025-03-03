@@ -32,9 +32,9 @@ helmfiles:
       - namespace: {{ .Values.namespace }}
       - imageTag: {{ requiredEnv "IMAGE_TAG" }}
       - indexerBtcApiHost: {{ .Values.indexerBtcApiHost }}
-      - postgresUser: {{ .Values.postgresUser }}
+      - postgresUser: {{ .Values.postgresUserIndexerApi }}
       - postgresHost: {{ .Values.postgresHost }}
-      - postgresDb: {{ .Values.postgresDb }}
+      - postgresDb: {{ .Values.postgresDbIndexerApi }}
       - postgresPort: {{ .Values.postgresPort }}
       - postgresPasswordSecretKey: {{ .Values.postgresPasswordSecretKey }}
   - path: 'charts/api/helmfile.yaml'
