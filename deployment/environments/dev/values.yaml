@@ -9,3 +9,4 @@ postgresUser: "protostar"
 postgresUserIndexerApi: "indexer"
 postgresDbIndexerApi: "indexerdb"
 extensionsHost: extensions.indexers.gorengine.com
+indexerBtcApiHost: indexer-btc-api.indexers.gorengine.com
