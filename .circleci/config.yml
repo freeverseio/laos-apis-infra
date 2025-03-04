@@ -207,6 +207,12 @@ workflows:
           context: dockerhub
 
       - build-app:
+          name: build-laos-indexer-btc-api
+          image: freeverseio/laos-indexer-btc-api
+          root: laos-indexer-btc-api
+          context: dockerhub
+
+      - build-app:
           name: build-laos-extensions
           image: freeverseio/laos-extensions
           root: laos-extensions
@@ -252,6 +258,7 @@ workflows:
           root: ./
           imageTag: << pipeline.parameters.imageTag >>
 
+
       - approval:
           type: approval
           name: approve-deploy-apis
@@ -259,41 +266,16 @@ workflows:
             - build-laos-indexer-api
             - build-laos-extensions
             - build-laos-client-api
+            - build-laos-indexer-btc-api
           filters:
             branches:
               only:
                 - main
 
-      - approval:
-          type: approval
-          name: approve-deploy-apis-staging
-          requires:
-            - build-laos-indexer-api
-            - build-laos-extensions
-            - build-laos-client-api
-          filters:
-            branches:
-              only:
-                - main
 
       - approval:
           type: approval
           name: approve-deploy-indexer
-          requires:
-            - deployment-test-indexer
-            - build-Mainnet
-            - build-Sigma
-            - build-Polygon
-            - build-Ethereum
-            - build-Hederatestnet
-          filters:
-            branches:
-              only:
-                - main
-
-      - approval:
-          type: approval
-          name: approve-deploy-indexer-staging
           requires:
             - deployment-test-indexer
             - build-Mainnet
@@ -324,31 +306,6 @@ workflows:
             - deployment-test-indexer
             - approve-deploy-indexer
           environment: development
-          root: indexer
-          imageTag: << pipeline.parameters.imageTag >>
-          filters:
-            branches:
-              only:
-                - main
-
-      - deploy_to_cluster:
-          name: deploy-to-staging-api
-          requires:
-            - approve-deploy-apis-staging
-          environment: staging
-          root: ./
-          imageTag: << pipeline.parameters.imageTag >>
-          filters:
-            branches:
-              only:
-                - main
-
-      - deploy_to_cluster:
-          name: deploy-to-staging-indexer
-          requires:
-            - deployment-test-indexer
-            - approve-deploy-indexer-staging
-          environment: staging
           root: indexer
           imageTag: << pipeline.parameters.imageTag >>
           filters:

@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: laos-indexer-btc-api
+  labels:
+    app.kubernetes.io/app: laos-indexer-btc-api
+spec:
+  type: ClusterIP
+  selector:
+    app.kubernetes.io/app: laos-indexer-btc-api
+  ports:
+    - port: 4001
+      targetPort: 4001
+      protocol: TCP
+      name: api
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: laos-indexer-btc-api
+spec:
+  type: ExternalName
+  externalName: laos-indexer-btc-api.protostar.svc.cluster.local  

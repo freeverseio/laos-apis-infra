@@ -27,6 +27,16 @@ helmfiles:
       - postgresDb: {{ .Values.postgresDbIndexerApi }}
       - postgresPort: {{ .Values.postgresPort }}
       - postgresPasswordSecretKey: {{ .Values.postgresPasswordSecretKey }}
+  - path: 'charts/indexer-btc-api/helmfile.yaml'
+    values:
+      - namespace: {{ .Values.namespace }}
+      - imageTag: {{ requiredEnv "IMAGE_TAG" }}
+      - clientApiBtcHost: {{ .Values.clientApiBtcHost }}
+      - postgresUser: {{ .Values.postgresUserIndexerApi }}
+      - postgresHost: {{ .Values.postgresHost }}
+      - postgresDb: {{ .Values.postgresDbIndexerApi }}
+      - postgresPort: {{ .Values.postgresPort }}
+      - postgresPasswordSecretKey: {{ .Values.postgresPasswordSecretKey }}
   - path: 'charts/api/helmfile.yaml'
     values:
       - namespace: {{ .Values.namespace }}
