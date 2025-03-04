@@ -31,7 +31,7 @@ helmfiles:
     values:
       - namespace: {{ .Values.namespace }}
       - imageTag: {{ requiredEnv "IMAGE_TAG" }}
-      - indexerBtcApiHost: {{ .Values.indexerBtcApiHost }}
+      - clientApiBtcHost: {{ .Values.clientApiBtcHost }}
       - postgresUser: {{ .Values.postgresUserIndexerApi }}
       - postgresHost: {{ .Values.postgresHost }}
       - postgresDb: {{ .Values.postgresDbIndexerApi }}

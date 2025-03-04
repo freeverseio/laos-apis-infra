@@ -5,7 +5,7 @@ releases:
     chart: .
     values:
       - imageTag: {{ .Values.imageTag }}
-      - indexerBtcApiHost: {{ .Values.indexerBtcApiHost }}
+      - clientApiBtcHost: {{ .Values.clientApiBtcHost }}
       - postgresUser: {{ .Values.postgresUser }}
       - postgresHost: {{ .Values.postgresHost }}
       - postgresDb: {{ .Values.postgresDb }}

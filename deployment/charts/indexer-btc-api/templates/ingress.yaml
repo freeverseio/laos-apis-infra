@@ -17,10 +17,10 @@ metadata:
 spec:
   tls:
     - hosts:
-        - {{ .Values.indexerBtcApiHost }}
+        - {{ .Values.clientApiBtcHost }}
       secretName: indexer-btc-api-tls
   rules:
-    - host: {{ .Values.indexerBtcApiHost }}
+    - host: {{ .Values.clientApiBtcHost }}
       http:
         paths:
           - path: /
