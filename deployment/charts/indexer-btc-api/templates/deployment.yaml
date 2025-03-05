@@ -32,6 +32,11 @@ spec:
           env:  
             - name: GQL_PORT
               value: "4001"
+            - name: INDEXER_BTC_RPC
+              valueFrom:
+                secretKeyRef:
+                  name: indexers-private-config
+                  key: indexer-btc-rpc
             - name: POSTGRES_PASSWORD
               valueFrom:
                 secretKeyRef:
