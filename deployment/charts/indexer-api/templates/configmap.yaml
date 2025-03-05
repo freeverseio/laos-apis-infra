@@ -33,6 +33,14 @@ data:
         {
           "chainId":"137",
           "name": "Polygon"
+        },
+                {
+          "chainId":"295",
+          "name": "Hedera"
+        },
+        {
+          "chainId":"296",
+          "name": "HederaTestnet"
         }
       ],
       "laosChains": [
