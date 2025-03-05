@@ -13,11 +13,3 @@ spec:
       targetPort: 4001
       protocol: TCP
       name: api
----
-kind: Service
-apiVersion: v1
-metadata:
-  name: laos-indexer-btc-api
-spec:
-  type: ExternalName
-  externalName: laos-indexer-btc-api.indexers.svc.cluster.local  
