@@ -20,4 +20,4 @@ metadata:
   name: laos-indexer-btc-api
 spec:
   type: ExternalName
-  externalName: laos-indexer-btc-api.protostar.svc.cluster.local  
+  externalName: laos-indexer-btc-api.indexers.svc.cluster.local  
