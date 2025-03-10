@@ -10,3 +10,4 @@ postgresUserIndexerApi: "indexer"
 postgresDbIndexerApi: "indexerdb"
 extensionsHost: new-extensions.api.laosnetwork.io
 indexerApiUrl: http://laos-indexer-api.indexers.svc.cluster.local:4001
+indexerSchemaUrl: http://laos-indexer-api.indexers.svc.cluster.local:4001

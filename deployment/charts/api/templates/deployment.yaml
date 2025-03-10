@@ -90,7 +90,7 @@ spec:
                   key: apiRpcHederaTestnet
             {{- end }}
             - name: REMOTE_SCHEMA
-              value: http://laos-indexer-api.indexers.svc.cluster.local:4001
+              value: {{ .Values.indexerSchemaUrl }}
           ports:
             - containerPort: 4001
       volumes:

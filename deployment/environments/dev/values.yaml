@@ -11,3 +11,4 @@ postgresDbIndexerApi: "indexerdb"
 extensionsHost: extensions.indexers.gorengine.com
 clientApiBtcHost: api-btc.indexers.gorengine.com
 indexerApiUrl: http://laos-indexer-api.indexers.svc.cluster.local:4001
+indexerSchemaUrl: http://laos-indexer-api.indexers.svc.cluster.local:4001
