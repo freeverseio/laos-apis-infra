@@ -6,3 +6,4 @@ postgresPort: "25060"
 postgresPasswordSecretKey: indexerPostgresPassword
 postgresUser: "indexer"
 extensionsHost: extensions.indexers.staging.gorengine.com
+indexerApiUrl: http://laos-indexer-api.indexers.svc.cluster.local:4001
