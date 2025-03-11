@@ -27,6 +27,6 @@ spec:
               cpu: '2'
           env:  
             - name: GRAPHQL_ENDPOINT
-              value: "http://laos-indexer-api.indexers.svc.cluster.local:4001"
+              value: {{ .Values.indexerApiUrl }}
           ports:
             - containerPort: 3000

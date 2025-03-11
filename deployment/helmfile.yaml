@@ -46,8 +46,10 @@ helmfiles:
       - postgresHost: {{ .Values.postgresHost }}
       - postgresDb: {{ .Values.postgresDb }}
       - postgresPort: {{ .Values.postgresPort }}
+      - indexerSchemaUrl: {{ .Values.indexerSchemaUrl }}
   - path: 'charts/extensions/helmfile.yaml'
     values:
       - namespace: {{ .Values.namespace }}
       - imageTag: {{ requiredEnv "IMAGE_TAG" }}
       - host: {{ .Values.extensionsHost }}
+      - indexerApiUrl: {{ .Values.indexerApiUrl }}
