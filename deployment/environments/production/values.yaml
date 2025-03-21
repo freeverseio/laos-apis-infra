@@ -8,7 +8,7 @@ postgresPasswordSecretKey: indexerPostgresPassword
 postgresUser: "protostar"
 postgresUserIndexerApi: "indexer"
 postgresDbIndexerApi: "indexerdb"
-extensionsHost: new-extensions.api.laosnetwork.io
+extensionsHost: extensions.api.laosnetwork.io
 clientApiBtcHost: brc721.laosnetwork.io
 indexerApiUrl: http://laos-indexer-api.indexers.svc.cluster.local:4001
 indexerSchemaUrl: http://laos-indexer-api.indexers.svc.cluster.local:4001
