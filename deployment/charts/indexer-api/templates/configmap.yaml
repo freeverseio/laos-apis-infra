@@ -6,12 +6,16 @@ data:
   supported-chains.json: |
     {
       "137": "polygon",
-      "1": "ethereum"
+      "1": "ethereum",
+      "295": "hedera",
+      "296": "hederatestnet"
     }
   default-ownership-laos-chain.json: |
     {
       "137": "6283",
-      "1": "6283"
+      "1": "6283",
+      "295": "6283",
+      "296": "62850"
     }
   supported-laos-chains.json: |
     {
