@@ -27,6 +27,6 @@ spec:
               cpu: '2'
           env:  
             - name: GRAPHQL_ENDPOINT
-              value: {{ .Values.indexerApiUrl }}
+              value: {{ .Values.indexerApiUrl | quote }}
           ports:
             - containerPort: 3000
