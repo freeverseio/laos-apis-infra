@@ -74,21 +74,16 @@ spec:
                 secretKeyRef:
                   name: indexers-private-config
                   key: apiRpcPolygon
-            {{- $secret := lookup "v1" "Secret" .Release.Namespace "indexers-private-config" }}
-            {{- if and $secret (hasKey $secret.data "apiRpcHederaMainnet") }}
             - name: API_RPC_HEDERA_MAINNET
               valueFrom:
                 secretKeyRef:
                   name: indexers-private-config
                   key: apiRpcHederaMainnet
-            {{- end }}
-            {{- if and $secret (hasKey $secret.data "apiRpcHederaTestnet") }}
             - name: API_RPC_HEDERA_TESTNET
               valueFrom:
                 secretKeyRef:
                   name: indexers-private-config
                   key: apiRpcHederaTestnet
-            {{- end }}
             - name: REMOTE_SCHEMA
               value: {{ .Values.indexerSchemaUrl }}
           ports:

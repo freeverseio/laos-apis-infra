@@ -10,3 +10,4 @@ releases:
       - postgresHost: {{ .Values.postgresHost }}
       - postgresDb: {{ .Values.postgresDb }}
       - postgresPort: {{ .Values.postgresPort }}
+      - indexerSchemaUrl: {{ .Values.indexerSchemaUrl }}      
