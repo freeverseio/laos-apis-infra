@@ -47,22 +47,6 @@ ownershipIndexerInstances:
     laosPalletInstance: "51"
     indexerParseTraces: "false" 
     installed: "true"
-  - postgresDb: indexerdb
-    postgresPasswordSecretKey: indexerPostgresPassword
-    postgresUser: indexer
-    postgresHost: "stg-db-do-user-4813238-0.j.db.ondigitalocean.com" 
-    postgresPort: 25060
-    chainName: HederaTestnet
-    indexerName: indexer-hedera-testnet-processor
-    startingBlock: "12600100"
-    rpcEndpointSecretKey: "indexerHederaTestnetRpcEndpoint"
-    # rpcRateLimit: 10
-    pinataGatewayApiTokenSecretKey: "pinataGatewayApiToken" 
-    laosGlobalConsensus: "0:0x77afd6190f1554ad45fd0d31aee62aacc33c6db0ea801129acb813f913e0764f"
-    laosParachain: "4006"
-    laosPalletInstance: "51"
-    indexerParseTraces: "false" 
-    installed: "true"
 laosNodesInstances:
   - name: public-node-protostar
     nodeVersion: "v0.25.0"

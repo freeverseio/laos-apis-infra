@@ -74,16 +74,6 @@ spec:
                 secretKeyRef:
                   name: indexers-private-config
                   key: apiRpcPolygon
-            - name: API_RPC_HEDERA_MAINNET
-              valueFrom:
-                secretKeyRef:
-                  name: indexers-private-config
-                  key: apiRpcHederaMainnet
-            - name: API_RPC_HEDERA_TESTNET
-              valueFrom:
-                secretKeyRef:
-                  name: indexers-private-config
-                  key: apiRpcHederaTestnet
             - name: REMOTE_SCHEMA
               value: {{ .Values.indexerSchemaUrl }}
           ports:

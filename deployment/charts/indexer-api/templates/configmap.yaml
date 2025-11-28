@@ -7,8 +7,6 @@ data:
     {
       "137": "polygon",
       "1": "ethereum",
-      "295": "hedera",
-      "296": "hederatestnet"
     }
   default-ownership-laos-chain.json: |
     {
@@ -37,14 +35,6 @@ data:
         {
           "chainId":"137",
           "name": "Polygon"
-        },
-                {
-          "chainId":"295",
-          "name": "Hedera"
-        },
-        {
-          "chainId":"296",
-          "name": "HederaTestnet"
         }
       ],
       "laosChains": [
