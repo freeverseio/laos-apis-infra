@@ -16,10 +16,10 @@ laosNodesInstances:
   - name: public-node-protostar
     nodeVersion: "v0.25.0"
     chain: "laos-sigma"
-    installed: true
+    installed: false
   - name: laos-node-protostar
     nodeVersion: "v0.25.0"
     chain: "laos"
     setDnsPolicy: true
-    installed: true
+    installed: false
 ownershipIndexerInstances: []
