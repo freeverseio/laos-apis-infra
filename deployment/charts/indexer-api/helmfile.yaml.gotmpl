@@ -1,0 +1,16 @@
+---
+
+releases:
+  - name: laos-indexer-api-release
+    namespace: '{{ .Values.namespace }}'
+    createNamespace: false
+    chart: .
+    values:
+      - imageTag: {{ .Values.imageTag }}
+      - indexerApiHost: {{ .Values.indexerApiHost }}
+      - postgresUser: {{ .Values.postgresUser }}
+      - postgresHost: {{ .Values.postgresHost }}
+      - postgresDb: {{ .Values.postgresDb }}
+      - postgresPort: {{ .Values.postgresPort }}
+      - postgresPasswordSecretKey: {{ .Values.postgresPasswordSecretKey }}
+      
