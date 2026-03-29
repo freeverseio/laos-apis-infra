@@ -1,0 +1,31 @@
+repositories:
+  - name: stable
+    url: https://charts.helm.sh/stable
+
+environments:
+  default:
+    values:
+      - ./environments/dev/values.yaml
+  development:
+    values:
+      - ./environments/dev/values.yaml
+  staging:
+    values:
+      - ./environments/staging/values.yaml
+  production:
+    values:
+      - ./environments/production/values.yaml
+
+---
+
+helmfiles:  
+  - path: 'charts/indexer-btc-api/helmfile.yaml.gotmpl'
+    values:
+      - namespace: {{ .Values.namespace }}
+      - imageTag: {{ requiredEnv "IMAGE_TAG" }}
+      - clientApiBtcHost: {{ .Values.clientApiBtcHost }}
+      - postgresUser: {{ .Values.postgresUserIndexerApi }}
+      - postgresHost: {{ .Values.postgresHost }}
+      - postgresDb: {{ .Values.postgresDbIndexerApi }}
+      - postgresPort: {{ .Values.postgresPort }}
+      - postgresPasswordSecretKey: {{ .Values.postgresPasswordSecretKey }}

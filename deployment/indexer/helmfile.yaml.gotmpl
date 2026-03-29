@@ -20,6 +20,8 @@ environments:
     values:
       - ./environments/production/values.yaml
 
+---
+
 releases:
 {{- range .Values.laosNodesInstances }}
   - name: {{ .name }}
@@ -65,13 +67,13 @@ releases:
 {{- end }}
 
 helmfiles:
-  - path: 'charts/config/helmfile.yaml'
+  - path: 'charts/config/helmfile.yaml.gotmpl'
     values:
       - installed: true
         namespace: {{ .Values.namespace }}
         
   {{- range .Values.laosIndexerInstances }}
-  - path: 'charts/laos-processor/helmfile.yaml'
+  - path: 'charts/laos-processor/helmfile.yaml.gotmpl'
     values:
       - name: {{ .indexerName }}
       - namespace: {{ $.Values.namespace }}
@@ -95,7 +97,7 @@ helmfiles:
   {{- end }}
 
   {{- range .Values.ownershipIndexerInstances }}
-  - path: 'charts/processor/helmfile.yaml'
+  - path: 'charts/processor/helmfile.yaml.gotmpl'
     values:
       - name: {{ .indexerName }}
       - namespace: {{ $.Values.namespace }}
@@ -131,14 +133,14 @@ helmfiles:
 
 {{- range .Values.laosNodesInstances }}
 {{- if hasKey . "nginxServiceUrl" }}
-  - path: 'charts/nginx/helmfile.yaml'
+  - path: 'charts/nginx/helmfile.yaml.gotmpl'
     values:
       - namespace: {{ $.Values.namespace }}
       - name: nginx-{{ .name }}
       - nginxServiceUrl: {{ .nginxServiceUrl }}
       - installed: {{ .installed }}
 {{- else }}
-  - path: 'charts/nginx/helmfile.yaml'
+  - path: 'charts/nginx/helmfile.yaml.gotmpl'
     values:
       - namespace: {{ $.Values.namespace }}
       - name: nginx-{{ .name }}

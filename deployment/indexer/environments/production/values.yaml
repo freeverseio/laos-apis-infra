@@ -1,17 +1,5 @@
 namespace: indexers
 laosIndexerInstances:
-  - chainName: Sigma # TODO make case insensitive
-    indexerName: indexer-laos-sigma
-    postgresDb: indexerdb
-    postgresPasswordSecretKey: indexerPostgresPassword
-    postgresUser: indexer
-    postgresHost: "pro-db-do-user-4813238-0.h.db.ondigitalocean.com"
-    postgresPort: 25060
-    startingBlock: "1"
-    rpcEndpointSecretKey: "indexerLaosSigmaRpcEndpoint"
-    # rpcRateLimit: 10
-    pinataGatewayApiTokenSecretKey: "pinataGatewayApiToken"
-    installed: "true"
   - chainName: Mainnet # TODO make case insensitive
     indexerName: indexer-laos-mainnet
     postgresDb: indexerdb
@@ -24,80 +12,14 @@ laosIndexerInstances:
     # rpcRateLimit: 10
     pinataGatewayApiTokenSecretKey: "pinataGatewayApiToken"
     installed: "true"
-ownershipIndexerInstances:
-  - postgresDb: indexerdb
-    postgresPasswordSecretKey: indexerPostgresPassword
-    postgresUser: indexer
-    postgresHost: "pro-db-do-user-4813238-0.h.db.ondigitalocean.com"
-    postgresPort: 25060
-    chainName: Polygon # TODO make case insensitive
-    indexerName: indexer-polygon-processor
-    gatewayEndpoint: https://v2.archive.subsquid.io/network/polygon-mainnet
-    startingBlock: "60086190"
-    rpcEndpointSecretKey: "indexerPolygonRpcEndpoint"
-    # rpcRateLimit: 10
-    pinataGatewayApiTokenSecretKey: "pinataGatewayApiToken"
-    laosGlobalConsensus: "0:0x77afd6190f1554ad45fd0d31aee62aacc33c6db0ea801129acb813f913e0764f"
-    laosParachain: "4006"
-    laosPalletInstance: "51"
-    indexerParseTraces: "false"
-    installed: "true"
-  - postgresDb: indexerdb
-    postgresPasswordSecretKey: indexerPostgresPassword
-    postgresUser: indexer
-    postgresHost: "pro-db-do-user-4813238-0.h.db.ondigitalocean.com"
-    postgresPort: 25060
-    chainName: Ethereum # TODO make case insensitive
-    indexerName: indexer-ethereum-processor
-    gatewayEndpoint: https://v2.archive.subsquid.io/network/ethereum-mainnet
-    startingBlock: "20430000"
-    rpcEndpointSecretKey: "indexerEthereumRpcEndpoint"
-    # rpcRateLimit: 10
-    pinataGatewayApiTokenSecretKey: "pinataGatewayApiToken"
-    laosGlobalConsensus: "0:0x77afd6190f1554ad45fd0d31aee62aacc33c6db0ea801129acb813f913e0764f"
-    laosParachain: "4006"
-    laosPalletInstance: "51"
-    indexerParseTraces: "false"
-    installed: "true"
-  - postgresDb: indexerdb
-    postgresPasswordSecretKey: indexerPostgresPassword
-    postgresUser: indexer
-    postgresHost: "pro-db-do-user-4813238-0.h.db.ondigitalocean.com"
-    postgresPort: 25060
-    chainName: Hedera # TODO make case insensitive
-    indexerName: indexer-hedera-processor    
-    startingBlock: "71000000"
-    rpcEndpointSecretKey: "indexerHederaRpcEndpoint"
-    # rpcRateLimit: 10
-    pinataGatewayApiTokenSecretKey: "pinataGatewayApiToken"
-    laosGlobalConsensus: "0:0x77afd6190f1554ad45fd0d31aee62aacc33c6db0ea801129acb813f913e0764f"
-    laosParachain: "4006"
-    laosPalletInstance: "51"
-    indexerParseTraces: "false"
-    installed: "true"
-  - postgresDb: indexerdb
-    postgresPasswordSecretKey: indexerPostgresPassword
-    postgresUser: indexer
-    postgresHost: "pro-db-do-user-4813238-0.h.db.ondigitalocean.com" 
-    postgresPort: 25060
-    chainName: Hederatestnet
-    indexerName: indexer-hedera-testnet-processor
-    startingBlock: "12600100"
-    rpcEndpointSecretKey: "indexerHederaTestnetRpcEndpoint"
-    # rpcRateLimit: 10
-    pinataGatewayApiTokenSecretKey: "pinataGatewayApiToken" 
-    laosGlobalConsensus: "0:0x77afd6190f1554ad45fd0d31aee62aacc33c6db0ea801129acb813f913e0764f"
-    laosParachain: "4006"
-    laosPalletInstance: "51"
-    indexerParseTraces: "false" 
-    installed: "true"
 laosNodesInstances:
   - name: public-node-protostar
     nodeVersion: "v0.25.0"
     chain: "laos-sigma"
-    installed: true
+    installed: false
   - name: laos-node-protostar
     nodeVersion: "v0.25.0"
     chain: "laos"
     setDnsPolicy: true
-    installed: true
+    installed: false
+ownershipIndexerInstances: []
